@@ -12,7 +12,7 @@ const Menu = ({showMenu}:menuPromp) => {
             <div>Catalogo</div>
             <div>Noticias Flixprop</div>
         </section>
-        <section>
+        <section className="menu-icons-login">
             <div><i className="bi bi-person"></i>Log In</div>
             <div className="menu-socialMedia">
                 <i className="bi bi-twitter"></i>
