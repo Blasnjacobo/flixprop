@@ -1,14 +1,15 @@
-import { useState, useEffect } from 'react'; // Import useState and useEffect hooks
+import { useState, useEffect, MutableRefObject } from 'react'; // Import useState and useEffect hooks
 import flixprop from '../assets/flixprop-logo.png'
 import '../App.css'
 
 interface menuPromp {
     toggleMenu: () => void
     showMenu: boolean
+    navbarRef: MutableRefObject<null>
   }
 
 
-const Navbar = ({ toggleMenu, showMenu } : menuPromp) => {
+const Navbar = ({ toggleMenu, showMenu, navbarRef } : menuPromp) => {
 
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
   useEffect(() => {
@@ -22,7 +23,7 @@ const Navbar = ({ toggleMenu, showMenu } : menuPromp) => {
   }, []);
 
   return (
-    <div className='Navbar'>
+    <div className='Navbar' ref={navbarRef}>
         <div className='Navbar-container flex-between'>
             {windowWidth < 990 ? (
             <div className="menu-icon" onClick={toggleMenu}>
