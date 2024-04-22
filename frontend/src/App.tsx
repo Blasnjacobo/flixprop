@@ -14,8 +14,10 @@ function App() {
 
   return (
     <div>
-        <Navbar toggleMenu = {toggleMenu} showMenu={showMenu} navbarRef={navbarRef}/>
+      <div className='navbar-container'>
+        <Navbar toggleMenu={toggleMenu} showMenu={showMenu} navbarRef={navbarRef}/>
         <Menu showMenu={showMenu} menuRef={menuRef} navbarRef={navbarRef} setShowMenu={setShowMenu} />
+      </div>
     </div>
   )
 }

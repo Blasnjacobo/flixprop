@@ -42,7 +42,7 @@ const Navbar = ({ toggleMenu, showMenu, navbarRef } : menuPromp) => {
             </section>
             <section className='navbar-icon flex-between'>
                 <i className="bi bi-search"></i>
-                { !showMenu && <i className="bi bi-person"></i>}
+                <i className="bi bi-person"></i>
                 <i className="bi bi-bag"></i>
             </section>
         </div>
