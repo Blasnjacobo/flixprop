@@ -1,0 +1,32 @@
+[
+  {
+    "id": 1,
+    "imgUrl":
+      "https://github.com/Blasnjacobo/flixprop-storage/blob/main/Home/flixprop-slider/avatar-slider.jpg?raw=true"
+  },
+  {
+    "id": 2,
+    "imgUrl":
+      "https://github.com/Blasnjacobo/flixprop-storage/blob/main/Home/flixprop-slider/wonka-slider.jpg?raw=true"
+  },
+  {
+    "id": 3,
+    "imgUrl":
+      "https://github.com/Blasnjacobo/flixprop-storage/blob/main/Home/flixprop-slider/one_piece-slider.jpg?raw=true"
+  },
+  {
+    "id": 4,
+    "imgUrl":
+      "https://github.com/Blasnjacobo/flixprop-storage/blob/main/Home/flixprop-slider/stranger_things-slider.jpg?raw=true"
+  },
+  {
+    "id": 5,
+    "imgUrl":
+      "https://github.com/Blasnjacobo/flixprop-storage/blob/main/Home/flixprop-slider/barbie-slider.jpg?raw=true"
+  },
+  {
+    "id": 6,
+    "imgUrl":
+      "https://github.com/Blasnjacobo/flixprop-storage/blob/main/Home/flixprop-slider/house_of_the_dragon-slider.jpg?raw=true"
+  }
+]
