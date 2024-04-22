@@ -3,7 +3,8 @@
   margin: 0;
 }
 
-html, body {
+html,
+body {
   height: 100%;
   margin: 0;
   padding: 0;
@@ -22,41 +23,64 @@ html, body {
 /* Navbar */
 
 .Navbar {
-  height: 60px; /* Adjust height as needed */
+  height: 60px;
   width: 100%;
   color: white;
   background-color: rgba(0, 0, 0);
   position: relative;
   top: 0;
-  z-index: 1; /* Ensure Navbar is above Menu */
+  z-index: 1;
   display: flex;
   justify-content: center;
 }
 
-.Navbar-container{
+.Navbar-container {
   width: 90%;
+  display: flex;
+}
+
+.Navbar-container > * {
+  flex: 1;
 }
 
 .Navbar-container:first-child {
   cursor: pointer;
   font-size: x-large;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .navbar-redirecciones {
-  gap: 1.5rem;
+  display: flex;
+  gap: 20px;
+  align-items: center;
   color: rgb(199, 199, 199);
 }
 
+.navbar-redirecciones div:hover {
+  color: red;
+}
+
+.navbar-redirecciones div{
+  font-size: medium;
+}
+
 .navar-img {
-  width: 140px;
-  padding: 7px 0 7px 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height:50px;
+  padding: 7px 0;
 }
 
 .navbar-logo {
-  width: 100%;
+  height: 100%;
 }
 
 .navbar-icon {
+  display: flex;
+  justify-content: end;
   gap: 1rem;
 }
 
@@ -70,15 +94,15 @@ html, body {
   width: 0;
   background-color: black;
   color: white;
-  position: absolute; 
-  top: 60px; 
+  position: absolute;
+  top: 60px;
   left: 0;
   overflow-x: hidden;
   transition: width 0.5s ease;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  z-index: 2; 
+  z-index: 2;
 }
 
 .menu-mobile.show {
@@ -137,11 +161,11 @@ html, body {
 }
 
 .menu-icons-login div:nth-child(2) i:first-child:hover {
-  color: rgba(28,161,243,255);
+  color: rgba(28, 161, 243, 255);
 }
 
 .menu-icons-login div:nth-child(2) i:nth-child(2):hover {
-  color: rgba(9,100,255,255);
+  color: rgba(9, 100, 255, 255);
 }
 
 .menu-icons-login div:nth-child(2) i:nth-child(3):hover {
@@ -156,7 +180,7 @@ html, body {
   color: red;
 }
 
-@media screen and (max-width: 960px){
+@media screen and (max-width: 960px) {
   .navbar-icon .bi-person {
     display: none;
   }

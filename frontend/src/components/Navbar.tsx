@@ -24,17 +24,18 @@ const Navbar = ({ toggleMenu, showMenu, navbarRef } : menuPromp) => {
 
   return (
     <div className='Navbar' ref={navbarRef}>
-        <div className='Navbar-container flex-between'>
+        <div className='Navbar-container'>
             {windowWidth < 990 ? (
             <div className="menu-icon" onClick={toggleMenu}>
             {!showMenu ? <i className="bi bi-list"></i> : <i className="bi bi-x-lg"></i> }
             </div>
             ) : (
-            <section className='flex-between navbar-redirecciones'>
+            <section className='navbar-redirecciones'>
             <div>Inicio</div>
             <div>Universos</div>
             <div>Catalogo</div>
-            <div>Noticias Flixprop</div>
+            <div>Noticias</div>
+            <div>Quiz</div>
             </section>
             )}
             <section className='navar-img'>
