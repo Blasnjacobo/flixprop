@@ -1,0 +1,34 @@
+[
+    {
+        "id": "1",
+        "nombre": "Peliculas",
+        "descripcion": "¡Transforma tu pasión por el cine en estilo con nuestro merchandise único! Camisetas, sudaderas, tazas y más, inspirados en tus películas favoritas. Diseños exclusivos y calidad excepcional. ¡Haz una declaración de cine con nosotros!",
+        "img1": "https://i.pinimg.com/originals/25/82/4e/25824e76c06bab8c17ab6c11f2f06899.jpg",
+        "img2": "https://www.hollywoodreporter.com/wp-content/uploads/2022/07/11-MSDSTWA_EC001-EMBED-2022.jpg?w=1000&h=666&crop=1",
+        "img3": "https://holatelcel.com/wp-content/uploads/2019/01/HEAD-diario-de-la-p-1.jpg"
+    },
+    {
+        "id": "2",
+        "nombre": "Series",
+        "descripcion": "Desde It's Gonna Be Legen... Wait For It... Dary! de How I Met Your Mother hasta Winter is coming! de Game of Thrones, encontrarás todo momento incónico de tu serie favorita",
+        "img1": "https://i.pinimg.com/originals/75/6c/50/756c5014803da4640c76254e6a0ab474.jpg",
+        "img2": "https://cdn.forbes.com.mx/2016/04/cor_ned_stark.jpg",
+        "img3": "https://images.justwatch.com/poster/177294807/s592/friends"
+    },
+    {
+        "id": "3",
+        "nombre": "Anime",
+        "descripcion": "Hay un gran debate en que momento anime es Top tier, Chimera Ant y Yorknew City, mientras otros dicen que es Hunter Exam y 13th Chairman Election, cual es el tuyo?",
+        "img1": "https://m.media-amazon.com/images/I/71S8O-3xLVL._SL1200_.jpg",
+        "img2": "https://hips.hearstapps.com/hmg-prod/images/one-piece-2-64ece20f09f40.jpg?crop=1xw:0.9993528106508875xh;center,top&resize=1200:*",
+        "img3": "https://images.immediate.co.uk/production/volatile/sites/3/2023/04/naruto-762b09d.jpg?quality=90&resize=980,654"
+    },
+    {
+        "id": "4",
+        "nombre": "Caricatura",
+        "descripcion": "Inolvidables momentos que hemos sido expectadores tanto de chicos con Bob Esponja como otras caricaturas no tan de chicos como Rick y Morty o family Guys, damn,  dame una taza sobre esas series!",
+        "img1": "https://cdn.vox-cdn.com/thumbor/onl-QqvG2C7x2OFcNbUdz0R2LIA=/0x0:1103x767/1400x1400/filters:focal(551x383:552x384)/cdn.vox-cdn.com/uploads/chorus_asset/file/15445740/Screenshot_2015-07-27_15.11.13.0.0.1438024323.png",
+        "img2": "https://www.indiewire.com/wp-content/uploads/2022/10/Rick-Morty-Season-6-Fire-Eyes.png?w=600&h=337&crop=1",
+        "img3": "https://www.geekmi.news/__export/1628085855734/sites/debate/img/2021/08/04/los-padrinos-magicos-1.jpg_423682103.jpg"
+    }
+]
