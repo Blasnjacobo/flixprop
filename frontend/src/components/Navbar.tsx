@@ -1,17 +1,17 @@
-import { useState, useEffect, MutableRefObject } from 'react'; // Import useState and useEffect hooks
-import flixprop from '../assets/flixprop-logo.png'
-import '../App.css'
+import { useState, useEffect, MutableRefObject } from 'react';
+import { NavLink } from 'react-router-dom';
+import flixprop from '../assets/flixprop-logo.png';
+import '../App.css';
 
-interface menuPromp {
-    toggleMenu: () => void
-    showMenu: boolean
-    navbarRef: MutableRefObject<null>
-  }
+interface MenuProps {
+  toggleMenu: () => void;
+  showMenu: boolean;
+  navbarRef: MutableRefObject<null>;
+}
 
-
-const Navbar = ({ toggleMenu, showMenu, navbarRef } : menuPromp) => {
-
+const Navbar = ({ toggleMenu, showMenu, navbarRef }: MenuProps) => {
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+
   useEffect(() => {
     const handleResize = () => {
       setWindowWidth(window.innerWidth);
@@ -23,32 +23,47 @@ const Navbar = ({ toggleMenu, showMenu, navbarRef } : menuPromp) => {
   }, []);
 
   return (
-    <div className='Navbar' ref={navbarRef}>
-        <div className='Navbar-container'>
-            {windowWidth < 990 ? (
-            <div className="menu-icon" onClick={toggleMenu}>
-            {!showMenu ? <i className="bi bi-list"></i> : <i className="bi bi-x-lg"></i> }
-            </div>
-            ) : (
-            <section className='navbar-redirecciones'>
-            <div>Inicio</div>
-            <div>Universos</div>
-            <div>Catalogo</div>
-            <div>Noticias</div>
-            <div>Quiz</div>
-            </section>
-            )}
-            <section className='navar-img'>
-                <img className='navbar-logo' src={flixprop} alt='Flixprop logo' />
-            </section>
-            <section className='navbar-icon flex-between'>
-                <i className="bi bi-search"></i>
-                <i className="bi bi-person"></i>
-                <i className="bi bi-bag"></i>
-            </section>
-        </div>
+    <div className="Navbar" ref={navbarRef}>
+      <div className="Navbar-container">
+        {windowWidth < 990 ? (
+          <div className="menu-icon" onClick={toggleMenu}>
+            {!showMenu ? <i className="bi bi-list"></i> : <i className="bi bi-x-lg"></i>}
+          </div>
+        ) : (
+          <section className="navbar-redirecciones">
+            <NavLink className="flixprop-routes" to="/flixprop/">
+              Inicio
+            </NavLink>
+            <NavLink className="flixprop-routes" to="/flixprop/categorias">
+              Categorias
+            </NavLink>
+            <NavLink className="flixprop-routes" to="/flixprop/universos">
+              Universos
+            </NavLink>
+            <NavLink className="flixprop-routes" to="/flixprop/colecciones">
+              Colecciones
+            </NavLink>
+            <NavLink className="flixprop-routes" to="/flixprop/noticias">
+              Noticias
+            </NavLink>
+            <NavLink className="flixprop-routes" to="/flixprop/quizzes">
+              Quizzes
+            </NavLink>
+          </section>
+        )}
+        <section className="navar-img">
+          <NavLink className="navbar-logo" to="/flixprop/">
+            <img src={flixprop} alt="Flixprop logo" />
+          </NavLink>
+        </section>
+        <section className="navbar-icon flex-between">
+          <i className="bi bi-search"></i>
+          <i className="bi bi-person"></i>
+          <i className="bi bi-bag"></i>
+        </section>
+      </div>
     </div>
-  )
-}
+  );
+};
 
-export default Navbar
+export default Navbar;

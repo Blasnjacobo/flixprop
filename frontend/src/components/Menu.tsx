@@ -1,5 +1,5 @@
 import { Dispatch, SetStateAction, useEffect, RefObject } from "react";
-
+import { NavLink } from 'react-router-dom';
 interface MenuProps {
   showMenu: boolean;
   menuRef: RefObject<HTMLDivElement>;
@@ -32,10 +32,12 @@ const Menu = ({ showMenu, menuRef, navbarRef, setShowMenu }: MenuProps) => {
   return (
     <div ref={menuRef} className={`menu-mobile ${showMenu ? 'show' : ''}`}>
       <section className="menu-options">
-        <div>Inicio</div>
-        <div>Universos</div>
-        <div>Catalogo</div>
-        <div>Noticias Flixprop</div>
+        <NavLink className="menu-links" to="/flixprop/">Inicio</NavLink>
+        <NavLink className="menu-links" to="/flixprop/categorias">Categorias</NavLink>
+        <NavLink className="menu-links" to="/flixprop/universos">Universos</NavLink>
+        <NavLink className="menu-links" to="/flixprop/colecciones">Colecciones</NavLink>
+        <NavLink className="menu-links" to="/flixprop/noticias">Noticias</NavLink>
+        <NavLink className="menu-links" to="/flixprop/quizzes">Quizzes</NavLink>
       </section>
       <section className="menu-icons-login">
         <div><i className="bi bi-person"></i>Log In</div>
