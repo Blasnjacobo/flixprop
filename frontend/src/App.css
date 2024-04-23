@@ -296,7 +296,6 @@ i.active {
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;
-  padding-left:1rem ;
 }
 
 @media screen and (max-width: 960px) {
@@ -312,5 +311,13 @@ i.active {
   .categoriasHome-container {
     grid-template-columns: 1fr;
     margin: 2rem 0;
+  }
+
+  .categoriasHome-container h2 {
+    text-align: center;
+  }
+
+  .categoriasHome-container h1 {
+    text-align: center;
   }
 }
