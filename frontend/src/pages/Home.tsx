@@ -3,7 +3,7 @@ import Slider from '../components/Home/Slider'
 const Home = () => {
   return (
     <div className='home-container'>
-        <Slider />
+      <Slider />
     </div>
   )
 }

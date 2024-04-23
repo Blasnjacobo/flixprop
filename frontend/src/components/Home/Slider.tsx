@@ -2,21 +2,33 @@ import { useEffect, useRef, useState } from 'react';
 import flixpropSlider from '../../assets/slider/flixprop-slider.json';
 
 export const Slider = () => {
-  const listRef = useRef<HTMLUListElement>(null); // Initialize listRef with null
-  const [currentIndex, setCurrentIndex] = useState<number>(0); // Specify type for currentIndex
+  const [isMobile, setIsMobile] = useState(false);
+  const listRef = useRef<HTMLUListElement | null>(null);
+  const [currentIndex, setCurrentIndex] = useState<number>(0);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 960);
+    };
+
+    handleResize();
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
 
   useEffect(() => {
     const listNode = listRef.current;
-    const imgNode = listNode?.querySelectorAll("li > img")[currentIndex]; // Add null check for listNode
+    const imgNode = listNode?.querySelectorAll("li > img")[currentIndex];
 
     if (imgNode) {
       imgNode.scrollIntoView({
         behavior: "smooth"
       });
     }
+
   }, [currentIndex]);
 
-  const scrollToImage = (direction: 'prev' | 'next') => { // Specify type for direction
+  const scrollToImage = (direction: string) => {
     if (direction === 'prev') {
       setCurrentIndex(curr => {
         const isFirstSlide = currentIndex === 0;
@@ -30,39 +42,40 @@ export const Slider = () => {
     }
   }
 
-  const goToSlide = (slideIndex: number) => { // Specify type for slideIndex
+  const goToSlide = (slideIndex: number) => {
     setCurrentIndex(slideIndex);
   }
 
   return (
-    <div className="flixprop-slider">
-      <div className="flixprop-slider-container">
-        <div className='leftArrow' onClick={() => scrollToImage('prev')}>&#10092;</div>
-        <div className='rightArrow' onClick={() => scrollToImage('next')}>&#10093;</div>
-        <div className="container-images">
+    <div className='slider-container'>
+      <div className="container-images">
           <ul ref={listRef}>
             {
               flixpropSlider.map((item) => {
                 return <li key={item.id}>
-                  <img src={item.imgUrl} width={500} height={280} alt={`Slider Image ${item.id}`} />
+                  <img className="flixprop-slider-img" 
+                   src={isMobile ? item.imgMobile : item.imgDesktop} />
                 </li>
               })
             }
           </ul>
-        </div>
-        <div className="dots-container">
-          {
-            flixpropSlider.map((_, idx) => (
-              <div key={idx}
-                className={`dot-container-item ${idx === currentIndex ? "active" : ""}`}
-                onClick={() => goToSlide(idx)}>
-                &#9865;
-              </div>))
-          }
-        </div>
       </div>
-    </div >
+      <div className="dots-container">
+        <div className="slider-arrows" onClick={() => scrollToImage('prev')}><i className="bi bi-chevron-left"></i></div>
+        <div className='slider-dots'>
+            {
+              flixpropSlider.map((_, idx) => (
+                <div key={idx}
+                  className="dot-container-item"
+                  onClick={() => goToSlide(idx)}>
+                  <i className={`bi bi-circle-fill ${idx === currentIndex ? "active" : ""}`}></i>
+                </div>))
+            }
+        </div>
+        <div className="slider-arrows" onClick={() => scrollToImage('next')}><i className="bi bi-chevron-right"></i></div>
+      </div>
+    </div>
   )
 }
 
-export default Slider
+export default Slider;
