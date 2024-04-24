@@ -18,15 +18,17 @@ export const Slider = () => {
 
   useEffect(() => {
     const listNode = listRef.current;
-    const imgNode = listNode?.querySelectorAll("li > img")[currentIndex];
-
-    if (imgNode) {
-      imgNode.scrollIntoView({
-        behavior: "smooth",
-        block: "nearest"
+    const slides = listNode?.querySelectorAll("li");
+  
+    if (slides) {
+      slides.forEach((slide, index) => {
+        if (index === currentIndex) {
+          slide.style.display = "block"; // Display the active slide
+        } else {
+          slide.style.display = "none"; // Hide inactive slides
+        }
       });
     }
-
   }, [currentIndex]);
 
   useEffect(() => {
