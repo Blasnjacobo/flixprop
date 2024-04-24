@@ -30,14 +30,13 @@ const Menu = ({ showMenu, menuRef, navbarRef, setShowMenu }: MenuProps) => {
   }, [showMenu, menuRef, navbarRef, setShowMenu]);
 
   return (
-    <div ref={menuRef} className={`menu-mobile ${showMenu ? 'show' : ''}`}>
+    <div ref={menuRef} className={`menu-container ${showMenu ? 'show' : ''}`}>
       <section className="menu-options">
-        <NavLink className="menu-links" to="/flixprop/">Inicio</NavLink>
-        <NavLink className="menu-links" to="/flixprop/categorias">Categorias</NavLink>
-        <NavLink className="menu-links" to="/flixprop/universos">Universos</NavLink>
-        <NavLink className="menu-links" to="/flixprop/colecciones">Colecciones</NavLink>
-        <NavLink className="menu-links" to="/flixprop/noticias">Noticias</NavLink>
-        <NavLink className="menu-links" to="/flixprop/quizzes">Quizzes</NavLink>
+        <NavLink className="menu-links" onClick={() => setShowMenu(false)} to="/flixprop/">Inicio</NavLink>
+        <NavLink className="menu-links" onClick={() => setShowMenu(false)} to="/flixprop/universos">Universos</NavLink>
+        <NavLink className="menu-links" onClick={() => setShowMenu(false)} to="/flixprop/colecciones">Colecciones</NavLink>
+        <NavLink className="menu-links" onClick={() => setShowMenu(false)} to="/flixprop/noticias">Noticias</NavLink>
+        <NavLink className="menu-links" onClick={() => setShowMenu(false)} to="/flixprop/quizzes">Quizzes</NavLink>
       </section>
       <section className="menu-icons-login">
         <div><i className="bi bi-person"></i>Log In</div>

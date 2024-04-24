@@ -22,21 +22,23 @@ const CategoriasHome = () => {
   }, []);
 
   return (
-    <div className="categoriasHome-container">
-      <h1>Categorias</h1>
-      {categoriasHomeData.map((item: Categoria) => (
-        <div className="card" key={item.id}>
-          <img
-            className="card-img-top"
-            src={item[`img${currentImageIndex + 1}` as keyof Categoria]} // Type assertion here
-            alt={`${item.nombre} image`}
-          />
-          <div className="card-body">
-            <h2 className="card-title">{item.nombre}</h2>
-            <p className="card-text">{item.descripcion}</p>
+    <div className="categoriasHome">
+      <h1 className='categoriasHome-categorias'>CATEGORIAS</h1>
+      <div className='categoriasHome-container'>
+        {categoriasHomeData.map((item: Categoria) => (
+          <div className="card" key={item.id}>
+            <img
+              className="card-img-top"
+              src={item[`img${currentImageIndex + 1}` as keyof Categoria]} // Type assertion here
+              alt={`${item.nombre} image`}
+            />
+            <div className="card-body">
+              <h2 className="card-title">{item.nombre}</h2>
+              <p className="card-text">{item.descripcion}</p>
+            </div>
           </div>
-        </div>
-      ))}
+        ))}
+      </div>
     </div>
   );
 };

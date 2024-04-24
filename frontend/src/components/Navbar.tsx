@@ -34,9 +34,6 @@ const Navbar = ({ toggleMenu, showMenu, navbarRef }: MenuProps) => {
             <NavLink className="flixprop-routes" to="/flixprop/">
               Inicio
             </NavLink>
-            <NavLink className="flixprop-routes" to="/flixprop/categorias">
-              Categorias
-            </NavLink>
             <NavLink className="flixprop-routes" to="/flixprop/universos">
               Universos
             </NavLink>

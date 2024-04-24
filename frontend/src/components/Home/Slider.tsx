@@ -22,25 +22,35 @@ export const Slider = () => {
 
     if (imgNode) {
       imgNode.scrollIntoView({
-        behavior: "smooth"
+        behavior: "smooth",
+        block: "nearest"
       });
     }
 
   }, [currentIndex]);
 
+  useEffect(() => {
+    const interval = setInterval(() => {
+      scrollToImage('next');
+    }, 7000); 
+
+    return () => clearInterval(interval);
+  }, []);
+
   const scrollToImage = (direction: string) => {
     if (direction === 'prev') {
       setCurrentIndex(curr => {
-        const isFirstSlide = currentIndex === 0;
-        return isFirstSlide ? 0 : curr - 1;
-      })
+        const isFirstSlide = curr === 0;
+        return isFirstSlide ? flixpropSlider.length - 1 : curr - 1;
+      });
     } else {
-      const isLastSlide = currentIndex === flixpropSlider.length - 1;
-      if (!isLastSlide) {
-        setCurrentIndex(curr => curr + 1);
-      }
+      setCurrentIndex(curr => {
+        const isLastSlide = curr === flixpropSlider.length - 1;
+        return isLastSlide ? 0 : curr + 1;
+      });
     }
   }
+  
 
   const goToSlide = (slideIndex: number) => {
     setCurrentIndex(slideIndex);
