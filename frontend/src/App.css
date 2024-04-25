@@ -377,4 +377,8 @@ i.active {
     text-align: center;
     align-items: center;
   }
+
+  .Ofrecemos-section {
+    width: 90%;
+  }
 }
