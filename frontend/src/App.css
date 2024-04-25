@@ -423,5 +423,10 @@ i.active {
 
   .footer-container {
     grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .footer-section {
+    width: 100%;
   }
 }
