@@ -1,10 +1,8 @@
 import { useState } from 'react';
 
 const Ofrecemos = () => {
-  // State to track which info section is expanded
   const [expandedSection, setExpandedSection] = useState<number | null>(null)
 
-  // Function to toggle the expansion state of a specific section
   const toggleExpansion = (sectionIndex: number) => {
     setExpandedSection(sectionIndex === expandedSection ? null : sectionIndex);
   };
