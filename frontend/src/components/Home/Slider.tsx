@@ -23,9 +23,9 @@ export const Slider = () => {
     if (slides) {
       slides.forEach((slide, index) => {
         if (index === currentIndex) {
-          slide.style.display = "block"; // Display the active slide
+          slide.style.display = "block"; 
         } else {
-          slide.style.display = "none"; // Hide inactive slides
+          slide.style.display = "none";
         }
       });
     }
