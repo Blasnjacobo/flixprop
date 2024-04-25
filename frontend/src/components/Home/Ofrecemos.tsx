@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 
 const Ofrecemos = () => {
   // State to track which info section is expanded
