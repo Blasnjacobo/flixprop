@@ -8,6 +8,7 @@ import Universos from './pages/Universos';
 import Colecciones from './pages/Colecciones';
 import Noticias from './pages/Noticias';
 import Quizzes from './pages/Quizzes';
+import Footer from './components/Footer';
 
 function App() {
   const [showMenu, setShowMenu] = useState(false);
@@ -30,6 +31,7 @@ function App() {
           <Route path='/flixprop/noticias/' element={<Noticias />} />
           <Route path='/flixprop/quizzes/' element={<Quizzes />} />
         </Routes>
+        <Footer />
       </div>
     </div>
   )
