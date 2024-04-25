@@ -5,8 +5,10 @@ const Footer = () => {
     <div className="footer">
         <div className="footer-container">
             <section className="footer-section">
-                <h2>Nuestra misión</h2>
-                <p>En Flixprop buscamos los productos más deseados y originales para darle a los fans de verdad los artículos de sus series y péliculas favoritas con los que se identifiquen genuinamente.</p>
+                <h2>Nuestra Cultura</h2>
+                <NavLink className="footer-links" to="/flixprop/colabora-con-nosotros/">Nuestra Misión</NavLink>
+                <NavLink className="footer-links" to="/flixprop/colabora-con-nosotros/">Nuestra Visión</NavLink>
+                <NavLink className="footer-links" to="/flixprop/colabora-con-nosotros/">Cultura Flixprop</NavLink>
             </section>
             <section className="footer-section">
                 <h2>Más información</h2>
