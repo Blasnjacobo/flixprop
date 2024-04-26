@@ -3,6 +3,8 @@ import universos from '../../assets/Universos/universos.json';
 
 const Universos = () => {
   const containerRef = useRef<HTMLDivElement>(null);
+  const touchStartX = useRef<number>(0);
+  const touchEndX = useRef<number>(0);
 
   const scrollLeft = () => {
     if (containerRef.current) {
@@ -16,8 +18,26 @@ const Universos = () => {
     }
   };
 
+  const handleTouchStart = (e: React.TouchEvent<HTMLDivElement>) => {
+    touchStartX.current = e.touches[0].clientX;
+  };
+
+  const handleTouchMove = (e: React.TouchEvent<HTMLDivElement>) => {
+    touchEndX.current = e.touches[0].clientX;
+  };
+
+  const handleTouchEnd = () => {
+    if (touchStartX.current - touchEndX.current > 50) {
+      // Swipe left detected, scroll left
+      scrollLeft();
+    } else if (touchEndX.current - touchStartX.current > 50) {
+      // Swipe right detected, scroll right
+      scrollRight();
+    }
+  };
+
   return (
-    <div className='home-universo'>
+    <div className='home-universo' onTouchStart={handleTouchStart} onTouchMove={handleTouchMove} onTouchEnd={handleTouchEnd}>
       <div className='home-universo-container'>
         <section className='home-universo-title'>
           <h2>UNIVERSOS</h2>
