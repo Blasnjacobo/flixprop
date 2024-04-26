@@ -4,16 +4,17 @@ import universos from '../../assets/Universos/universos.json';
 const Universos = () => {
   const containerRef = useRef<HTMLDivElement>(null);
   const [touchStartX, setTouchStartX] = useState<number | null>(null);
+  const scrollSpeed = 100; // Adjust the scroll speed as needed
 
   const scrollLeft = () => {
     if (containerRef.current) {
-      containerRef.current.scrollLeft -= 300;
+      containerRef.current.scrollLeft -= scrollSpeed;
     }
   };
 
   const scrollRight = () => {
     if (containerRef.current) {
-      containerRef.current.scrollLeft += 300;
+      containerRef.current.scrollLeft += scrollSpeed;
     }
   };
 
@@ -26,9 +27,9 @@ const Universos = () => {
       const touchMoveX = e.touches[0].clientX;
       const deltaX = touchStartX - touchMoveX;
       if (deltaX > 0) {
-        containerRef.current.scrollLeft += 300;
+        containerRef.current.scrollLeft += scrollSpeed;
       } else {
-        containerRef.current.scrollLeft -= 300;
+        containerRef.current.scrollLeft -= scrollSpeed;
       }
       setTouchStartX(touchMoveX);
     }
@@ -36,6 +37,10 @@ const Universos = () => {
 
   const handleTouchEnd = () => {
     setTouchStartX(null);
+  };
+
+  const handleCardClick = () => {
+    window.location.href = 'https://flixprop.com/';
   };
 
   return (
@@ -46,17 +51,17 @@ const Universos = () => {
         </section>
         <section className='home-universo-main' ref={containerRef} onTouchStart={handleTouchStart} onTouchMove={handleTouchMove} onTouchEnd={handleTouchEnd}>
           {universos.map((universo) => (
-            <div className='universo-card' key={universo.id}>
+            <a href="https://flixprop.com/" className='universo-card' key={universo.id} onClick={handleCardClick}>
               <img src={universo.img} alt={universo.name} />
               <div>{universo.name}</div>
-            </div>
+            </a>
           ))}
         </section>
-      </div>
-      <div className='scroll-arrows'>
-        <button className='scroll-left' onClick={scrollLeft}><i className="bi bi-caret-left"></i></button>
-        <div>Flixprop</div>
-        <button className='scroll-right' onClick={scrollRight}><i className="bi bi-caret-right"></i></button>
+        <div className='scroll-arrows'>
+          <button className='scroll-left' onClick={scrollLeft}><i className="bi bi-caret-left"></i></button>
+          <div>Flixprop</div>
+          <button className='scroll-right' onClick={scrollRight}><i className="bi bi-caret-right"></i></button>
+        </div>
       </div>
     </div>
   );
