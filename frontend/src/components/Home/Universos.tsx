@@ -4,26 +4,30 @@ import universos from '../../assets/Universos/universos.json';
 const Universos = () => {
   const containerRef = useRef<HTMLDivElement>(null);
   const [touchStartX, setTouchStartX] = useState<number | null>(null);
-  const scrollSpeed = 400; 
+  const [hasScrolled, setHasScrolled] = useState<boolean>(false);
+  const scrollSpeed = 300; // Adjust the scroll speed as needed
 
   const scrollLeft = () => {
-    if (containerRef.current) {
+    if (containerRef.current && !hasScrolled) {
       containerRef.current.scrollLeft -= scrollSpeed;
+      setHasScrolled(true);
     }
   };
 
   const scrollRight = () => {
-    if (containerRef.current) {
+    if (containerRef.current && !hasScrolled) {
       containerRef.current.scrollLeft += scrollSpeed;
+      setHasScrolled(true);
     }
   };
 
   const handleTouchStart = (e: React.TouchEvent<HTMLDivElement>) => {
     setTouchStartX(e.touches[0].clientX);
+    setHasScrolled(false);
   };
 
   const handleTouchMove = (e: React.TouchEvent<HTMLDivElement>) => {
-    if (touchStartX !== null && containerRef.current) {
+    if (touchStartX !== null && containerRef.current && !hasScrolled) {
       const touchMoveX = e.touches[0].clientX;
       const deltaX = touchStartX - touchMoveX;
       if (deltaX > 0) {
@@ -31,7 +35,7 @@ const Universos = () => {
       } else {
         containerRef.current.scrollLeft -= scrollSpeed;
       }
-      setTouchStartX(touchMoveX);
+      setHasScrolled(true);
     }
   };
 
