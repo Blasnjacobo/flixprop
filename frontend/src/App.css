@@ -280,6 +280,7 @@ i.active {
   width: 100%;
   height: 98%; 
   object-fit: cover;
+  border-radius: 50%;
 }
 
 .universo-card div {
