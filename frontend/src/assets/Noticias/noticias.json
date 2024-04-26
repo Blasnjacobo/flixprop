@@ -1,0 +1,58 @@
+[
+    {
+        "id":"1",
+        "titulo": "El ‘reboot’ de ‘The Office’ estaría confirmado",
+        "universo": "THE OFFICE",
+        "img": "https://miro.medium.com/v2/resize:fit:800/1*o2tx1qsUcYuruU1PwDVCZQ.jpeg",
+        "link":"https://hipertextual.com/2024/04/reboot-the-office-confirmado-todo-lo-que-sabemos"
+    },
+    {
+        "id":"2",
+        "titulo": "Las grandes revelaciones del tráiler de Deadpool 3",
+        "universo": "MARVEL",
+        "img": "https://www.apartadomex.com/wp-content/uploads/2024/02/Deadpool-3.webp",
+        "link":"https://hipertextual.com/2024/04/reboot-the-office-confirmado-todo-lo-que-sabemos"
+    },
+    {
+        "id":"3",
+        "titulo": "'Echo' en Disney Plus: 4 datos que debes conocer sobre la nueva serie del UCM",
+        "universo": "DISNEY",
+        "img": "https://lumiere-a.akamaihd.net/v1/images/rt_ok_grasshopper_instagram_teaser_poster_spain_ec721232.png?region=0,551,800,449",
+        "link":"https://rpp.pe/tv/streaming/echo-en-disney-plus-4-datos-que-debes-conocer-sobre-la-nueva-serie-del-ucm-rppusa-noticia-1526613#:~:text=Echo%20es%20la%20primera%20serie,luego%20de%20un%20evento%20traum%C3%A1tico."
+    },
+    {
+        "id":"4",
+        "titulo": "Según Todd Phillips, 'Joker: Folie à Deux' no es un musical, sino una película donde la música es esencial",
+        "universo": "JOKER",
+        "img": "https://phantom-marca-mx.unidadeditorial.es/ad01758e6498a8141ddce1400ab9bc7f/resize/828/f/jpg/mx/assets/multimedia/imagenes/2024/04/10/17127191066981.jpg",
+        "link":"https://www.ecartelera.com/noticias/joker-folie-a-deux-todd-phillips-no-es-musical-76880/"
+    },
+    {
+        "id":"5",
+        "titulo": "El ‘reboot’ de ‘The Office’ estaría confirmado",
+        "universo": "THE OFFICE",
+        "img": "https://miro.medium.com/v2/resize:fit:800/1*o2tx1qsUcYuruU1PwDVCZQ.jpeg",
+        "link":"https://hipertextual.com/2024/04/reboot-the-office-confirmado-todo-lo-que-sabemos"
+    },
+    {
+        "id":"6",
+        "titulo": "Las grandes revelaciones del tráiler de Deadpool 3",
+        "universo": "MARVEL",
+        "img": "https://www.apartadomex.com/wp-content/uploads/2024/02/Deadpool-3.webp",
+        "link":"https://hipertextual.com/2024/04/reboot-the-office-confirmado-todo-lo-que-sabemos"
+    },
+    {
+        "id":"7",
+        "titulo": "'Echo' en Disney Plus: 4 datos que debes conocer sobre la nueva serie del UCM",
+        "universo": "DISNEY",
+        "img": "https://lumiere-a.akamaihd.net/v1/images/rt_ok_grasshopper_instagram_teaser_poster_spain_ec721232.png?region=0,551,800,449",
+        "link":"https://rpp.pe/tv/streaming/echo-en-disney-plus-4-datos-que-debes-conocer-sobre-la-nueva-serie-del-ucm-rppusa-noticia-1526613#:~:text=Echo%20es%20la%20primera%20serie,luego%20de%20un%20evento%20traum%C3%A1tico."
+    },
+    {
+        "id":"8",
+        "titulo": "Según Todd Phillips, 'Joker: Folie à Deux' no es un musical, sino una película donde la música es esencial",
+        "universo": "JOKER",
+        "img": "https://phantom-marca-mx.unidadeditorial.es/ad01758e6498a8141ddce1400ab9bc7f/resize/828/f/jpg/mx/assets/multimedia/imagenes/2024/04/10/17127191066981.jpg",
+        "link":"https://www.ecartelera.com/noticias/joker-folie-a-deux-todd-phillips-no-es-musical-76880/"
+    }
+]
