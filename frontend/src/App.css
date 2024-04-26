@@ -268,12 +268,14 @@ i.active {
   overflow-x: hidden;
   overflow-y: hidden;
   padding-bottom: 20px;
+  width: 1260px;
 }
 
 .universo-card {
   width: 300px; 
   height: 300px; 
-  flex-shrink: 0; 
+  flex-shrink: 0;
+  cursor: pointer; 
 }
 
 .universo-card img {
@@ -509,6 +511,10 @@ i.active {
     text-align: center;
   }
 
+  .home-universo-main {
+    width: 960px;
+  }
+
 }
 
 @media screen and (max-width: 450px) {
@@ -538,5 +544,11 @@ i.active {
 
   .footer-section {
     width: 100%;
+  }
+
+  .home-universo-main {
+    width: 300px;
+    gap: 0;
+    margin: 0 auto;
   }
 }

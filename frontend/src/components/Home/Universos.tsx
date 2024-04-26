@@ -6,13 +6,13 @@ const Universos = () => {
 
   const scrollLeft = () => {
     if (containerRef.current) {
-      containerRef.current.scrollLeft -= 320;
+      containerRef.current.scrollLeft -= 300;
     }
   };
 
   const scrollRight = () => {
     if (containerRef.current) {
-      containerRef.current.scrollLeft += 320;
+      containerRef.current.scrollLeft += 300;
     }
   };
 
