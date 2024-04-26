@@ -397,14 +397,14 @@ i.active {
 
 .noticias-card {
   width: 150px; 
-  height: 220px; 
+  height: 240px; 
   flex-shrink: 0;
   cursor: pointer; 
 }
 
 .noticias-card img {
   width: 100%;
-  height: 60%; 
+  height: 55%; 
   object-fit: fill;
 }
 
