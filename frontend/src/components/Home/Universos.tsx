@@ -11,6 +11,9 @@ const Universos = () => {
     if (containerRef.current && !hasScrolled) {
       containerRef.current.scrollLeft -= scrollSpeed;
       setHasScrolled(true);
+      setTimeout(() => {
+        setHasScrolled(false);
+      }, 500); // Reset hasScrolled after 500 milliseconds
     }
   };
 
@@ -18,6 +21,9 @@ const Universos = () => {
     if (containerRef.current && !hasScrolled) {
       containerRef.current.scrollLeft += scrollSpeed;
       setHasScrolled(true);
+      setTimeout(() => {
+        setHasScrolled(false);
+      }, 500); // Reset hasScrolled after 500 milliseconds
     }
   };
 
@@ -36,6 +42,9 @@ const Universos = () => {
         containerRef.current.scrollLeft -= scrollSpeed;
       }
       setHasScrolled(true);
+      setTimeout(() => {
+        setHasScrolled(false);
+      }, 500); // Reset hasScrolled after 500 milliseconds
     }
   };
 
