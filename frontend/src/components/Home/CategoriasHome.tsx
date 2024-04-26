@@ -32,10 +32,6 @@ const CategoriasHome = () => {
               src={item[`img${currentImageIndex + 1}` as keyof Categoria]} // Type assertion here
               alt={`${item.nombre} image`}
             />
-            <div className="card-body">
-              <h2 className="card-title">{item.nombre}</h2>
-              <p className="card-text">{item.descripcion}</p>
-            </div>
           </div>
         ))}
       </div>
