@@ -22,15 +22,21 @@ const Universos = () => {
     setTouchStartX(null);
   };
 
+  const scrollLeft = () => {
+    if (containerRef.current) {
+      containerRef.current.scrollLeft -= 300;
+    }
+  };
+
+  const scrollRight = () => {
+    if (containerRef.current) {
+      containerRef.current.scrollLeft += 300;
+    }
+  };
+
   return (
-    <div
-      className='home-universo'
-      onTouchStart={handleTouchStart}
-      onTouchMove={handleTouchMove}
-      onTouchEnd={handleTouchEnd}
-      ref={containerRef}
-    >
-      <div className='home-universo-container'>
+    <div className='home-universo'>
+      <div className='home-universo-container' onTouchStart={handleTouchStart} onTouchMove={handleTouchMove} onTouchEnd={handleTouchEnd} ref={containerRef}>
         <section className='home-universo-title'>
           <h2>UNIVERSOS</h2>
         </section>
@@ -43,9 +49,13 @@ const Universos = () => {
           ))}
         </section>
       </div>
+      <div className='scroll-arrows'>
+        <button className='scroll-left' onClick={scrollLeft}><i className="bi bi-caret-left"></i></button>
+        <div>Flixprop</div>
+        <button className='scroll-right' onClick={scrollRight}><i className="bi bi-caret-right"></i></button>
+      </div>
     </div>
   );
 };
 
 export default Universos;
-
