@@ -504,6 +504,10 @@ i.active {
     text-align: center;
   }
 
+  .categoriasHome-categorias {
+    text-align: center;
+  }
+
 }
 
 @media screen and (max-width: 450px) {
