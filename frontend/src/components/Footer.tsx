@@ -7,9 +7,9 @@ const Footer = () => {
             <div className="footer-main">
             <section className="footer-section">
                 <h2>Nuestra Cultura</h2>
-                <NavLink className="footer-links" to="/flixprop/colabora-con-nosotros/">Nuestra Misión</NavLink>
-                <NavLink className="footer-links" to="/flixprop/colabora-con-nosotros/">Nuestra Visión</NavLink>
-                <NavLink className="footer-links" to="/flixprop/colabora-con-nosotros/">Cultura Flixprop</NavLink>
+                <NavLink className="footer-links" to="/flixprop/nuestra-mision/">Nuestra Misión</NavLink>
+                <NavLink className="footer-links" to="/flixprop/nuestra-vision/">Nuestra Visión</NavLink>
+                <NavLink className="footer-links" to="/flixprop/cultura-flixprop/">Cultura Flixprop</NavLink>
             </section>
             <section className="footer-section">
                 <h2>Más información</h2>
