@@ -4,7 +4,7 @@ import universos from '../../assets/Universos/universos.json';
 const Universos = () => {
   const containerRef = useRef<HTMLDivElement>(null);
   const [touchStartX, setTouchStartX] = useState<number | null>(null);
-  const scrollSpeed = 100; // Adjust the scroll speed as needed
+  const scrollSpeed = 400; 
 
   const scrollLeft = () => {
     if (containerRef.current) {
