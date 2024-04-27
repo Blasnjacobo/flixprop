@@ -1,11 +1,17 @@
-import { useRef, useState } from 'react';
+import { useRef, useState, useEffect } from 'react';
 import noticias from '../../assets/Noticias/noticias.json';
 
 const Noticias = () => {
   const containerRef = useRef<HTMLDivElement>(null);
   const [touchStartX, setTouchStartX] = useState<number | null>(null);
   const [hasScrolled, setHasScrolled] = useState<boolean>(false);
+  const [offset, setOffset] = useState(0); // Offset for determining which items to display
   const scrollSpeed = 320; // Adjust the scroll speed as needed
+
+  useEffect(() => {
+    // Reset offset when noticias changes to ensure proper display
+    setOffset(0);
+  }, [noticias]);
 
   const scrollLeft = () => {
     if (containerRef.current && !hasScrolled) {
@@ -14,6 +20,11 @@ const Noticias = () => {
       setTimeout(() => {
         setHasScrolled(false);
       }, 500); // Reset hasScrolled after 500 milliseconds
+
+      // Adjust offset to display previous set of items
+      if (offset > 0) {
+        setOffset(offset - 1);
+      }
     }
   };
 
@@ -24,6 +35,11 @@ const Noticias = () => {
       setTimeout(() => {
         setHasScrolled(false);
       }, 500); // Reset hasScrolled after 500 milliseconds
+
+      // Adjust offset to display next set of items
+      if (offset < noticias.length - 3) {
+        setOffset(offset + 1);
+      }
     }
   };
 
@@ -63,11 +79,13 @@ const Noticias = () => {
           <h2>NOTICIAS</h2>
         </section>
         <section className='home-noticias-main' ref={containerRef} onTouchStart={handleTouchStart} onTouchMove={handleTouchMove} onTouchEnd={handleTouchEnd}>
-          {noticias.map((noticia) => (
+          {noticias.slice(offset, offset + 3).map((noticia) => (
             <div className='noticias-card' key={noticia.id} onClick={() => handleCardClick(noticia.link)}>
               <img src={noticia.img} alt={noticia.universo} />
-              <h3 className='noticias-universo-card'>{noticia.universo}</h3>
-              <div className='noticias-titulo-card'>{noticia.titulo}</div>
+              <div className='noticias-card-description'>
+                <h3 className='noticias-universo-card'>{noticia.universo}</h3>
+                <h4 className='noticias-titulo-card'>{noticia.titulo}</h4>
+              </div>
             </div>
           ))}
         </section>

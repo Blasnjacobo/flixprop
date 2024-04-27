@@ -247,6 +247,55 @@ i.active {
   cursor: pointer;
 }
 
+/* Mas Vendido */
+
+.home-masVendido {
+  width: 100%;
+}
+
+.home-masVendido-container {
+  margin: 0rem 3rem;
+}
+
+.home-masVendido-title h2 {
+  padding: 2rem 2rem 2rem 0rem;
+  font-size: xx-large;
+}
+
+.home-masVendido-main {
+  display: flex;
+  gap: 20px;
+  overflow-x: hidden;
+  overflow-y: hidden;
+  padding-bottom: 20px;
+  width: 100%;
+}
+
+.masVendido-card {
+  width: 150px; 
+  height: 240px; 
+  flex-shrink: 0;
+  cursor: pointer; 
+}
+
+.masVendido-card img {
+  width: 100%;
+  height: 55%; 
+  object-fit: fill;
+}
+
+.masVendido-universo-card {
+  text-align: left;
+  font-size: x-small;
+  color: brown;
+}
+
+.masVendido-card div {
+  font-size: medium;
+  text-align: start;
+  font-weight: bold;
+}
+
 /* Universo */
 
 .home-universo {
@@ -279,7 +328,7 @@ i.active {
   overflow-x: hidden;
   overflow-y: hidden;
   padding-bottom: 20px;
-  width: 1260px;
+  width: 100%;
 }
 
 .universo-card {
@@ -379,37 +428,52 @@ i.active {
 }
 
 .home-noticias-main {
-  display: flex;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
   gap: 20px;
-  overflow-x: hidden;
-  overflow-y: hidden;
   padding-bottom: 20px;
   width: 100%;
 }
 
 .noticias-card {
-  width: 150px; 
-  height: 240px; 
+  display: flex;
+  gap: 1rem;
+  width: 100%; 
+  height: 120px; 
+  cursor: pointer;
   flex-shrink: 0;
-  cursor: pointer; 
 }
 
 .noticias-card img {
-  width: 100%;
-  height: 55%; 
+  width: 60%;
+  height: 100%; 
   object-fit: fill;
 }
 
 .noticias-universo-card {
   text-align: left;
-  font-size: x-small;
+  font-size: medium;
   color: brown;
 }
 
 .noticias-card div {
-  font-size: medium;
+  font-size: large;
   text-align: start;
   font-weight: bold;
+}
+
+.noticias-card-description {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.noticias-card-description h3 {
+  font-size: small;
+}
+
+.noticias-card-description .noticias-titulo-card {
+  font-size: medium;
 }
 
 /* Ofrecemos */
@@ -575,6 +639,20 @@ i.active {
     width: 960px;
   }
 
+  .home-masVendido-title {
+    width: 100%;
+  }
+
+  .home-masVendido-title h2 {
+    text-align: center;
+    width: 100%;
+  }
+
+  .home-noticias-main {
+    grid-template-columns: 1fr;
+    margin: auto;
+  }
+
   .home-noticias-title {
     width: 100%;
   }
@@ -582,6 +660,20 @@ i.active {
   .home-noticias-title h2 {
     text-align: center;
     width: 100%;
+  }
+
+  .noticias-card img{
+    width: 400px;
+    flex-shrink: 0;
+  }
+
+  .noticias-card-description h3 {
+    font-size: small;
+  }
+  
+  .noticias-card-description .noticias-titulo-card {
+    font-size: medium;
+    width: 80%;
   }
 
 }
@@ -616,18 +708,36 @@ i.active {
     margin: 0 auto;
   }
 
-  .home-noticias-main {
+  .home-masVendido-main {
     width: 315px;
     gap: 10px;
     margin: 0 auto;
   }
 
+  .masVendido-card img {
+    width: 100%;
+  }
+
+
   .noticias-card img {
+    width: 150px;
+  }
+
+  .noticias-card-description h3 {
+    font-size: x-small;
+  }
+  
+  .noticias-card-description .noticias-titulo-card {
+    font-size: small;
     width: 100%;
   }
 }
 
   @media screen and (max-width: 400px) {
+    .home-masVendido-container {
+      margin: 0rem 2.5rem;
+    }
+
     .home-noticias-container {
       margin: 0rem 2.5rem;
     }
