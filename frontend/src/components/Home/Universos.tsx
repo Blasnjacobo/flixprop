@@ -1,5 +1,6 @@
 import { useRef, useState } from 'react';
 import universos from '../../assets/Universos/universos.json';
+import { NavLink } from 'react-router-dom';
 
 const Universos = () => {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -61,6 +62,7 @@ const Universos = () => {
       <div className='home-universo-container'>
         <section className='home-universo-title'>
           <h2>UNIVERSOS</h2>
+          <NavLink className='home-univeso-verTodo' to={'/flixprop/universos/'}>Ver Todos</NavLink>
         </section>
         <section className='home-universo-main' ref={containerRef} onTouchStart={handleTouchStart} onTouchMove={handleTouchMove} onTouchEnd={handleTouchEnd}>
           {universos.map((universo) => (

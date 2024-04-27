@@ -257,9 +257,20 @@ i.active {
   margin: 0rem 3rem;
 }
 
+.home-universo-title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
 .home-universo-title h2 {
   padding: 2rem 2rem 2rem 0rem;
   font-size: xx-large;
+}
+
+.home-univeso-verTodo {
+  color: black;
+  padding-right: 3rem;
 }
 
 .home-universo-main {
@@ -542,10 +553,22 @@ i.active {
   .home-universo-title h2{
     width: 100%;
     text-align: center;
+    padding: 2rem 0rem 0rem 0rem;
+  }
+
+  .home-univeso-verTodo {
+    text-align: center;
+    width: 100%;
+    padding: 0;
   }
 
   .categoriasHome-categorias {
     text-align: center;
+  }
+
+  .home-universo-title {
+    flex-direction: column;
+    padding-bottom: 1rem;
   }
 
   .home-universo-main {
