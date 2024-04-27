@@ -1,11 +1,21 @@
-import { useRef, useState } from 'react';
-import noticias from '../../assets/Noticias/noticias.json';
+import { useRef, useState, useEffect } from 'react';
+import { Producto } from '../../types/Productos';
 
-const MasVendido = () => {
+interface Productos {
+  productos: Producto[];
+}
+
+const Products = ({ productos }: Productos) => {
   const containerRef = useRef<HTMLDivElement>(null);
   const [touchStartX, setTouchStartX] = useState<number | null>(null);
   const [hasScrolled, setHasScrolled] = useState<boolean>(false);
+  const [offset, setOffset] = useState<number>(0); // Offset for determining which items to display
   const scrollSpeed = 320; // Adjust the scroll speed as needed
+
+  useEffect(() => {
+    // Reset offset when productos changes to ensure proper display
+    setOffset(0);
+  }, [productos]);
 
   const scrollLeft = () => {
     if (containerRef.current && !hasScrolled) {
@@ -14,6 +24,11 @@ const MasVendido = () => {
       setTimeout(() => {
         setHasScrolled(false);
       }, 500); // Reset hasScrolled after 500 milliseconds
+
+      // Adjust offset to display previous set of items
+      if (offset > 0) {
+        setOffset(offset - getDisplayCount());
+      }
     }
   };
 
@@ -24,6 +39,11 @@ const MasVendido = () => {
       setTimeout(() => {
         setHasScrolled(false);
       }, 500); // Reset hasScrolled after 500 milliseconds
+
+      // Adjust offset to display next set of items
+      if (offset < productos.length - getDisplayCount()) {
+        setOffset(offset + getDisplayCount());
+      }
     }
   };
 
@@ -56,18 +76,32 @@ const MasVendido = () => {
     window.location.href = link;
   };
 
+  const getDisplayCount = () => {
+    return window.innerWidth >= 960 ? 4 : 2; // Return 4 for large devices, 2 for small devices
+  };
+
   return (
     <div className='home-masVendido'>
       <div className='home-masVendido-container'>
-        <section className='home-masVendido-title'>
-          <h2>NOTICIAS</h2>
-        </section>
-        <section className='home-masVendido-main' ref={containerRef} onTouchStart={handleTouchStart} onTouchMove={handleTouchMove} onTouchEnd={handleTouchEnd}>
-          {noticias.map((noticia) => (
-            <div className='masVendido-card' key={noticia.id} onClick={() => handleCardClick(noticia.link)}>
-              <img src={noticia.img} alt={noticia.universo} />
-              <h3 className='masVendido-universo-card'>{noticia.universo}</h3>
-              <div className='masVendido-titulo-card'>{noticia.titulo}</div>
+        <section
+          className='home-masVendido-main'
+          ref={containerRef}
+          onTouchStart={handleTouchStart}
+          onTouchMove={handleTouchMove}
+          onTouchEnd={handleTouchEnd}
+        >
+          {productos.slice(offset, offset + getDisplayCount()).map((producto) => (
+            <div className='masVendido-card' key={producto.id} onClick={() => handleCardClick(producto.link)}>
+              <h3 className='masVendido-universo-card'>{producto.universo}</h3>
+              <img
+                src={producto.imgProducto}
+                alt={producto.universo}
+                onMouseOver={(e) => (e.currentTarget.src = producto.imgEscena)}
+                onMouseOut={(e) => (e.currentTarget.src = producto.imgProducto)}
+              />
+              <div className='masVendido-titulo-card'>{producto.titulo}</div>
+              <div className='masVendido-provedor-card'>{producto.provedor}</div>
+              <div className='masVendido-precio-card'>${producto.precio}.00 MXN</div>
             </div>
           ))}
         </section>
@@ -79,6 +113,6 @@ const MasVendido = () => {
       </div>
     </div>
   );
-}
+};
 
-export default MasVendido
+export default Products;

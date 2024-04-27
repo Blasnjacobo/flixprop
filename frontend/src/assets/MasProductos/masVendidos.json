@@ -1,0 +1,73 @@
+[
+    {
+        "id":"1",
+        "universo": "Friends",
+        "titulo": "Suéter Girls Mónica",
+        "provedor": "FLIXPROP",
+        "precio": "350",
+        "imgProducto": "https://flixprop.com/cdn/shop/products/Post-Sueter-Monica-Girls-Prod2.jpg?v=1625491510&width=600",
+        "imgEscena": "https://flixprop.com/cdn/shop/products/Post-Sueter-Monica-Girls-SerieProd.jpg?v=1625491510&width=600",
+        "link": "https://flixprop.com/products/sueter-girls-monica-friends"
+    },
+    {
+        "id":"2",
+        "universo": "Friends",
+        "titulo": "Playera Frankie Say Relax de Ross",
+        "provedor": "FLIXPROP",
+        "precio": "350",
+        "imgProducto": "https://flixprop.com/cdn/shop/products/Post-Playera-Franky-Say-Relax-Prod.jpg?v=1625491354&width=600",
+        "imgEscena": "https://flixprop.com/cdn/shop/products/Post-Playera-Franky-Say-Relax-SerieProd.jpg?v=1625491354&width=600",
+        "link": "https://flixprop.com/products/playera-frankie-say-relax-de-ross"
+
+    },
+    {
+        "id":"3",
+        "universo": "Friends",
+        "titulo": "Marco amarillo para fotografías",
+        "provedor": "FLIXPROP",
+        "precio": "450",
+        "imgProducto": "https://flixprop.com/cdn/shop/products/Post-Marco-Amarillo-fotos-Prod.jpg?v=1625491233&width=600",
+        "imgEscena": "https://flixprop.com/cdn/shop/products/Post-Marco-Amarillo-fotos-SerieProd.jpg?v=1625491233&width=600",
+        "link": "https://flixprop.com/products/marco-amarillo-para-fotografias"
+    },
+    {
+        "id":"4",
+        "universo": "Friends",
+        "titulo": "Hugsy",
+        "provedor": "FLIXPROP",
+        "precio": "450",
+        "imgProducto": "https://flixprop.com/cdn/shop/products/124860802_3579795805437816_5314706351684692752_n.png?v=1614301437&width=600",
+        "imgEscena": "https://flixprop.com/cdn/shop/products/Post-Hugsy-1.jpg?v=1689655210&width=600",
+        "link": "https://flixprop.com/products/hugsy"
+    },
+    {
+        "id":"5",
+        "universo": "Friends",
+        "titulo": "Blusa Girls",
+        "provedor": "FLIXPROP",
+        "precio": "300",
+        "imgProducto": "https://flixprop.com/cdn/shop/products/Post-Blusa-Rachel-Girls-Prod.jpg?v=1625490639&width=600",
+        "imgEscena": "https://flixprop.com/cdn/shop/products/Post-Blusa-Rachel-Girls-SerieProd.jpg?v=1625490639&width=600",
+        "link": "https://flixprop.com/products/blusa-girls"
+    },
+    {
+        "id":"6",
+        "universo": "One Piece",
+        "titulo": "Tazón de cerámica de sombrero de Luffy (con palillos y mantel)",
+        "provedor": "Amazon",
+        "precio": "446",
+        "imgProducto": "https://flixprop.com/cdn/shop/files/61VZaxuQwZL._AC_SX679_-removebg-preview_1.png?v=1691568864&width=600",
+        "imgEscena": "https://flixprop.com/cdn/shop/files/SombrerodeLuffy.jpg?v=1691569079&width=600",
+        "link": "https://flixprop.com/products/tazon-de-ceramica-de-sombrero-de-luffy-con-palillos-y-mantel-one-piece"
+    },
+    {
+        "id":"7",
+        "universo": "Harry Potter",
+        "titulo": "Hoddie 'Happee Birthdae Harry'",
+        "provedor": "FLIXPROP",
+        "precio": "599",
+        "imgProducto": "https://flixprop.com/cdn/shop/files/unisex-heavy-blend-hoodie-light-pink-front-64b37caa27fa5.jpg?v=1689484471&width=1100",
+        "imgEscena": "https://flixprop.com/cdn/shop/files/Pastel-Harry_8c1891d2-9b64-4987-ba67-59a14328c6d1.jpg?v=1689484603&width=600",
+        "link": "https://flixprop.com/products/hoddie-happee-birthdae-harry-harry-potter"
+    }
+]
