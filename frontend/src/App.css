@@ -249,6 +249,11 @@ i.active {
 
 /* Mas Vendido */
 
+.masVendido-text {
+  font-size: xx-large;
+  padding: 2rem 3rem;
+}
+
 .home-masVendido {
   margin: 0rem 3rem;
 }
@@ -668,6 +673,10 @@ i.active {
     width: 960px;
   }
 
+  .masVendido-text {
+    text-align: center;
+    padding: 2rem 0rem;
+  }
   
   .home-masVendido {
     margin: 0rem 1rem;
@@ -681,6 +690,10 @@ i.active {
 
   .masVendido-card {
     height: fit-content; 
+  }
+
+  .masVendido-universo-card {
+    text-align: center;
   }
 
   .masVendido-card img {

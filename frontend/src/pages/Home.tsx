@@ -10,7 +10,7 @@ const Home = () => {
   return (
     <div className='home-container'>
       <Slider />
-      <h3>Lo más vendido</h3>
+      <h3 className='masVendido-text'>LO MAS VENDIDO</h3>
       <Products productos={productos}/>
       <Universos />
       <CategoriasHome />
