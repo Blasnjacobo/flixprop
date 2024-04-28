@@ -1,4 +1,4 @@
-import { useRef, useState, useEffect } from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 import { Producto } from '../../types/Productos';
 
 interface Productos {
@@ -9,11 +9,10 @@ const Products = ({ productos }: Productos) => {
   const containerRef = useRef<HTMLDivElement>(null);
   const [touchStartX, setTouchStartX] = useState<number | null>(null);
   const [hasScrolled, setHasScrolled] = useState<boolean>(false);
-  const [offset, setOffset] = useState<number>(0); // Offset for determining which items to display
-  const scrollSpeed = 320; // Adjust the scroll speed as needed
+  const [offset, setOffset] = useState<number>(0);
+  const scrollSpeed = 320;
 
   useEffect(() => {
-    // Reset offset when productos changes to ensure proper display
     setOffset(0);
   }, [productos]);
 
@@ -23,9 +22,7 @@ const Products = ({ productos }: Productos) => {
       setHasScrolled(true);
       setTimeout(() => {
         setHasScrolled(false);
-      }, 500); // Reset hasScrolled after 500 milliseconds
-
-      // Adjust offset to display previous set of items
+      }, 500);
       if (offset > 0) {
         setOffset(offset - getDisplayCount());
       }
@@ -38,9 +35,7 @@ const Products = ({ productos }: Productos) => {
       setHasScrolled(true);
       setTimeout(() => {
         setHasScrolled(false);
-      }, 500); // Reset hasScrolled after 500 milliseconds
-
-      // Adjust offset to display next set of items
+      }, 500);
       if (offset < productos.length - getDisplayCount()) {
         setOffset(offset + getDisplayCount());
       }
@@ -64,7 +59,7 @@ const Products = ({ productos }: Productos) => {
       setHasScrolled(true);
       setTimeout(() => {
         setHasScrolled(false);
-      }, 500); // Reset hasScrolled after 500 milliseconds
+      }, 500);
     }
   };
 
@@ -77,7 +72,7 @@ const Products = ({ productos }: Productos) => {
   };
 
   const getDisplayCount = () => {
-    return window.innerWidth >= 960 ? 4 : 2; // Return 4 for large devices, 2 for small devices
+    return window.innerWidth >= 960 ? 4 : 2;
   };
 
   return (
@@ -116,3 +111,4 @@ const Products = ({ productos }: Productos) => {
 };
 
 export default Products;
+
