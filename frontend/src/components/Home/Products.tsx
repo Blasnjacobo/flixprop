@@ -52,12 +52,11 @@ const Products = ({ productos }: ProductosProps) => {
       const touchMoveX = e.touches[0].clientX;
       const deltaX = touchMoveX - touchStartX;
   
-      if (Math.abs(deltaX) > 50) { // Adjust sensitivity as needed
-        const cardsMoved = Math.sign(deltaX); // Move one card left for negative deltaX, one card right for positive deltaX
-  
+      if (Math.abs(deltaX) > 200) { 
+        const cardsMoved = Math.sign(deltaX); 
         if ((offset + cardsMoved >= 0) && (offset + cardsMoved <= productos.length - getDisplayCount())) {
           setOffset(offset + cardsMoved);
-          setTouchStartX(null); // Reset touchStartX to prevent continuous scrolling
+          setTouchStartX(null); 
         }
       }
     }
