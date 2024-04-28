@@ -52,7 +52,7 @@ const Products = ({ productos }: ProductosProps) => {
       const touchMoveX = e.touches[0].clientX;
       const deltaX = touchMoveX - touchStartX;
   
-      if (Math.abs(deltaX) > 200) { 
+      if (Math.abs(deltaX) > 100) { 
         const cardsMoved = Math.sign(deltaX); 
         if ((offset + cardsMoved >= 0) && (offset + cardsMoved <= productos.length - getDisplayCount())) {
           setOffset(offset + cardsMoved);
