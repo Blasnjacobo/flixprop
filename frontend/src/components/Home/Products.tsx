@@ -1,11 +1,11 @@
 import React, { useRef, useState, useEffect } from 'react';
 import { Producto } from '../../types/Productos';
 
-interface Productos {
+interface ProductosProps {
   productos: Producto[];
 }
 
-const Products = ({ productos }: Productos) => {
+const Products = ({ productos }: ProductosProps) => {
   const containerRef = useRef<HTMLDivElement>(null);
   const [touchStartX, setTouchStartX] = useState<number | null>(null);
   const [hasScrolled, setHasScrolled] = useState<boolean>(false);
@@ -51,30 +51,18 @@ const Products = ({ productos }: Productos) => {
     if (touchStartX !== null && containerRef.current && !hasScrolled) {
       const touchMoveX = e.touches[0].clientX;
       const deltaX = touchMoveX - touchStartX;
-      const sensitivity = 20; // Adjust the sensitivity as needed
+      const sensitivity = 50; // Adjust the sensitivity as needed
   
       if (Math.abs(deltaX) > sensitivity) {
-        const cardWidth = containerRef.current.clientWidth / getDisplayCount();
-        const cardsMoved = Math.floor(Math.abs(deltaX) / cardWidth);
+        const cardsMoved = deltaX < 0 ? 1 : -1; // Move one card left for negative deltaX, one card right for positive deltaX
   
-        if (deltaX < 0) {
-          // Dragging to the right
-          if (offset + cardsMoved < productos.length - getDisplayCount()) {
-            setOffset(offset + cardsMoved);
-          } else {
-            setOffset(productos.length - getDisplayCount());
-          }
-        } else {
-          // Dragging to the left
-          if (offset - cardsMoved >= 0) {
-            setOffset(offset - cardsMoved);
-          } else {
-            setOffset(0);
-          }
+        if ((offset + cardsMoved >= 0) && (offset + cardsMoved <= productos.length - getDisplayCount())) {
+          setOffset(offset + cardsMoved);
         }
       }
     }
   };
+  
 
   const handleTouchEnd = () => {
     setTouchStartX(null);
