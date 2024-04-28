@@ -1,20 +1,11 @@
-import React, { useRef, useState, useEffect } from 'react';
-import { Producto } from '../../types/Productos';
+import { useRef, useState } from 'react';
+import productos from '../../assets/MasProductos/masVendidos.json'
 
-interface Productos {
-  productos: Producto[];
-}
-
-const Products = ({ productos }: Productos) => {
+const Products = () => {
   const containerRef = useRef<HTMLDivElement>(null);
   const [touchStartX, setTouchStartX] = useState<number | null>(null);
   const [hasScrolled, setHasScrolled] = useState<boolean>(false);
-  const [offset, setOffset] = useState<number>(0);
-  const scrollSpeed = 320;
-
-  useEffect(() => {
-    setOffset(0);
-  }, [productos]);
+  const scrollSpeed = 300; // Adjust the scroll speed as needed
 
   const scrollLeft = () => {
     if (containerRef.current && !hasScrolled) {
@@ -22,10 +13,7 @@ const Products = ({ productos }: Productos) => {
       setHasScrolled(true);
       setTimeout(() => {
         setHasScrolled(false);
-      }, 500);
-      if (offset > 0) {
-        setOffset(offset - getDisplayCount());
-      }
+      }, 500); // Reset hasScrolled after 500 milliseconds
     }
   };
 
@@ -35,10 +23,7 @@ const Products = ({ productos }: Productos) => {
       setHasScrolled(true);
       setTimeout(() => {
         setHasScrolled(false);
-      }, 500);
-      if (offset < productos.length - getDisplayCount()) {
-        setOffset(offset + getDisplayCount());
-      }
+      }, 500); // Reset hasScrolled after 500 milliseconds
     }
   };
 
@@ -51,12 +36,15 @@ const Products = ({ productos }: Productos) => {
     if (touchStartX !== null && containerRef.current && !hasScrolled) {
       const touchMoveX = e.touches[0].clientX;
       const deltaX = touchStartX - touchMoveX;
-      containerRef.current.scrollLeft += deltaX;
-      setTouchStartX(touchMoveX); // Update touchStartX for the next move
+      if (deltaX > 0) {
+        containerRef.current.scrollLeft += scrollSpeed;
+      } else {
+        containerRef.current.scrollLeft -= scrollSpeed;
+      }
       setHasScrolled(true);
       setTimeout(() => {
         setHasScrolled(false);
-      }, 500);
+      }, 500); // Reset hasScrolled after 500 milliseconds
     }
   };
 
@@ -66,10 +54,6 @@ const Products = ({ productos }: Productos) => {
 
   const handleCardClick = (link: string) => {
     window.location.href = link;
-  };
-
-  const getDisplayCount = () => {
-    return window.innerWidth >= 960 ? 4 : 2;
   };
 
   return (
@@ -82,7 +66,7 @@ const Products = ({ productos }: Productos) => {
           onTouchMove={handleTouchMove}
           onTouchEnd={handleTouchEnd}
         >
-          {productos.slice(offset, offset + getDisplayCount()).map((producto) => (
+          {productos.map((producto) => (
             <div className='masVendido-card' key={producto.id} onClick={() => handleCardClick(producto.link)}>
               <h3 className='masVendido-universo-card'>{producto.universo}</h3>
               <img
@@ -108,4 +92,3 @@ const Products = ({ productos }: Productos) => {
 };
 
 export default Products;
-
