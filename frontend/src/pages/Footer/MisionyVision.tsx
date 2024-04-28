@@ -1,6 +1,6 @@
 const MisionyVision = () => {
   return (
-    <div className="mision-vision-container">
+    <div className="footerLinks-container">
       <h1>NUESTRA MISION Y VISION</h1>
       <p>En Flixprop, entendemos que la verdadera magia del cine y la televisión va más allá de la pantalla. Es la conexión emocional que sentimos con nuestros personajes favoritos, las historias que nos inspiran y los mundos que nos transportan. Es por eso que nos enorgullece ser mucho más que una simple tienda en línea. En Flixprop, nos dedicamos a cultivar y celebrar esa pasión que nos une como verdaderos fans. Desde los productos más deseados hasta las noticias más emocionantes y los quizzes más desafiantes, todo lo que hacemos tiene un solo propósito: enriquecer tu experiencia como amante del cine y la televisión. Así que únete a nosotros en este viaje hacia el corazón del universo cinematográfico y televisivo, donde cada clic te acerca más a tus series y películas favoritas.</p>
       <section className="mision-vision">

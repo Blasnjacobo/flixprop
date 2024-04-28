@@ -745,11 +745,6 @@ i.active {
     width: 80%;
   }
 
-  .mision-vision {
-    grid-template-columns: 1fr;
-    gap: 1rem;
-  }
-
 }
 
 @media screen and (max-width: 450px) {
