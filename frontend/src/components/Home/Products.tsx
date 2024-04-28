@@ -10,7 +10,6 @@ const Products = ({ productos }: ProductosProps) => {
   const [touchStartX, setTouchStartX] = useState<number | null>(null);
   const [hasScrolled, setHasScrolled] = useState<boolean>(false);
   const [offset, setOffset] = useState<number>(0);
-  const scrollSpeed = 320;
 
   useEffect(() => {
     setOffset(0);
@@ -18,29 +17,22 @@ const Products = ({ productos }: ProductosProps) => {
 
   const scrollLeft = () => {
     if (containerRef.current && !hasScrolled) {
-      containerRef.current.scrollLeft -= scrollSpeed;
-      setHasScrolled(true);
-      setTimeout(() => {
-        setHasScrolled(false);
-      }, 500);
-      if (offset > 0) {
-        setOffset(offset - getDisplayCount());
+      const newOffset = Math.max(offset - 1, 0); // Ensure the new offset is not less than 0
+      if (newOffset !== offset) {
+        setOffset(newOffset);
       }
     }
   };
-
+  
   const scrollRight = () => {
     if (containerRef.current && !hasScrolled) {
-      containerRef.current.scrollLeft += scrollSpeed;
-      setHasScrolled(true);
-      setTimeout(() => {
-        setHasScrolled(false);
-      }, 500);
-      if (offset < productos.length - getDisplayCount()) {
-        setOffset(offset + getDisplayCount());
+      const newOffset = Math.min(offset + 1, productos.length - getDisplayCount()); // Ensure the new offset is within bounds
+      if (newOffset !== offset) {
+        setOffset(newOffset);
       }
     }
   };
+  
 
   const handleTouchStart = (e: React.TouchEvent<HTMLDivElement>) => {
     setTouchStartX(e.touches[0].clientX);
@@ -51,21 +43,19 @@ const Products = ({ productos }: ProductosProps) => {
     if (touchStartX !== null && containerRef.current && !hasScrolled) {
       const touchMoveX = e.touches[0].clientX;
       const deltaX = touchMoveX - touchStartX;
-  
-      // Determine the direction of the drag
-      const direction = deltaX > 0 ? -1 : 1; // Negative for dragging right, positive for dragging left
+
+      const direction = deltaX > 0 ? -1 : 1; 
   
       if (Math.abs(deltaX) > 100) {
-        let cardsMoved = direction; // Move one card left for dragging right, one card right for dragging left
+        let cardsMoved = direction; 
   
-        // Ensure offset doesn't become negative
         if (offset + cardsMoved < 0) {
-          cardsMoved = -offset; // Move cards to the first index
+          cardsMoved = -offset;
         }
   
         if ((offset + cardsMoved >= 0) && (offset + cardsMoved <= productos.length - getDisplayCount())) {
           setOffset(offset + cardsMoved);
-          setTouchStartX(null); // Reset touchStartX to prevent continuous scrolling
+          setTouchStartX(null);
         }
       }
     }
