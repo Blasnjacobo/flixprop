@@ -51,22 +51,25 @@ const Products = ({ productos }: ProductosProps) => {
     if (touchStartX !== null && containerRef.current && !hasScrolled) {
       const touchMoveX = e.touches[0].clientX;
       const deltaX = touchMoveX - touchStartX;
-
-      const direction = deltaX > 0 ? -1 : 1; 
+  
+      // Determine the direction of the drag
+      const direction = deltaX > 0 ? -1 : 1; // Negative for dragging right, positive for dragging left
   
       if (Math.abs(deltaX) > 100) {
-        const cardsMoved = direction; 
+        let cardsMoved = direction; // Move one card left for dragging right, one card right for dragging left
+  
+        // Ensure offset doesn't become negative
+        if (offset + cardsMoved < 0) {
+          cardsMoved = -offset; // Move cards to the first index
+        }
   
         if ((offset + cardsMoved >= 0) && (offset + cardsMoved <= productos.length - getDisplayCount())) {
           setOffset(offset + cardsMoved);
-          setTouchStartX(null); 
+          setTouchStartX(null); // Reset touchStartX to prevent continuous scrolling
         }
       }
     }
   };
-  
-  
-  
 
   const handleTouchEnd = () => {
     setTouchStartX(null);
