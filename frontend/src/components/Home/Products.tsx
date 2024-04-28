@@ -50,16 +50,29 @@ const Products = ({ productos }: Productos) => {
   const handleTouchMove = (e: React.TouchEvent<HTMLDivElement>) => {
     if (touchStartX !== null && containerRef.current && !hasScrolled) {
       const touchMoveX = e.touches[0].clientX;
-      const deltaX = touchStartX - touchMoveX;
-      if (deltaX > 0) {
-        containerRef.current.scrollLeft += scrollSpeed;
-      } else {
-        containerRef.current.scrollLeft -= scrollSpeed;
+      const deltaX = touchMoveX - touchStartX;
+      const sensitivity = 20; // Adjust the sensitivity as needed
+  
+      if (Math.abs(deltaX) > sensitivity) {
+        const cardWidth = containerRef.current.clientWidth / getDisplayCount();
+        const cardsMoved = Math.floor(Math.abs(deltaX) / cardWidth);
+  
+        if (deltaX < 0) {
+          // Dragging to the right
+          if (offset + cardsMoved < productos.length - getDisplayCount()) {
+            setOffset(offset + cardsMoved);
+          } else {
+            setOffset(productos.length - getDisplayCount());
+          }
+        } else {
+          // Dragging to the left
+          if (offset - cardsMoved >= 0) {
+            setOffset(offset - cardsMoved);
+          } else {
+            setOffset(0);
+          }
+        }
       }
-      setHasScrolled(true);
-      setTimeout(() => {
-        setHasScrolled(false);
-      }, 500);
     }
   };
 
