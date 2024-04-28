@@ -1,6 +1,5 @@
 import { useRef, useState } from 'react';
 import './App.css'
-import './FooterLinks.css'
 import Navbar from './components/Navbar'
 import Menu from './components/Menu';
 import { Route, Routes } from 'react-router-dom';
