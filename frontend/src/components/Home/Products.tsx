@@ -51,17 +51,18 @@ const Products = ({ productos }: ProductosProps) => {
     if (touchStartX !== null && containerRef.current && !hasScrolled) {
       const touchMoveX = e.touches[0].clientX;
       const deltaX = touchMoveX - touchStartX;
-      const sensitivity = 50; // Adjust the sensitivity as needed
   
-      if (Math.abs(deltaX) > sensitivity) {
-        const cardsMoved = deltaX < 0 ? 1 : -1; // Move one card left for negative deltaX, one card right for positive deltaX
+      if (Math.abs(deltaX) > 50) { // Adjust sensitivity as needed
+        const cardsMoved = Math.sign(deltaX); // Move one card left for negative deltaX, one card right for positive deltaX
   
         if ((offset + cardsMoved >= 0) && (offset + cardsMoved <= productos.length - getDisplayCount())) {
           setOffset(offset + cardsMoved);
+          setTouchStartX(null); // Reset touchStartX to prevent continuous scrolling
         }
       }
     }
   };
+  
   
 
   const handleTouchEnd = () => {
