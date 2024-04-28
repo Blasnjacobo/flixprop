@@ -1,7 +1,11 @@
 import { useRef, useState } from 'react';
-import productos from '../../assets/MasProductos/masVendidos.json'
+import { Producto } from '../../types/Productos';
 
-const Products = () => {
+interface ProductsProps {
+  productos: Producto[];
+}
+
+const Products = ({ productos }: ProductsProps) => {
   const containerRef = useRef<HTMLDivElement>(null);
   const [touchStartX, setTouchStartX] = useState<number | null>(null);
   const [hasScrolled, setHasScrolled] = useState<boolean>(false);
