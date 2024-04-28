@@ -51,11 +51,8 @@ const Products = ({ productos }: Productos) => {
     if (touchStartX !== null && containerRef.current && !hasScrolled) {
       const touchMoveX = e.touches[0].clientX;
       const deltaX = touchStartX - touchMoveX;
-      if (deltaX > 0) {
-        containerRef.current.scrollLeft += scrollSpeed;
-      } else {
-        containerRef.current.scrollLeft -= scrollSpeed;
-      }
+      containerRef.current.scrollLeft += deltaX;
+      setTouchStartX(touchMoveX); // Update touchStartX for the next move
       setHasScrolled(true);
       setTimeout(() => {
         setHasScrolled(false);
