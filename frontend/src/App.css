@@ -620,44 +620,6 @@ i.active {
   color: white;
 }
 
-.mision-vision-container {
-  width: 80%;
-  margin: 2rem auto;
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-}
-
-.mision-vision-container h1 {
-  text-align: center;
-}
-
-.mision-vision {
-  display: grid;
-  grid-template-columns: 3fr 2fr;
-  gap: 1rem;
-  align-items: center;
-}
-
-.mision-vision-description{
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-}
-
-.mision-vision img {
-  width: 100%;
-  border-radius: 15px;
-}
-
-.mision-vision-container p {
-  color: black;
-  font-size: larger;
-}
-
-
-
-
 @media screen and (max-width: 960px) {
   .navbar-icon .bi-person {
     display: none;
