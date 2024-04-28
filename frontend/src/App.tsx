@@ -9,14 +9,13 @@ import Colecciones from './pages/Colecciones';
 import Noticias from './pages/Noticias';
 import Quizzes from './pages/Quizzes';
 import Footer from './components/Footer';
-import Mision from './pages/Footer/Mision';
-import Vision from './pages/Footer/Vision';
 import Cultura from './pages/Footer/Cultura';
 import Colaboracion from './pages/Footer/Colaboracion';
 import SobreNosotros from './pages/Footer/SobreNosotros';
 import Privacidad from './pages/Footer/Privacidad';
 import TerminosyCondiciones from './pages/Footer/TerminosyCondiciones';
 import CompraSegura from './pages/Footer/CompraSegura';
+import MisionyVision from './pages/Footer/MisionyVision';
 
 function App() {
   const [showMenu, setShowMenu] = useState(false);
@@ -39,8 +38,7 @@ function App() {
           <Route path='/flixprop/noticias/' element={<Noticias />} />
           <Route path='/flixprop/quizzes/' element={<Quizzes />} />
           {/* Footer Routes */}
-          <Route path='/flixprop/nuestra-mision/' element={<Mision />} />
-          <Route path='/flixprop/nuestra-vision/' element={<Vision />} />
+          <Route path='/flixprop/nuestra-mision-vision/' element={<MisionyVision />} />
           <Route path='/flixprop/cultura-flixprop/' element={<Cultura />} />
           <Route path='/flixprop/colabora-con-nosotros/' element={<Colaboracion />} />
           <Route path='/flixprop/sobre-nosotros/' element={<SobreNosotros />} />
