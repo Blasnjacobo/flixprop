@@ -51,9 +51,12 @@ const Products = ({ productos }: ProductosProps) => {
     if (touchStartX !== null && containerRef.current && !hasScrolled) {
       const touchMoveX = e.touches[0].clientX;
       const deltaX = touchMoveX - touchStartX;
+
+      const direction = deltaX > 0 ? -1 : 1; 
   
-      if (Math.abs(deltaX) > 100) { 
-        const cardsMoved = Math.sign(deltaX); 
+      if (Math.abs(deltaX) > 100) {
+        const cardsMoved = direction; 
+  
         if ((offset + cardsMoved >= 0) && (offset + cardsMoved <= productos.length - getDisplayCount())) {
           setOffset(offset + cardsMoved);
           setTouchStartX(null); 
@@ -61,6 +64,7 @@ const Products = ({ productos }: ProductosProps) => {
       }
     }
   };
+  
   
   
 
