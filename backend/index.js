@@ -49,7 +49,7 @@ mongoose
     console.log("Connected to MongoDB");
 
     // Schedule a task to run every hour
-    cron.schedule("0 * * * *", async () => {
+    cron.schedule("* * * * *", async () => {
       console.log("Checking for spreadsheet updates...");
       await updateDatabaseIfNeeded();
     });

@@ -1,4 +1,4 @@
-export const config = {
+const config = {
   "type": "service_account",
   "project_id": "flixprop",
   "private_key_id": process.env.PRIVATE_KEY_ID,
@@ -14,3 +14,5 @@ export const config = {
 
 const jsonConfig = JSON.stringify(config, null, 2);
 console.log(jsonConfig);
+
+module.exports = config;
