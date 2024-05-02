@@ -27,7 +27,7 @@ const sheets = google.sheets({ version: "v4", auth });
 
 // Read data from Google Sheets
 async function getData() {
-  const spreadsheetId = "1GG7hgd8hOMAyNLOJrC4OdBWEc6agp9gj5Jvgh5LS-W8";
+  const spreadsheetId = SPREAD_SHEET_ID;
   const range = "Hoja 1";
   const response = await sheets.spreadsheets.values.get({
     spreadsheetId,
