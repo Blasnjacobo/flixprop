@@ -23,7 +23,7 @@ connectToMongoDB()
   .then(() => {
     console.log("Connected to MongoDB");
     // Schedule a task to run every hour
-    cron.schedule("* * * * *", async () => {
+    cron.schedule("0 * * * *", async () => {
       console.log("Checking for spreadsheet updates...");
       await updateDatabaseIfNeeded();
     });

@@ -5,11 +5,11 @@ const allowedUniversos = ["Pelicula", "Serie", "Anime"];
 
 const universoSchema = new mongoose.Schema(
   {
-    categoria: String,
-    universo: {
+    categoria: {
       type: String,
       enum: allowedUniversos,
     },
+    universo: String,
     descripcion: String,
     codigo: String,
     activo: Boolean,
