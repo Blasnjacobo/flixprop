@@ -4,6 +4,7 @@ const morgan = require("morgan");
 const cors = require("cors");
 const dotenv = require("dotenv");
 const { google } = require("googleapis");
+const { key } = require("./assets/flixprop-gsheets")
 const cron = require("node-cron");
 dotenv.config();
 
@@ -18,7 +19,7 @@ app.use(
 
 // Google Sheets authentication
 const auth = new google.auth.GoogleAuth({
-  keyFile: "./assets/flixprop-gsheets.json",
+  keyFile: key,
   scopes: ["https://www.googleapis.com/auth/spreadsheets.readonly"],
 });
 
