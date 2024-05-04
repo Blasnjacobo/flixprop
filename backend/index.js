@@ -1,5 +1,4 @@
 const express = require("express");
-const mongoose = require("mongoose");
 const morgan = require("morgan");
 const cors = require("cors");
 const dotenv = require("dotenv");
@@ -7,6 +6,7 @@ const cron = require("node-cron");
 dotenv.config();
 const { connectToMongoDB } = require("./db/mongodb");
 const { updateDatabaseIfNeeded } = require("./config/dataUpdater");
+const universos = require("./routes/universos")
 
 const PORT = process.env.PORT || 5000;
 
@@ -19,11 +19,13 @@ app.use(
   })
 );
 
+app.use("/universos", universos)
+
 connectToMongoDB()
   .then(() => {
     console.log("Connected to MongoDB");
     // Schedule a task to run every hour
-    cron.schedule("0 * * * *", async () => {
+    cron.schedule("* * * * *", async () => {
       console.log("Checking for spreadsheet updates...");
       await updateDatabaseIfNeeded();
     });

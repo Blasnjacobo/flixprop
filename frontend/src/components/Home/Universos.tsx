@@ -1,8 +1,13 @@
 import { useRef, useState } from 'react';
-import universos from '../../assets/Universos/universos.json';
+// import universos from '../../assets/Universos/universos.json';
+import useUniverso from '../../context/Universos/useUniversos'
 import { NavLink } from 'react-router-dom';
 
+
 const Universos = () => {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const { universos } = useUniverso()
+  console.log(universos)
   const containerRef = useRef<HTMLDivElement>(null);
   const [touchStartX, setTouchStartX] = useState<number | null>(null);
   const [hasScrolled, setHasScrolled] = useState<boolean>(false);
@@ -65,10 +70,10 @@ const Universos = () => {
           <NavLink className='home-univeso-verTodo' to={'/flixprop/universos/'}>Ver Todos</NavLink>
         </section>
         <section className='home-universo-main' ref={containerRef} onTouchStart={handleTouchStart} onTouchMove={handleTouchMove} onTouchEnd={handleTouchEnd}>
-          {universos.map((universo) => (
-            <a href="https://flixprop.com/" className='universo-card' key={universo.id} onClick={handleCardClick}>
-              <img src={universo.img} alt={universo.name} />
-              <div>{universo.name}</div>
+          {universos.filter((element) => element.activo == "TRUE" ).map((universo) => (
+            <a href="https://flixprop.com/" className='universo-card' key={universo.codigo} onClick={handleCardClick}>
+              <img src={universo.url} alt={universo.universo} />
+              <div>{universo.universo}</div>
             </a>
           ))}
         </section>

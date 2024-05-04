@@ -16,6 +16,7 @@ import Privacidad from './pages/Footer/Privacidad';
 import TerminosyCondiciones from './pages/Footer/TerminosyCondiciones';
 import CompraSegura from './pages/Footer/CompraSegura';
 import MisionyVision from './pages/Footer/MisionyVision';
+import UniversosProvider from './context/Universos/Universos'
 
 function App() {
   const [showMenu, setShowMenu] = useState(false);
@@ -27,7 +28,7 @@ function App() {
   };
 
   return (
-    <div>
+    <UniversosProvider>
       <div className='navbar-container'>
         <Navbar toggleMenu={toggleMenu} showMenu={showMenu} navbarRef={navbarRef}/>
         <Menu showMenu={showMenu} menuRef={menuRef} navbarRef={navbarRef} setShowMenu={setShowMenu} />
@@ -48,7 +49,7 @@ function App() {
         </Routes>
         <Footer />
       </div>
-    </div>
+    </UniversosProvider>
   )
 }
 

@@ -1,9 +1,6 @@
-import { createContext } from 'react';
-import { Universo } from '../../types/Universos';
+import { useContext } from 'react';
+import UniversosContext from './UniversoContext';
 
-type UniversosContextType = {
-    universos: Universo[];
-};
-
-const PerfumesContext = createContext({} as UniversosContextType);
-export default PerfumesContext;
+export default function useUniverso() {
+    return useContext(UniversosContext)
+}

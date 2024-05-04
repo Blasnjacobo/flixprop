@@ -12,7 +12,7 @@ const universoSchema = new mongoose.Schema(
     universo: String,
     descripcion: String,
     codigo: String,
-    activo: Boolean,
+    activo: String,
     url: String,
   },
   {
