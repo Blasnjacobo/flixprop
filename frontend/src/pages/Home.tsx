@@ -14,7 +14,7 @@ const Home = () => {
       <Products productos={productos}/>
       <Universos />
       <CategoriasHome />
-      <h3 className='masVendido-text'>LO MAS VENDIDO</h3>
+      <h3 className='masVendido-text'>LO MAS VENDIDO!</h3>
       <Products productos={productos}/>
       <Noticias />
       <Ofrecemos />
