@@ -1,72 +1,86 @@
 [
     {
-        "id":"1",
-        "name": "Barbie",
-        "img": "https://github.com/Blasnjacobo/flixprop-storage/blob/main/Home/universos/barbie/barbie.jpg?raw=true"
+        "codigo":"1",
+        "universo": "Barbie",
+        "activo": "TRUE",
+        "url": "https://github.com/Blasnjacobo/flixprop-storage/blob/main/Home/universos/barbie/barbie.jpg?raw=true"
     },
     {
-        "id":"2",
-        "name": "Disney",
-        "img": "https://github.com/Blasnjacobo/flixprop-storage/blob/main/Home/universos/disney/disney.jpg?raw=true"
+        "codigo":"2",
+        "universo": "Disney",
+        "activo": "TRUE",
+        "url": "https://github.com/Blasnjacobo/flixprop-storage/blob/main/Home/universos/disney/disney.jpg?raw=true"
     },
     {
-        "id":"3",
-        "name": "Friends",
-        "img": "https://github.com/Blasnjacobo/flixprop-storage/blob/main/Home/universos/friends/friends.jpg?raw=true"
+        "codigo":"3",
+        "universo": "Friends",
+        "activo": "TRUE",
+        "url": "https://github.com/Blasnjacobo/flixprop-storage/blob/main/Home/universos/friends/friends.jpg?raw=true"
     },
     {
-        "id":"4",
-        "name": "Harry Potter",
-        "img": "https://github.com/Blasnjacobo/flixprop-storage/blob/main/Home/universos/harryPotter/harryPotter.jpg?raw=true"
+        "codigo":"4",
+        "universo": "Harry Potter",
+        "activo": "TRUE",
+        "url": "https://github.com/Blasnjacobo/flixprop-storage/blob/main/Home/universos/harryPotter/harryPotter.jpg?raw=true"
     },
     {
-        "id":"5",
-        "name": "House of the Dragon",
-        "img": "https://github.com/Blasnjacobo/flixprop-storage/blob/main/Home/universos/houseOfTheDragon/houseOfTheDragon.jpg?raw=true"
+        "codigo":"5",
+        "universo": "House of the Dragon",
+        "activo": "TRUE",
+        "url": "https://github.com/Blasnjacobo/flixprop-storage/blob/main/Home/universos/houseOfTheDragon/houseOfTheDragon.jpg?raw=true"
     },
     {
-        "id":"6",
-        "name": "Stranger Things",
-        "img": "https://github.com/Blasnjacobo/flixprop-storage/blob/main/Home/universos/strangerThings/strangerThings.jpg?raw=true"
+        "codigo":"6",
+        "universo": "Stranger Things",
+        "activo": "TRUE",
+        "url": "https://github.com/Blasnjacobo/flixprop-storage/blob/main/Home/universos/strangerThings/strangerThings.jpg?raw=true"
     },
     {
-        "id":"7",
-        "name": "Wednesday",
-        "img": "https://github.com/Blasnjacobo/flixprop-storage/blob/main/Home/universos/wednesday/wednesday.jpg?raw=true"
+        "codigo":"7",
+        "universo": "Wednesday",
+        "activo": "TRUE",
+        "url": "https://github.com/Blasnjacobo/flixprop-storage/blob/main/Home/universos/wednesday/wednesday.jpg?raw=true"
     },
     {
-        "id":"8",
-        "name": "Barbie",
-        "img": "https://github.com/Blasnjacobo/flixprop-storage/blob/main/Home/universos/barbie/barbie.jpg?raw=true"
+        "codigo":"8",
+        "universo": "Barbie",
+        "activo": "TRUE",
+        "url": "https://github.com/Blasnjacobo/flixprop-storage/blob/main/Home/universos/barbie/barbie.jpg?raw=true"
     },
     {
-        "id":"9",
-        "name": "Disney",
-        "img": "https://github.com/Blasnjacobo/flixprop-storage/blob/main/Home/universos/disney/disney.jpg?raw=true"
+        "codigo":"9",
+        "universo": "Disney",
+        "activo": "TRUE",
+        "url": "https://github.com/Blasnjacobo/flixprop-storage/blob/main/Home/universos/disney/disney.jpg?raw=true"
     },
     {
-        "id":"10",
-        "name": "Friends",
-        "img": "https://github.com/Blasnjacobo/flixprop-storage/blob/main/Home/universos/friends/friends.jpg?raw=true"
+        "codigo":"10",
+        "universo": "Friends",
+        "activo": "TRUE",
+        "url": "https://github.com/Blasnjacobo/flixprop-storage/blob/main/Home/universos/friends/friends.jpg?raw=true"
     },
     {
-        "id":"11",
-        "name": "Harry Potter",
-        "img": "https://github.com/Blasnjacobo/flixprop-storage/blob/main/Home/universos/harryPotter/harryPotter.jpg?raw=true"
+        "codigo":"11",
+        "universo": "Harry Potter",
+        "activo": "TRUE",
+        "url": "https://github.com/Blasnjacobo/flixprop-storage/blob/main/Home/universos/harryPotter/harryPotter.jpg?raw=true"
     },
     {
-        "id":"12",
-        "name": "House of the Dragon",
-        "img": "https://github.com/Blasnjacobo/flixprop-storage/blob/main/Home/universos/houseOfTheDragon/houseOfTheDragon.jpg?raw=true"
+        "codigo":"12",
+        "universo": "House of the Dragon",
+        "activo": "TRUE",
+        "url": "https://github.com/Blasnjacobo/flixprop-storage/blob/main/Home/universos/houseOfTheDragon/houseOfTheDragon.jpg?raw=true"
     },
     {
-        "id":"12",
-        "name": "Stranger Things",
-        "img": "https://github.com/Blasnjacobo/flixprop-storage/blob/main/Home/universos/strangerThings/strangerThings.jpg?raw=true"
+        "codigo":"12",
+        "universo": "Stranger Things",
+        "activo": "TRUE",
+        "url": "https://github.com/Blasnjacobo/flixprop-storage/blob/main/Home/universos/strangerThings/strangerThings.jpg?raw=true"
     },
     {
-        "id":"13",
-        "name": "Wednesday",
-        "img": "https://github.com/Blasnjacobo/flixprop-storage/blob/main/Home/universos/wednesday/wednesday.jpg?raw=true"
+        "codigo":"13",
+        "universo": "Wednesday",
+        "activo": "TRUE",
+        "url": "https://github.com/Blasnjacobo/flixprop-storage/blob/main/Home/universos/wednesday/wednesday.jpg?raw=true"
     }
 ]

@@ -1,5 +1,5 @@
 import { useRef, useState } from 'react';
-// import universos from '../../assets/Universos/universos.json';
+import universosf from '../../assets/Universos/universos.json';
 import useUniverso from '../../context/Universos/useUniversos'
 import { NavLink } from 'react-router-dom';
 
@@ -71,7 +71,7 @@ const Universos = () => {
           <NavLink className='home-univeso-verTodo' to={'/flixprop/universos/'}>Ver Todos</NavLink>
         </section>
         <section className='home-universo-main' ref={containerRef} onTouchStart={handleTouchStart} onTouchMove={handleTouchMove} onTouchEnd={handleTouchEnd}>
-          {universos.filter((element) => element.activo == "TRUE" ).map((universo) => (
+          {universosf.filter((element) => element.activo == "TRUE" ).map((universo) => (
             <a href="https://flixprop.com/" className='universo-card' key={universo.codigo} onClick={handleCardClick}>
               <img src={universo.url} alt={universo.universo} />
               <div>{universo.universo}</div>
