@@ -7,7 +7,7 @@ const config = {
   "type": "service_account",
   "project_id": "your_project_id",
   "private_key_id": process.env.PRIVATE_KEY_ID,
-  "private_key": process.env.PRIVATE_KEY.replace(/\\n/g, '\n'), // Ensure proper formatting of private key
+  "private_key": process.env.PRIVATE_KEY.replace(/\\n/g, '\n'),
   "client_email": process.env.CLIENT_EMAIL,
   "client_id": process.env.CLIENT_ID,
   "auth_uri": "https://accounts.google.com/o/oauth2/auth",
@@ -27,7 +27,7 @@ const sheets = google.sheets({ version: "v4", auth });
 async function getData() {
   try {
     const spreadsheetId = process.env.SPREAD_SHEET_ID;
-    const range = "Hoja 1";
+    const range = "Universos";
     const response = await sheets.spreadsheets.values.get({
       spreadsheetId,
       range,
