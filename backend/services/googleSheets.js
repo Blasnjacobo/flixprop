@@ -24,10 +24,9 @@ const auth = new google.auth.GoogleAuth({
 
 const sheets = google.sheets({ version: "v4", auth });
 
-async function getData() {
+async function getData(range) {
   try {
     const spreadsheetId = process.env.SPREAD_SHEET_ID;
-    const range = "Universos";
     const response = await sheets.spreadsheets.values.get({
       spreadsheetId,
       range,

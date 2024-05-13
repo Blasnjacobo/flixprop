@@ -14,6 +14,7 @@ export default function NoticiasProvider({ children }: { children: ReactNode }) 
                 }
                 const data = await response.json();
                 setNoticias(data.data);
+                console.log(noticias)
             } catch (error) {
                 console.error('Error fetching store items:', error);
             }

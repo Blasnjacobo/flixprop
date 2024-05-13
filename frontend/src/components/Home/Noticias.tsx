@@ -1,7 +1,10 @@
 import { useRef, useState, useEffect } from 'react';
-import noticias from '../../assets/Noticias/noticias.json';
+// import noticias from '../../assets/Noticias/noticias.json';
+import useNoticias from '../../context/Noticias/useNoticias';
 
 const Noticias = () => {
+  const { noticias } = useNoticias()
+  console.log(noticias)
   const containerRef = useRef<HTMLDivElement>(null);
   const [touchStartX, setTouchStartX] = useState<number | null>(null);
   const [hasScrolled, setHasScrolled] = useState<boolean>(false);
@@ -80,7 +83,7 @@ const Noticias = () => {
         </section>
         <section className='home-noticias-main' ref={containerRef} onTouchStart={handleTouchStart} onTouchMove={handleTouchMove} onTouchEnd={handleTouchEnd}>
           {noticias.slice(offset, offset + 3).map((noticia) => (
-            <div className='noticias-card' key={noticia.id} onClick={() => handleCardClick(noticia.link)}>
+            <div className='noticias-card' key={noticia.codigo} onClick={() => handleCardClick(noticia.img)}>
               <img src={noticia.img} alt={noticia.universo} />
               <div className='noticias-card-description'>
                 <h3 className='noticias-universo-card'>{noticia.universo}</h3>
