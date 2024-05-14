@@ -6,14 +6,18 @@ const cron = require("node-cron");
 dotenv.config();
 const { connectToMongoDB } = require("./db/mongodb");
 const { updateDatabaseIfNeeded } = require("./config/dataUpdater");
-const universos = require("./routes/universos")
-const noticias = require("./routes/noticias")
-const productos = require("./routes/productos")
+const universos = require("./routes/universos");
+const noticias = require("./routes/noticias");
+const productos = require("./routes/productos");
 
 const PORT = process.env.PORT || 5000;
 
 const app = express();
 app.use(morgan("dev"));
+
+// Add middleware to handle preflight requests and include necessary headers
+app.options("*", cors());
+
 app.use(
   cors({
     origin: "*",
@@ -21,9 +25,9 @@ app.use(
   })
 );
 
-app.use("/universos", universos)
-app.use("/noticias", noticias)
-app.use("/productos", productos)
+app.use("/universos", universos);
+app.use("/noticias", noticias);
+app.use("/productos", productos);
 
 connectToMongoDB()
   .then(() => {
@@ -37,4 +41,4 @@ connectToMongoDB()
       console.log(`Server Port: ${PORT}, you are connected to database`)
     );
   })
-  .catch((error) => console.log(`${error} did not connect to MongoDB`));
+  .catch((error) => console.log(`${error} did not connect to MongoDB`));
