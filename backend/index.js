@@ -15,8 +15,14 @@ const PORT = process.env.PORT || 5000;
 const app = express();
 app.use(morgan("dev"));
 
-// Add middleware to handle preflight requests and include necessary headers
-app.options("*", cors());
+// Custom middleware to handle preflight requests
+app.options("*", (req, res, next) => {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Methods", "GET,POST,PUT,DELETE");
+  res.header("Access-Control-Allow-Headers", "Content-Type");
+  res.header("Access-Control-Allow-Private-Network", "true");
+  res.sendStatus(200);
+});
 
 app.use(
   cors({
