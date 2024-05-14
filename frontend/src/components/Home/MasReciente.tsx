@@ -1,11 +1,12 @@
 import React, { useRef, useState, useEffect } from 'react';
-import { Producto } from '../../types/Productos';
+// import { Producto } from '../../types/Productos';
+import useProductos from '../../context/Productos/useProductos'
+import  {Producto } from '../../types/Productos'
 
-interface ProductosProps {
-  productos: Producto[];
-}
 
-const Products = ({ productos }: ProductosProps) => {
+const MasReciente = () => {
+  const [ masRecienteProductos, setMasRecienteProductos] = useState<Producto[]>([])
+  const { productos } = useProductos()
   const containerRef = useRef<HTMLDivElement>(null);
   const [touchStartX, setTouchStartX] = useState<number | null>(null);
   const [hasScrolled, setHasScrolled] = useState<boolean>(false);
@@ -14,6 +15,12 @@ const Products = ({ productos }: ProductosProps) => {
   useEffect(() => {
     setOffset(0);
   }, [productos]);
+
+  useEffect(() => {
+    if (productos && productos.length > 0) {
+      setMasRecienteProductos(productos.filter(product => product.masReciente === "TRUE"))
+    }
+  }, [productos])
 
   const scrollLeft = () => {
     if (containerRef.current && !hasScrolled) {
@@ -83,20 +90,20 @@ const Products = ({ productos }: ProductosProps) => {
           onTouchMove={handleTouchMove}
           onTouchEnd={handleTouchEnd}
         >
-          {productos.slice(offset, offset + getDisplayCount()).map((producto) => (
-            <div className='masVendido-card' key={producto.id} onClick={() => handleCardClick(producto.link)}>
-              <h3 className='masVendido-universo-card'>{producto.universo}</h3>
-              <img
-                src={producto.imgProducto}
-                alt={producto.universo}
-                onMouseOver={(e) => (e.currentTarget.src = producto.imgEscena)}
-                onMouseOut={(e) => (e.currentTarget.src = producto.imgProducto)}
-              />
-              <div className='masVendido-titulo-card'>{producto.titulo}</div>
-              <div className='masVendido-provedor-card'>{producto.provedor}</div>
-              <div className='masVendido-precio-card'>${producto.precio}.00 MXN</div>
-            </div>
-          ))}
+  {masRecienteProductos.slice(offset, offset + getDisplayCount()).map((producto) => (
+    <div className='masVendido-card' key={producto.codigo} onClick={() => handleCardClick(producto.link)}>
+        <h3 className='masVendido-universo-card'>{producto.universo}</h3>
+        <img
+            alt={producto.universo}
+            src={producto.imgEscena}
+            onMouseOver={(e) => { e.currentTarget.src = producto.imgProducto }}
+            onMouseOut={(e) => { e.currentTarget.src = producto.imgEscena }}
+        />
+        <div className='masVendido-titulo-card'>{producto.nombre}</div>
+        <div className='masVendido-provedor-card'>{producto.vendedor}</div>
+        <div className='masVendido-precio-card'>${producto.precio}.00 MXN</div>
+    </div>
+))}
         </section>
         <div className='scroll-arrows'>
           <button className='scroll-left' onClick={scrollLeft}><i className="bi bi-caret-left"></i></button>
@@ -108,4 +115,4 @@ const Products = ({ productos }: ProductosProps) => {
   );
 };
 
-export default Products;
+export default MasReciente;

@@ -1,8 +1,8 @@
 import { createContext } from 'react';
-import { Noticias } from '../../types/Noticias';
+import { Noticia } from '../../types/Noticias';
 
 type NoticiasContextType = {
-    noticias: Noticias[];
+    noticias: Noticia[];
 };
 
 const NoticiasContext = createContext({} as NoticiasContextType);

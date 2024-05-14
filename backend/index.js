@@ -8,6 +8,7 @@ const { connectToMongoDB } = require("./db/mongodb");
 const { updateDatabaseIfNeeded } = require("./config/dataUpdater");
 const universos = require("./routes/universos")
 const noticias = require("./routes/noticias")
+const productos = require("./routes/productos")
 
 const PORT = process.env.PORT || 5000;
 
@@ -22,6 +23,7 @@ app.use(
 
 app.use("/universos", universos)
 app.use("/noticias", noticias)
+app.use("/productos", productos)
 
 connectToMongoDB()
   .then(() => {

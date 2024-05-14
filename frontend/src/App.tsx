@@ -18,6 +18,7 @@ import CompraSegura from './pages/Footer/CompraSegura';
 import MisionyVision from './pages/Footer/MisionyVision';
 import UniversosProvider from './context/Universos/Universos'
 import NoticiasProvider from './context/Noticias/Noticias';
+import ProductosProvider from './context/Productos/Productos';
 
 function App() {
   const [showMenu, setShowMenu] = useState(false);
@@ -29,30 +30,32 @@ function App() {
   };
 
   return (
-    <NoticiasProvider>
-      <UniversosProvider>
-      <div className='navbar-container'>
-        <Navbar toggleMenu={toggleMenu} showMenu={showMenu} navbarRef={navbarRef}/>
-        <Menu showMenu={showMenu} menuRef={menuRef} navbarRef={navbarRef} setShowMenu={setShowMenu} />
-        <Routes>
-          <Route path='/flixprop/' element={<Home />} />
-          <Route path='/flixprop/universos/' element={<Universos />} />
-          <Route path='/flixprop/colecciones/' element={<Colecciones/>} />
-          <Route path='/flixprop/noticias/' element={<Noticias />} />
-          <Route path='/flixprop/quizzes/' element={<Quizzes />} />
-          {/* Footer Routes */}
-          <Route path='/flixprop/nuestra-mision-vision/' element={<MisionyVision />} />
-          <Route path='/flixprop/cultura-flixprop/' element={<Cultura />} />
-          <Route path='/flixprop/colabora-con-nosotros/' element={<Colaboracion />} />
-          <Route path='/flixprop/sobre-nosotros/' element={<SobreNosotros />} />
-          <Route path='/flixprop/politica-de-privacidad/' element={<Privacidad />} />
-          <Route path='/flixprop/terminos-y-condiciones/' element={<TerminosyCondiciones />} />
-          <Route path='/flixprop/compra-segura/' element={<CompraSegura />} />
-        </Routes>
-        <Footer />
-      </div>
-    </UniversosProvider>
-    </NoticiasProvider>
+    <ProductosProvider>
+      <NoticiasProvider>
+        <UniversosProvider>
+          <div className='navbar-container'>
+            <Navbar toggleMenu={toggleMenu} showMenu={showMenu} navbarRef={navbarRef}/>
+            <Menu showMenu={showMenu} menuRef={menuRef} navbarRef={navbarRef} setShowMenu={setShowMenu} />
+            <Routes>
+              <Route path='/flixprop/' element={<Home />} />
+              <Route path='/flixprop/universos/' element={<Universos />} />
+              <Route path='/flixprop/colecciones/' element={<Colecciones/>} />
+              <Route path='/flixprop/noticias/' element={<Noticias />} />
+              <Route path='/flixprop/quizzes/' element={<Quizzes />} />
+              {/* Footer Routes */}
+              <Route path='/flixprop/nuestra-mision-vision/' element={<MisionyVision />} />
+              <Route path='/flixprop/cultura-flixprop/' element={<Cultura />} />
+              <Route path='/flixprop/colabora-con-nosotros/' element={<Colaboracion />} />
+              <Route path='/flixprop/sobre-nosotros/' element={<SobreNosotros />} />
+              <Route path='/flixprop/politica-de-privacidad/' element={<Privacidad />} />
+              <Route path='/flixprop/terminos-y-condiciones/' element={<TerminosyCondiciones />} />
+              <Route path='/flixprop/compra-segura/' element={<CompraSegura />} />
+            </Routes>
+            <Footer />
+          </div>
+        </UniversosProvider>
+      </NoticiasProvider>
+    </ProductosProvider>
   )
 }
 

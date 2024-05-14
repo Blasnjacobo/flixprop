@@ -1,10 +1,19 @@
 export interface Producto {
-    id: string;
+    codigo: string;
+    nombre: string; 
     universo: string; 
-    titulo: string; 
-    provedor: string; 
-    precio: string; 
-    imgProducto: string; 
+    personaje: string; 
+    link: string; 
+    descripcion: string; 
+    vendedor: string;
+    categoria: string;
+    tags: string;
+    precio: string;
+    imgProducto: string;
     imgEscena: string;
-    link: string;
+    imgModelo: string;
+    imgExtra: string;
+    estatus: string;
+    masVendido: string;
+    masReciente: string;
 }

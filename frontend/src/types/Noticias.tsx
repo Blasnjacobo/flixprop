@@ -1,4 +1,4 @@
-export interface Noticias {
+export interface Noticia {
     codigo: string;
     titulo: string;
     universo: string;

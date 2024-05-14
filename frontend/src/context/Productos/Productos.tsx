@@ -1,20 +1,19 @@
 import { useEffect, useState, ReactNode } from 'react';
-import { Noticia } from '../../types/Noticias';
-import NoticiasContext from './NoticiasContext';
+import { Producto } from '../../types/Productos';
+import ProductosContext from './ProductosContext';
 // Provider component to wrap your application
-export default function NoticiasProvider({ children }: { children: ReactNode }) {
-    const [noticias, setNoticias] = useState<Noticia[]>([]);
+export default function ProductosProvider({ children }: { children: ReactNode }) {
+    const [productos, setProductos] = useState<Producto[]>([]);
 
     useEffect(() => {
         const fetchStoreItems = async () => {
             try {
-            const response = await fetch('http://localhost:5000/noticias/')
+            const response = await fetch('http://localhost:5000/productos/')
                 if (!response.ok) {
                     throw new Error('Failed to fetch perfumes from the server');
                 }
                 const data = await response.json();
-                setNoticias(data.data);
-                console.log(noticias)
+                setProductos(data.data);
             } catch (error) {
                 console.error('Error fetching store items:', error);
             }
@@ -22,8 +21,8 @@ export default function NoticiasProvider({ children }: { children: ReactNode }) 
         fetchStoreItems();
     }, []);
     return (
-        <NoticiasContext.Provider value={{ noticias }}>
+        <ProductosContext.Provider value={{ productos }}>
             {children}
-        </NoticiasContext.Provider>
+        </ProductosContext.Provider>
     );
 }
