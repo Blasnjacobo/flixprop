@@ -8,7 +8,7 @@ export default function ProductosProvider({ children }: { children: ReactNode })
     useEffect(() => {
         const fetchStoreItems = async () => {
             try {
-            const response = await fetch('http://localhost:5000/productos/', {
+            const response = await fetch('https://flixprop-production.up.railway.app/productos/', {
                 method: "GET",
                         headers: {
                             'Accept': 'application/json',
