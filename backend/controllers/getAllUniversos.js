@@ -3,7 +3,6 @@ const { Universo } = require("../models/universo.js")
 module.exports.getAllUniversos = async (req, res) => {
     try {
         const universos = await Universo.find()
-        console.log(universos)
         return res.status(200).json({
             data: universos
         })

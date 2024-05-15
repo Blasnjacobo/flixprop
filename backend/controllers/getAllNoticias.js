@@ -3,7 +3,6 @@ const { Noticia } = require("../models/noticia.js")
 module.exports.getAllNoticias = async (req, res) => {
     try {
         const noticias = await Noticia.find()
-        console.log(noticias)
         return res.status(200).json({
             data: noticias
         })
