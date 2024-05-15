@@ -13,7 +13,7 @@ export default function ProductosProvider({ children }: { children: ReactNode })
                         headers: {
                             'Accept': 'application/json',
                             'Content-Type': 'application/json',
-                            'Access-Control-Request-Private-Network': 'true'
+                            'Access-Control-Allow-Private-Network': 'true'
                         }
             })
                 if (!response.ok) {
