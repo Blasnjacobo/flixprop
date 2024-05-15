@@ -6,9 +6,9 @@ const mongoose = require("mongoose");
 const cron = require("node-cron");
 dotenv.config();
 // const { updateDatabaseIfNeeded } = require("./config/dataUpdater");
-// const universos = require("./routes/universos");
-// const noticias = require("./routes/noticias");
-// const productos = require("./routes/productos");
+const universos = require("./routes/universos");
+const noticias = require("./routes/noticias");
+const productos = require("./routes/productos");
 
 const app = express();
 app.use(morgan("dev"));
@@ -22,9 +22,9 @@ app.use(
   })
 );
 
-// app.use("/universos", universos);
-// app.use("/noticias", noticias);
-// app.use("/productos", productos);
+app.use("/universos", universos);
+app.use("/noticias", noticias);
+app.use("/productos", productos);
 
 const PORT = process.env.PORT;
 mongoose

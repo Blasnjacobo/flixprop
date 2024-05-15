@@ -17,7 +17,7 @@ export default function ProductosProvider({ children }: { children: ReactNode })
                         }
             })
                 if (!response.ok) {
-                    throw new Error('Failed to fetch perfumes from the server');
+                    throw new Error('Failed to fetch productos from the server');
                 }
                 const data = await response.json();
                 setProductos(data.data);

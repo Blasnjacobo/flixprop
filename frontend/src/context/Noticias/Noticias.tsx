@@ -10,7 +10,7 @@ export default function NoticiasProvider({ children }: { children: ReactNode }) 
             try {
             const response = await fetch('http://localhost:5000/noticias/')
                 if (!response.ok) {
-                    throw new Error('Failed to fetch perfumes from the server');
+                    throw new Error('Failed to fetch noticias from the server');
                 }
                 const data = await response.json();
                 setNoticias(data.data);
