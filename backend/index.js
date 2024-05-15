@@ -13,27 +13,28 @@ const productos = require("./routes/productos");
 const app = express();
 app.use(morgan("dev"));
 
-app.use(
-  cors({
-    origin: [
-      "http://localhost:5173"
-    ],
-    methods: ["GET", "POST", "PUT", "DELETE"],
-    allowedHeaders: ["Content-Type", "Authorization"],
-    credentials: true,
-  })
-);
-// Middleware to parse JSON bodies
 app.use(express.json());
 
-// Define routes
+app.use(
+  cors({
+    origin: "*",
+    methods: ["GET", "POST", "PUT", "DELETE"],
+  })
+);
+
+app.options("*", (req, res, next) => {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE");
+  res.header("Access-Control-Allow-Headers", "Content-Type");
+  res.header("Access-Control-Allow-Private-Network", "true");
+  next();
+});
+
 app.use("/universos", universos);
 app.use("/noticias", noticias);
 app.use("/productos", productos);
 
 const PORT = process.env.PORT;
-
-// Connect to MongoDB and start the server
 mongoose
   .connect(process.env.mongoDBURL, {})
   .then(() => {

@@ -8,7 +8,14 @@ export default function ProductosProvider({ children }: { children: ReactNode })
     useEffect(() => {
         const fetchStoreItems = async () => {
             try {
-            const response = await fetch('http://localhost:5000/productos/')
+            const response = await fetch('http://localhost:5000/productos/', {
+                method: "GET",
+                        headers: {
+                            'Accept': 'application/json',
+                            'Content-Type': 'application/json',
+                            'Access-Control-Request-Private-Network': 'true'
+                        }
+            })
                 if (!response.ok) {
                     throw new Error('Failed to fetch perfumes from the server');
                 }
