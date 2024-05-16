@@ -77,6 +77,14 @@ const MasReciente = () => {
     window.location.href = link;
   };
 
+  const handleImageTouchStart = (e: React.TouchEvent<HTMLImageElement>, producto: Producto) => {
+    e.currentTarget.src = producto.imgProducto;
+  };
+
+  const handleImageTouchEnd = (e: React.TouchEvent<HTMLImageElement>, producto: Producto) => {
+    e.currentTarget.src = producto.imgEscena;
+  };
+
   const getDisplayCount = () => {
     return window.innerWidth >= 960 ? 4 : 2;
   };
@@ -99,6 +107,9 @@ const MasReciente = () => {
                 src={producto.imgEscena}
                 onMouseOver={(e) => { e.currentTarget.src = producto.imgProducto }}
                 onMouseOut={(e) => { e.currentTarget.src = producto.imgEscena }}
+                onTouchStart={(e) => handleImageTouchStart(e, producto)}
+                onTouchEnd={(e) => handleImageTouchEnd(e, producto)}
+                onTouchCancel={(e) => handleImageTouchEnd(e, producto)}
               />
               <div className='masVendido-titulo-card'>{producto.nombre}</div>
               <div className='masVendido-provedor-card'>{producto.vendedor}</div>
