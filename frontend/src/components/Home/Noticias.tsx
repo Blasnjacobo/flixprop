@@ -78,9 +78,6 @@ const Noticias = () => {
   return (
     <div className='home-noticias'>
       <div className='home-noticias-container'>
-        <section className='home-noticias-title'>
-          <h2>NOTICIAS</h2>
-        </section>
         <section className='home-noticias-main' ref={containerRef} onTouchStart={handleTouchStart} onTouchMove={handleTouchMove} onTouchEnd={handleTouchEnd}>
           {noticias.slice(offset, offset + 3).map((noticia) => (
             <div className='noticias-card' key={noticia.codigo} onClick={() => handleCardClick(noticia.img)}>

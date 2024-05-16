@@ -23,7 +23,6 @@ const CategoriasHome = () => {
 
   return (
     <div className="categoriasHome">
-      <h1 className='categoriasHome-categorias'>CATEGORIAS</h1>
       <div className='categoriasHome-container'>
         {categoriasHomeData.map((item: Categoria) => (
           <div className="card" key={item.id}>

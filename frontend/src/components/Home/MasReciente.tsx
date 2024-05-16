@@ -90,18 +90,18 @@ const MasReciente = () => {
   };
 
   return (
-    <div className='home-masVendido'>
-      <div className='home-masVendido-container'>
+    <div className='home-productos'>
+      <div className='home-productos-container'>
         <section
-          className='home-masVendido-main'
+          className='home-productos-main'
           ref={containerRef}
           onTouchStart={handleTouchStart}
           onTouchMove={handleTouchMove}
           onTouchEnd={handleTouchEnd}
         >
           {masRecienteProductos.slice(offset, offset + getDisplayCount()).map((producto) => (
-            <div className='masVendido-card' key={producto.codigo} onClick={() => handleCardClick(producto.link)}>
-              <h3 className='masVendido-universo-card'>{producto.universo}</h3>
+            <div className='productos-card' key={producto.codigo} onClick={() => handleCardClick(producto.link)}>
+              <h3 className='productos-universo-card'>{producto.universo}</h3>
               <img
                 alt={producto.universo}
                 src={producto.imgProducto}
@@ -111,9 +111,9 @@ const MasReciente = () => {
                 onTouchEnd={(e) => handleImageTouchEnd(e, producto)}
                 onTouchCancel={(e) => handleImageTouchEnd(e, producto)}
               />
-              <div className='masVendido-titulo-card'>{producto.nombre}</div>
-              <div className='masVendido-provedor-card'>{producto.vendedor}</div>
-              <div className='masVendido-precio-card'>${producto.precio}.00 MXN</div>
+              <div className='productos-titulo-card'>{producto.nombre}</div>
+              <div className='productos-provedor-card'>{producto.vendedor}</div>
+              <div className='productos-precio-card'>${producto.precio}.00 MXN</div>
             </div>
           ))}
         </section>

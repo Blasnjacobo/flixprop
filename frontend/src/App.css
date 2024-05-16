@@ -249,20 +249,20 @@ i.active {
 
 /* Mas Vendido */
 
-.masVendido-text {
+.homeContainer-text {
   font-size: xx-large;
   padding: 2rem 9vw;
 }
 
-.home-masVendido {
+.home-productos {
   margin: 0rem 9vw;
 }
 
-.home-masVendido-container {
+.home-productos-container {
   width: 100%;
 }
 
-.home-masVendido-main {
+.home-productos-main {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   justify-content: center;
@@ -274,7 +274,7 @@ i.active {
   width: 100%;
 }
 
-.masVendido-card {
+.productos-card {
   width: 100%; 
   height: 400px; 
   flex-shrink: 0;
@@ -282,32 +282,32 @@ i.active {
   position: relative;
 }
 
-.masVendido-card img {
+.productos-card img {
   width: 100%;
   height: 75%; 
   object-fit: fill;
   margin: auto;
 }
 
-.masVendido-universo-card {
+.productos-universo-card {
   text-align: left;
   font-size: medium;
   color: brown;
 }
 
-.masVendido-titulo-card{
+.productos-titulo-card{
   font-size: x-large;
   text-align: start;
   padding-top: 1rem;
 }
 
-.masVendido-provedor-card {
+.productos-provedor-card {
   font-size: medium;
   color: rgba(107, 105, 105, 0.959);
   padding-top: 0.5rem;
 }
 
-.masVendido-precio-card {
+.productos-precio-card {
   font-size: medium;
   position: absolute;
   top: 60%;
@@ -320,7 +320,7 @@ i.active {
   font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
 
-.masVendido-card button {
+.productos-card button {
   background-color: white;
   width: 80%;
   height: 30px;
@@ -371,11 +371,13 @@ i.active {
   cursor: pointer;
   text-decoration: none;
   color: black;
+  margin: auto;
 }
 
 .universo-card img {
   width: 98%;
-  height: 98%; 
+  height: 98%;
+  
   object-fit: cover;
   border-radius: 50%;
 }
@@ -411,11 +413,6 @@ i.active {
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
-}
-
-.categoriasHome-categorias {
-  padding: 2rem 9vw;
-  font-size: xx-large;
 }
 
 .categoriasHome-container {
@@ -455,10 +452,6 @@ i.active {
   margin: 0rem 9vw;
 }
 
-.home-noticias-title h2 {
-  padding: 2rem 0;
-  font-size: xx-large;
-}
 
 .home-noticias-main {
   display: grid;
@@ -678,11 +671,6 @@ i.active {
     height: 200px;
   }
 
-  .categoriasHome-categorias {
-    text-align: center;
-    padding: 20px 0;
-  }
-
   .newspaper-social{
     display: flex;
     flex-direction: column;
@@ -701,13 +689,12 @@ i.active {
   .home-universo-title h2{
     width: 100%;
     text-align: center;
-    padding: 2rem 0rem 0rem 0rem;
+    padding-top: 2rem;
   }
 
   .home-univeso-verTodo {
     text-align: center;
     width: 100%;
-    padding: 0;
   }
 
   .categoriasHome-categorias {
@@ -723,48 +710,48 @@ i.active {
     width: 960px;
   }
 
-  .masVendido-text {
+  .homeContainer-text {
     text-align: center;
     padding: 2rem 0rem;
   }
   
-  .home-masVendido {
+  .home-productos {
     margin: 0rem 1rem;
   }
 
-  .home-masVendido-main {
+  .home-productos-main {
     grid-template-columns: repeat(2, 1fr);
     width: 80%;
     margin: auto;
     gap: 30px;
   }
 
-  .masVendido-card {
+  .productos-card {
     height: fit-content; 
   }
 
-  .masVendido-universo-card {
+  .productos-universo-card {
     text-align: center;
     font-size: xx-small;
   }
 
-  .masVendido-card img {
+  .productos-card img {
     height: 200px;
   }
 
-  .masVendido-titulo-card{
+  .productos-titulo-card{
     font-size: small;
     text-align: center;
     height: 20px;
     padding-bottom: 20px;
   }
   
-  .masVendido-provedor-card {
+  .productos-provedor-card {
     font-size: x-small;
     color: rgba(107, 105, 105, 0.959);
   }
   
-  .masVendido-precio-card {
+  .productos-precio-card {
     font-size: x-small;
     padding: 4px 8px;
   }
@@ -772,15 +759,6 @@ i.active {
   .home-noticias-main {
     grid-template-columns: 1fr;
     margin: auto;
-  }
-
-  .home-noticias-title {
-    width: 100%;
-  }
-
-  .home-noticias-title h2 {
-    text-align: center;
-    width: 100%;
   }
 
   .noticias-card img{
