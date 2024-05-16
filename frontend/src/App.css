@@ -254,136 +254,143 @@
   /* Mas Vendido */
   
   .homeContainer-text {
-  font-size: xx-large;
-  padding: 2rem 9vw;
+    font-size: xx-large;
+    padding: 2rem 9vw;
   }
   
   .home-productos {
-  margin: 0rem 9vw;
+    margin: 0rem 9vw;
   }
   
   .home-productos-container {
-  width: 100%;
+    width: 100%;
   }
   
   .home-productos-main {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  justify-content: center;
-  align-items: center;
-  gap: 42px;
-  overflow-x: hidden;
-  overflow-y: hidden;
-  padding-bottom: 20px;
-  width: 100%;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    justify-content: center;
+    align-items: center;
+    gap: 42px;
+    overflow-x: hidden;
+    overflow-y: hidden;
+    padding-bottom: 20px;
+    width: 100%;
   }
   
   .productos-card {
-  width: 100%; 
-  height: 400px; 
-  flex-shrink: 0;
-  cursor: pointer;
-  position: relative;
+    width: 100%; 
+    height: 400px; 
+    flex-shrink: 0;
+    cursor: pointer;
+    position: relative;
+  }
+
+  .productos-universo-card {
+    text-align: left;
+    font-size: medium;
+    color: brown;
+    height: 20px;
   }
   
   .productos-card img {
-  width: 100%;
-  height: 75%; 
-  object-fit: fill;
-  margin: auto;
+    width: 100%;
+    height: 270px; 
+    object-fit: fill;
+    margin: auto;
   }
-  
-  .productos-universo-card {
-  text-align: left;
-  font-size: medium;
-  color: brown;
+
+  .productos-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 110px;
   }
   
   .productos-titulo-card{
-  font-size: x-large;
-  text-align: start;
-  padding-top: 1rem;
+    font-size: medium;
+    text-align: start;
+    padding-top: 1rem;
   }
   
   .productos-provedor-card {
-  font-size: medium;
-  color: rgba(107, 105, 105, 0.959);
-  padding-top: 0.5rem;
+    font-size: medium;
+    color: rgba(107, 105, 105, 0.959);
+    padding-top: 0.5rem;
   }
   
   .productos-precio-card {
-  font-size: medium;
-  position: absolute;
-  top: 60%;
-  left: 2%;
-  z-index: 1;
-  background-color: white;
-  padding: 0.5rem 1rem;
-  border: 1px solid rgba(0, 0, 0, 0.103);
-  border-radius: 5%;
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-size: medium;
+    position: absolute;
+    top: 60%;
+    left: 2%;
+    z-index: 1;
+    background-color: white;
+    padding: 0.5rem 1rem;
+    border: 1px solid rgba(0, 0, 0, 0.103);
+    border-radius: 5%;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
   }
   
   .productos-card button {
-  background-color: white;
-  width: 80%;
-  height: 30px;
-  cursor: pointer;
-  border-radius: 5%;
-  font-size: medium;
-  border: 0;
+    background-color: white;
+    width: 80%;
+    height: 30px;
+    cursor: pointer;
+    border-radius: 5%;
+    font-size: medium;
+    border: 0;
   }
   
   /* Universo */
   
   .home-universo {
-  width: 100%;
+    width: 100%;
   }
   
   .home-universo-container {
-  margin: 0rem 9vw;
+    margin: 0rem 9vw;
   }
   
   .home-universo-title {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
   }
   
   .home-universo-title h2 {
-  padding: 2rem 2rem 2rem 0rem;
-  font-size: xx-large;
+    padding: 2rem 2rem 2rem 0rem;
+    font-size: xx-large;
   }
   
   .home-univeso-verTodo {
-  color: black;
-  padding-right: 3rem;
+    color: black;
+    padding-right: 3rem;
   }
   
   .home-universo-main {
-  display:grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 42px;
-  padding-bottom: 20px;
-  width: 100%;
+    display:grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 42px;
+    padding-bottom: 20px;
+    width: 100%;
   }
   
   .universo-card {
-  width: 300px; 
-  height: 300px; 
-  flex-shrink: 0;
-  cursor: pointer;
-  text-decoration: none;
-  color: black;
-  margin: auto;
+    width: 300px; 
+    height: 300px; 
+    flex-shrink: 0;
+    cursor: pointer;
+    text-decoration: none;
+    color: black;
+    margin: auto;
   }
   
   .universo-card img {
-  width: 98%;
-  height: 98%;
-  
-  object-fit: cover;
-  border-radius: 50%;
+    width: 98%;
+    height: 98%;
+    object-fit: cover;
+    border-radius: 50%;
   }
   
   .universo-card div {
@@ -420,19 +427,19 @@
   }
   
   .colecciones-container {
-  margin: 0rem 9vw;
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 10px;
+    margin: 0rem 9vw;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
   }
   
-  .card {
-  width: 100%;
-  height: 300px;
-  position: relative;
+  .colecciones-card {
+    width: 100%;
+    height: 300px;
+    position: relative;
   }
   
-  .card-img-top {
+  .colecciones-card-img {
   height: 100%;
   width: 100%;
   position: relative;

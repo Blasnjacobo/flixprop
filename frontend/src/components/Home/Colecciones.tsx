@@ -25,9 +25,9 @@ const Colecciones = () => {
     <div className="colecciones">
       <div className='colecciones-container'>
         {categoriasHomeData.map((item: Categoria) => (
-          <div className="card" key={item.id}>
+          <div className="colecciones-card" key={item.id}>
             <img
-              className="card-img-top"
+              className="colecciones-card-img"
               src={item[`img${currentImageIndex + 1}` as keyof Categoria]} // Type assertion here
               alt={`${item.nombre} image`}
             />

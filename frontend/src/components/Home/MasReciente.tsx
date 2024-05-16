@@ -111,8 +111,10 @@ const MasReciente = () => {
                 onTouchEnd={(e) => handleImageTouchEnd(e, producto)}
                 onTouchCancel={(e) => handleImageTouchEnd(e, producto)}
               />
-              <div className='productos-titulo-card'>{producto.nombre}</div>
-              <div className='productos-provedor-card'>{producto.vendedor}</div>
+              <div className='productos-info'>
+                <div className='productos-titulo-card'>{producto.nombre}</div>
+                <div className='productos-provedor-card'>{producto.vendedor}</div>
+              </div>
               <div className='productos-precio-card'>${producto.precio}.00 MXN</div>
             </div>
           ))}
