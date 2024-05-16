@@ -251,11 +251,11 @@ i.active {
 
 .masVendido-text {
   font-size: xx-large;
-  padding: 2rem 3rem;
+  padding: 2rem 9vw;
 }
 
 .home-masVendido {
-  margin: 0rem 3rem;
+  margin: 0rem 9vw;
 }
 
 .home-masVendido-container {
@@ -267,7 +267,7 @@ i.active {
   grid-template-columns: repeat(4, 1fr);
   justify-content: center;
   align-items: center;
-  gap: 20px;
+  gap: 42px;
   overflow-x: hidden;
   overflow-y: hidden;
   padding-bottom: 20px;
@@ -747,7 +747,7 @@ i.active {
   }
 
   .masVendido-titulo-card{
-    font-size: small;
+    font-size: x-small;
     text-align: center;
     height: 20px;
     padding-bottom: 20px;

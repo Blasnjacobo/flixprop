@@ -8,6 +8,7 @@ export default function NoticiasProvider({ children }: { children: ReactNode }) 
     useEffect(() => {
         const fetchStoreItems = async () => {
             try {
+            // const response = await fetch('http://localhost:5000/noticias/')
             const response = await fetch('https://flixprop-production.up.railway.app/noticias/')
                 if (!response.ok) {
                     throw new Error('Failed to fetch noticias from the server');
