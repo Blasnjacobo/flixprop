@@ -10,7 +10,7 @@ interface Categoria {
   img3: string;
 }
 
-const CategoriasHome = () => {
+const Colecciones = () => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
   useEffect(() => {
@@ -22,8 +22,8 @@ const CategoriasHome = () => {
   }, []);
 
   return (
-    <div className="categoriasHome">
-      <div className='categoriasHome-container'>
+    <div className="colecciones">
+      <div className='colecciones-container'>
         {categoriasHomeData.map((item: Categoria) => (
           <div className="card" key={item.id}>
             <img
@@ -38,4 +38,4 @@ const CategoriasHome = () => {
   );
 };
 
-export default CategoriasHome;
+export default Colecciones;

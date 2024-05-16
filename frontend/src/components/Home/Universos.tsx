@@ -18,22 +18,26 @@ const Universos = () => {
       const displayCount = getDisplayCount();
       let newOffset = offset - displayCount;
       if (newOffset < 0) {
-        newOffset = universos.length - (universos.length % displayCount || displayCount); // Wrap to the end
+        const activeUniversos = universos.filter((element) => element.activo === "TRUE");
+        newOffset = activeUniversos.length - (Math.abs(newOffset) % activeUniversos.length || activeUniversos.length); // Wrap to the end
       }
       setOffset(newOffset);
     }
   };
+  
 
   const scrollRight = () => {
     if (containerRef.current && !hasScrolled) {
       const displayCount = getDisplayCount();
       let newOffset = offset + displayCount;
-      if (newOffset >= universos.length) {
-        newOffset = 0; // Wrap to the start
+      const activeUniversos = universos.filter((element) => element.activo === "TRUE");
+      if (newOffset >= activeUniversos.length) {
+        newOffset = newOffset % activeUniversos.length; // Wrap to the start
       }
       setOffset(newOffset);
     }
   };
+  
 
   const handleTouchStart = (e: React.TouchEvent<HTMLDivElement>) => {
     setTouchStartX(e.touches[0].clientX);
@@ -85,7 +89,7 @@ const Universos = () => {
           onTouchMove={handleTouchMove}
           onTouchEnd={handleTouchEnd}
         >
-          {universos.slice(offset, offset + getDisplayCount()).map((universo, index) => (
+          {universos.filter((element) => element.activo === "TRUE").slice(offset, offset + getDisplayCount()).map((universo, index) => (
             <a href="https://flixprop.com/" className='universo-card' key={universo.codigo} onClick={() => handleCardClick(index)}>
               <img src={universo.url} alt={universo.universo} />
               <div>{universo.universo}</div>

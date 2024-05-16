@@ -1,4 +1,4 @@
-import CategoriasHome from '../components/Home/CategoriasHome'
+import Colecciones from '../components/Home/Colecciones'
 import MasReciente from '../components/Home/MasReciente'
 import Noticias from '../components/Home/Noticias'
 import Ofrecemos from '../components/Home/Ofrecemos'
@@ -14,9 +14,9 @@ const Home = () => {
       <MasReciente />
       <h3 className='homeContainer-text'>UNIVERSOS</h3>
       <Universos />
-      <h3 className='homeContainer-text'>CATEGORIAS</h3>
-      <CategoriasHome />
-      <h3 className='homeContainer-text'>LO MAS VENDIDO!</h3>
+      <h3 className='homeContainer-text'>COLECCIONES</h3>
+      <Colecciones />
+      <h3 className='homeContainer-text'>LO MAS VENDIDO</h3>
       <MasVendido />
       <h3 className='homeContainer-text'>NOTICIAS</h3>
       <Noticias />

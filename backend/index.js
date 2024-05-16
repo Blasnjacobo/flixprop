@@ -5,7 +5,7 @@ const dotenv = require("dotenv");
 const mongoose = require("mongoose");
 const cron = require("node-cron");
 dotenv.config();
-// const { updateDatabaseIfNeeded } = require("./config/dataUpdater");
+const { updateDatabaseIfNeeded } = require("./config/dataUpdater")
 const universos = require("./routes/universos");
 const noticias = require("./routes/noticias");
 const productos = require("./routes/productos");
@@ -33,7 +33,7 @@ mongoose
     // Schedule cron job
     cron.schedule("0 * * * *", async () => {
       console.log("Checking for spreadsheet updates...");
-      // await updateDatabaseIfNeeded();
+      await updateDatabaseIfNeeded();
     });
 
     app.listen(PORT, () => {
