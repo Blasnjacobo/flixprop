@@ -1,5 +1,7 @@
 import { Dispatch, SetStateAction, useEffect, RefObject } from "react";
 import { NavLink } from 'react-router-dom';
+import LoginIcon from './Login/LoginIcon';
+import Logout from './Login/Logout';
 interface MenuProps {
   showMenu: boolean;
   menuRef: RefObject<HTMLDivElement>;
@@ -8,6 +10,7 @@ interface MenuProps {
 }
 
 const Menu = ({ showMenu, menuRef, navbarRef, setShowMenu }: MenuProps) => {
+  const user = null
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       if (
@@ -39,7 +42,9 @@ const Menu = ({ showMenu, menuRef, navbarRef, setShowMenu }: MenuProps) => {
         <NavLink className="menu-links" onClick={() => setShowMenu(false)} to="/flixprop/quizzes">Quizzes</NavLink>
       </section>
       <section className="menu-icons-login">
-        <div><i className="bi bi-person"></i>Log In</div>
+          {
+          !user ? <div style={{ display: 'flex', alignItems: 'center', fontSize:'medium', padding: '0'}}><LoginIcon /> Inicio de sesión</div> : <Logout />
+          }
         <div className="menu-socialMedia">
           <i className="bi bi-twitter"></i>
           <i className="bi bi-facebook"></i>

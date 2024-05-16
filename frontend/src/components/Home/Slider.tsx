@@ -61,7 +61,7 @@ export const Slider = () => {
   return (
     <div className='slider-container'>
       <div className="container-images">
-          <ul ref={listRef}>
+          <ul ref={listRef} style={{ padding: '0px'}}>
             {
               flixpropSlider.map((item) => {
                 return <li key={item.id}>
