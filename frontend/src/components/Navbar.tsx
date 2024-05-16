@@ -2,6 +2,8 @@ import { useState, useEffect, MutableRefObject } from 'react';
 import { NavLink } from 'react-router-dom';
 import flixprop from '../assets/flixprop-logo.png';
 import '../App.css';
+import LoginIcon from './Login/LoginIcon';
+import Logout from './Login/Logout';
 
 interface MenuProps {
   toggleMenu: () => void;
@@ -11,6 +13,7 @@ interface MenuProps {
 
 const Navbar = ({ toggleMenu, showMenu, navbarRef }: MenuProps) => {
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+  const user = null
 
   useEffect(() => {
     const handleResize = () => {
@@ -55,8 +58,10 @@ const Navbar = ({ toggleMenu, showMenu, navbarRef }: MenuProps) => {
         </section>
         <section className="navbar-icon flex-between">
           <i className="bi bi-search"></i>
-          <i className="bi bi-person"></i>
           <i className="bi bi-bag"></i>
+          {
+          !user ? <LoginIcon /> : <Logout />
+          }
         </section>
       </div>
     </div>
