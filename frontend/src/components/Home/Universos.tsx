@@ -1,36 +1,37 @@
-import { useRef, useState } from 'react';
-// import universos from '../../assets/Universos/universos.json';
-import useUniverso from '../../context/Universos/useUniversos'
-import { NavLink } from 'react-router-dom';
-
+import { useRef, useState, useEffect } from 'react';
+import useUniverso from '../../context/Universos/useUniversos';
+// import { NavLink } from 'react-router-dom';
 
 const Universos = () => {
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  //
-  const { universos } = useUniverso()
-  console.log(universos)
+  const { universos } = useUniverso();
   const containerRef = useRef<HTMLDivElement>(null);
   const [touchStartX, setTouchStartX] = useState<number | null>(null);
   const [hasScrolled, setHasScrolled] = useState<boolean>(false);
-  const scrollSpeed = 300; // Adjust the scroll speed as needed
+  const [offset, setOffset] = useState<number>(0);
+
+  useEffect(() => {
+    setOffset(0);
+  }, [universos]);
 
   const scrollLeft = () => {
     if (containerRef.current && !hasScrolled) {
-      containerRef.current.scrollLeft -= scrollSpeed;
-      setHasScrolled(true);
-      setTimeout(() => {
-        setHasScrolled(false);
-      }, 500); // Reset hasScrolled after 500 milliseconds
+      const displayCount = getDisplayCount();
+      let newOffset = offset - displayCount;
+      if (newOffset < 0) {
+        newOffset = universos.length - (universos.length % displayCount || displayCount); // Wrap to the end
+      }
+      setOffset(newOffset);
     }
   };
 
   const scrollRight = () => {
     if (containerRef.current && !hasScrolled) {
-      containerRef.current.scrollLeft += scrollSpeed;
-      setHasScrolled(true);
-      setTimeout(() => {
-        setHasScrolled(false);
-      }, 500); // Reset hasScrolled after 500 milliseconds
+      const displayCount = getDisplayCount();
+      let newOffset = offset + displayCount;
+      if (newOffset >= universos.length) {
+        newOffset = 0; // Wrap to the start
+      }
+      setOffset(newOffset);
     }
   };
 
@@ -42,16 +43,22 @@ const Universos = () => {
   const handleTouchMove = (e: React.TouchEvent<HTMLDivElement>) => {
     if (touchStartX !== null && containerRef.current && !hasScrolled) {
       const touchMoveX = e.touches[0].clientX;
-      const deltaX = touchStartX - touchMoveX;
-      if (deltaX > 0) {
-        containerRef.current.scrollLeft += scrollSpeed;
-      } else {
-        containerRef.current.scrollLeft -= scrollSpeed;
+      const deltaX = touchMoveX - touchStartX;
+      const direction = deltaX > 0 ? -1 : 1;
+
+      if (Math.abs(deltaX) > 100) {
+        const displayCount = getDisplayCount();
+        let newOffset = offset + direction * displayCount;
+
+        if (newOffset < 0) {
+          newOffset = universos.length - (universos.length % displayCount || displayCount); // Wrap to the end
+        } else if (newOffset >= universos.length) {
+          newOffset = 0; // Wrap to the start
+        }
+
+        setOffset(newOffset);
+        setTouchStartX(null);
       }
-      setHasScrolled(true);
-      setTimeout(() => {
-        setHasScrolled(false);
-      }, 500); // Reset hasScrolled after 500 milliseconds
     }
   };
 
@@ -59,29 +66,40 @@ const Universos = () => {
     setTouchStartX(null);
   };
 
-  const handleCardClick = () => {
-    window.location.href = 'https://flixprop.com/';
+  const handleCardClick = (index: number) => {
+    const newIndex = (index + 1) % universos.length;
+    setOffset(newIndex);
+  };
+
+  const getDisplayCount = () => {
+    return window.innerWidth >= 960 ? 4 : 1;
   };
 
   return (
     <div className='home-universo'>
       <div className='home-universo-container'>
-        <section className='home-universo-title'>
-          <h2>UNIVERSOS</h2>
-          <NavLink className='home-univeso-verTodo' to={'/flixprop/universos/'}>Ver Todos</NavLink>
-        </section>
-        <section className='home-universo-main' ref={containerRef} onTouchStart={handleTouchStart} onTouchMove={handleTouchMove} onTouchEnd={handleTouchEnd}>
-          {universos.filter((element) => element.activo == "TRUE" ).map((universo) => (
-            <a href="https://flixprop.com/" className='universo-card' key={universo.codigo} onClick={handleCardClick}>
+        <section
+          className='home-universo-main'
+          ref={containerRef}
+          onTouchStart={handleTouchStart}
+          onTouchMove={handleTouchMove}
+          onTouchEnd={handleTouchEnd}
+        >
+          {universos.slice(offset, offset + getDisplayCount()).map((universo, index) => (
+            <a href="https://flixprop.com/" className='universo-card' key={universo.codigo} onClick={() => handleCardClick(index)}>
               <img src={universo.url} alt={universo.universo} />
               <div>{universo.universo}</div>
             </a>
           ))}
         </section>
         <div className='scroll-arrows'>
-          <button className='scroll-left' onClick={scrollLeft}><i className="bi bi-caret-left"></i></button>
+          <button className='scroll-left' onClick={scrollLeft}>
+            <i className="bi bi-caret-left"></i>
+          </button>
           <div>Flixprop</div>
-          <button className='scroll-right' onClick={scrollRight}><i className="bi bi-caret-right"></i></button>
+          <button className='scroll-right' onClick={scrollRight}>
+            <i className="bi bi-caret-right"></i>
+          </button>
         </div>
       </div>
     </div>
