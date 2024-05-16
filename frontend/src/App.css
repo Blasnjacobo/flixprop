@@ -732,6 +732,7 @@ i.active {
     grid-template-columns: repeat(2, 1fr);
     width: 80%;
     margin: auto;
+    gap: 30px;
   }
 
   .masVendido-card {
@@ -740,6 +741,7 @@ i.active {
 
   .masVendido-universo-card {
     text-align: center;
+    font-size: xx-small;
   }
 
   .masVendido-card img {
@@ -747,7 +749,7 @@ i.active {
   }
 
   .masVendido-titulo-card{
-    font-size: x-small;
+    font-size: small;
     text-align: center;
     height: 20px;
     padding-bottom: 20px;
