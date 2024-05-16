@@ -78,11 +78,11 @@ const MasReciente = () => {
   };
 
   const handleImageTouchStart = (e: React.TouchEvent<HTMLImageElement>, producto: Producto) => {
-    e.currentTarget.src = producto.imgProducto;
+    e.currentTarget.src = producto.imgEscena;
   };
 
   const handleImageTouchEnd = (e: React.TouchEvent<HTMLImageElement>, producto: Producto) => {
-    e.currentTarget.src = producto.imgEscena;
+    e.currentTarget.src = producto.imgProducto;
   };
 
   const getDisplayCount = () => {
@@ -104,9 +104,9 @@ const MasReciente = () => {
               <h3 className='masVendido-universo-card'>{producto.universo}</h3>
               <img
                 alt={producto.universo}
-                src={producto.imgEscena}
-                onMouseOver={(e) => { e.currentTarget.src = producto.imgProducto }}
-                onMouseOut={(e) => { e.currentTarget.src = producto.imgEscena }}
+                src={producto.imgProducto}
+                onMouseOver={(e) => { e.currentTarget.src = producto.imgEscena }}
+                onMouseOut={(e) => { e.currentTarget.src = producto.imgProducto }}
                 onTouchStart={(e) => handleImageTouchStart(e, producto)}
                 onTouchEnd={(e) => handleImageTouchEnd(e, producto)}
                 onTouchCancel={(e) => handleImageTouchEnd(e, producto)}
