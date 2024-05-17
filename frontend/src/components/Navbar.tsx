@@ -13,7 +13,7 @@ interface MenuProps {
 
 const Navbar = ({ toggleMenu, showMenu, navbarRef }: MenuProps) => {
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
-  const user = null
+  const user = null;
 
   useEffect(() => {
     const handleResize = () => {
@@ -60,7 +60,7 @@ const Navbar = ({ toggleMenu, showMenu, navbarRef }: MenuProps) => {
           <i className="bi bi-search"></i>
           <i className="bi bi-bag"></i>
           {
-          !user ? <LoginIcon /> : <Logout />
+          !user ? <LoginIcon hideText={true} /> : <Logout />
           }
         </section>
       </div>

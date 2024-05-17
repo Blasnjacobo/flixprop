@@ -670,6 +670,14 @@
   }
   
   /* LogIn */
+
+  .login-icon-inicio {
+    font-size: 1.5rem;
+    cursor: pointer; 
+    color: white; 
+    display: flex; 
+    gap: 10px;
+  }
   
   .loginModal {
   padding: 2rem;
