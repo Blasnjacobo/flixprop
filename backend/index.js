@@ -4,14 +4,19 @@ const cors = require("cors");
 const dotenv = require("dotenv");
 const mongoose = require("mongoose");
 const cron = require("node-cron");
+const passport = require("passport");
+const passportSetup = require("./passport.js");
 dotenv.config();
 // const { updateDatabaseIfNeeded } = require("./config/dataUpdater")
 const universos = require("./routes/universos");
 const noticias = require("./routes/noticias");
 const productos = require("./routes/productos");
+const auth = require("./routes/auth.js")
 
 const app = express();
 app.use(morgan("dev"));
+
+app.use(passport.initialize());
 
 app.use(express.json());
 
@@ -19,9 +24,11 @@ app.use(
   cors({
     origin: "*",
     methods: ["GET", "POST", "PUT", "DELETE"],
+    credentials: true
   })
 );
 
+app.use("/auth", auth);
 app.use("/universos", universos);
 app.use("/noticias", noticias);
 app.use("/productos", productos);

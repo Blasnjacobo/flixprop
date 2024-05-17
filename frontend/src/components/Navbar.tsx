@@ -4,6 +4,7 @@ import flixprop from '../assets/flixprop-logo.png';
 import '../App.css';
 import LoginIcon from './Login/LoginIcon';
 import Logout from './Login/Logout';
+import useUser from '../context/Users/useUser';
 
 interface MenuProps {
   toggleMenu: () => void;
@@ -12,8 +13,9 @@ interface MenuProps {
 }
 
 const Navbar = ({ toggleMenu, showMenu, navbarRef }: MenuProps) => {
+  const user = useUser();
+  console.log(user)
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
-  const user = null;
 
   useEffect(() => {
     const handleResize = () => {

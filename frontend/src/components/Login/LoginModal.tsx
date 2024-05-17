@@ -10,7 +10,7 @@ interface ShowProps {
 const LoginModal: React.FC<ShowProps> = ({ show, handleClose }) => {
 
     const google = () => {
-
+        window.open("http://localhost:5000/auth/google", "_self");
     };
 
     const facebook = () => {
