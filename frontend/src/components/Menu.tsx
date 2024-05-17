@@ -43,7 +43,7 @@ const Menu = ({ showMenu, menuRef, navbarRef, setShowMenu }: MenuProps) => {
       </section>
       <section className="menu-icons-login">
           {
-          !user ? <div style={{ display: 'flex', alignItems: 'center', fontSize:'medium', padding: '0'}}><LoginIcon /> Inicio de sesión</div> : <Logout />
+          !user ? <div style={{ padding: '0'}}><LoginIcon /></div> : <Logout />
           }
         <div className="menu-socialMedia">
           <i className="bi bi-twitter"></i>
