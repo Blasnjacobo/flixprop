@@ -10,7 +10,7 @@ const LoginIcon = () => {
 
     return (
         <div>
-            <NavbarBs as={NavLink} to='/flixprop/'>
+            <NavbarBs as={NavLink} to='/flixprop/' style={{ textDecoration: 'none'}}>
                 <i className="bi bi-person" onClick={handleShow} style={{ fontSize: '1.5rem', cursor: 'pointer', color: 'white' }}><span style={{ fontSize: 'medium'}}>Inicio de sesión</span></i>
             </NavbarBs>
             <LoginModal show={show} handleClose={handleClose} />
