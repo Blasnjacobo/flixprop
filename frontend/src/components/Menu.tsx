@@ -32,6 +32,10 @@ const Menu = ({ showMenu, menuRef, navbarRef, setShowMenu }: MenuProps) => {
     };
   }, [showMenu, menuRef, navbarRef, setShowMenu]);
 
+  const handleSocialMediaClick = (url: string) => {
+    window.open(url, '_blank');
+  };
+
   return (
     <div ref={menuRef} className={`menu-container ${showMenu ? 'show' : ''}`}>
       <section className="menu-options">
@@ -46,11 +50,11 @@ const Menu = ({ showMenu, menuRef, navbarRef, setShowMenu }: MenuProps) => {
           !user ? <div style={{ padding: '0'}}><LoginIcon /></div> : <Logout />
           }
         <div className="menu-socialMedia">
-          <i className="bi bi-twitter"></i>
-          <i className="bi bi-facebook"></i>
-          <i className="bi bi-instagram"></i>
-          <i className="bi bi-tiktok"></i>
-          <i className="bi bi-youtube"></i>
+          <i className="bi bi-twitter" onClick={() => handleSocialMediaClick('https://x.com/flixprop?t=KwAzK9BISpx6tPr06bb9mw&s=09')}></i>
+          <i className="bi bi-facebook" onClick={() => handleSocialMediaClick('https://www.facebook.com/flixprop?mibextid=ZbWKwL')}></i>
+          <i className="bi bi-instagram" onClick={() => handleSocialMediaClick('https://www.instagram.com/flixprop?igsh=ZjBkdTg3eWRienln')}></i>
+          <i className="bi bi-tiktok" onClick={() => handleSocialMediaClick('https://www.tiktok.com/@flixprop?_t=8m1LhcwSaXu&_r=1')}></i>
+          <i className="bi bi-youtube" onClick={() => handleSocialMediaClick('https://youtube.com/@Flixprop?si=6dAGZXRJbYSGO9pb')}></i>
         </div>
       </section>
     </div>

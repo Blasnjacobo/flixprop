@@ -1,6 +1,11 @@
 import { NavLink } from "react-router-dom"
 
 const Footer = () => {
+
+    const handleSocialMediaClick = (url: string) => {
+        window.open(url, '_blank');
+      };
+
   return (
     <div className="footer">
         <div className="footer-container">
@@ -26,11 +31,11 @@ const Footer = () => {
                     <p>¡Subscríbete gratis para ser el primero en enterarte de los productos más populares del momento!</p>
                     <input className="footer-newspaper" type="email" id="email" placeholder="Correo Electrónico"/>
                     <div className="footer-socialMedia">
-                        <i className="bi bi-twitter"></i>
-                        <i className="bi bi-facebook"></i>
-                        <i className="bi bi-instagram"></i>
-                        <i className="bi bi-tiktok"></i>
-                        <i className="bi bi-youtube"></i>
+                        <i className="bi bi-twitter" onClick={() => handleSocialMediaClick('https://x.com/flixprop?t=KwAzK9BISpx6tPr06bb9mw&s=09')}></i>
+                        <i className="bi bi-facebook" onClick={() => handleSocialMediaClick('https://www.facebook.com/flixprop?mibextid=ZbWKwL')}></i>
+                        <i className="bi bi-instagram" onClick={() => handleSocialMediaClick('https://www.instagram.com/flixprop?igsh=ZjBkdTg3eWRienln')}></i>
+                        <i className="bi bi-tiktok" onClick={() => handleSocialMediaClick('https://www.tiktok.com/@flixprop?_t=8m1LhcwSaXu&_r=1')}></i>
+                        <i className="bi bi-youtube" onClick={() => handleSocialMediaClick('https://youtube.com/@Flixprop?si=6dAGZXRJbYSGO9pb')}></i>
                     </div>
             </section>
         </div>
