@@ -1,7 +1,7 @@
 const Logout = () => {
     const logout = () => {
         localStorage.removeItem('jwtToken');
-        window.location.href = "http://localhost:5173/flixprop/";
+        window.location.href = "https://blasnjacobo.github.io/flixprop/";
       };
     return (
         <div>
