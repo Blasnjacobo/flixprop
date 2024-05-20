@@ -11,7 +11,7 @@ passport.use(
       clientID: process.env.GOOGLE_CLIENT_ID,
       clientSecret: process.env.GOOGLE_CLIENT_SECRET,
       callbackURL:
-        "https://flixprop-production.up.railway.app/auth/google/callback",
+        "http://localhost:5000/auth/google/callback",
     },
     async (request, accessToken, refreshToken, profile, done) => {
       try {

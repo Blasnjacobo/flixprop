@@ -62,7 +62,7 @@ const Navbar = ({ toggleMenu, showMenu, navbarRef }: MenuProps) => {
           <i className="bi bi-search"></i>
           <i className="bi bi-bag"></i>
           {
-          !user ? <LoginIcon hideText={true} /> : <Logout />
+          (user && windowWidth > 990) ? <Logout /> : <LoginIcon hideText={true} />
           }
         </section>
       </div>

@@ -1,7 +1,7 @@
 const Logout = () => {
     const logout = () => {
         localStorage.removeItem('jwtToken');
-        window.location.href = "https://blasnjacobo.github.io/flixprop/";
+        window.location.href = "http://localhost:5173/flixprop/";
       };
     return (
         <div>
@@ -14,7 +14,7 @@ const Logout = () => {
                     />
                 </li>
                 <li className="logout-text" onClick={logout}>
-                    Logout
+                    Salir
                 </li>
             </ul>
         </div>
