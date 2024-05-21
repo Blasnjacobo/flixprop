@@ -14,7 +14,7 @@ const cart = new mongoose.Schema({
     required: true
   },
   items: [{
-    productos: {
+    producto: {
       type: String,
       required: false
     },

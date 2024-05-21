@@ -12,6 +12,7 @@ const universos = require("./routes/universos");
 const noticias = require("./routes/noticias");
 const productos = require("./routes/productos");
 const auth = require("./routes/auth.js")
+const cart = require("./routes/cart.js");
 
 const app = express();
 app.use(morgan("dev"));
@@ -32,6 +33,7 @@ app.use("/auth", auth);
 app.use("/universos", universos);
 app.use("/noticias", noticias);
 app.use("/productos", productos);
+app.use("/cart", cart);
 
 const PORT = process.env.PORT;
 mongoose

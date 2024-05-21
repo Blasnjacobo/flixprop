@@ -251,22 +251,21 @@
   cursor: pointer;
   }
   
-  /* Mas Vendido */
-  
+  /* Productos */
   .homeContainer-text {
     font-size: xx-large;
     padding: 2rem 9vw;
-  }
-  
-  .home-productos {
+}
+
+.home-productos {
     margin: 0rem 9vw;
-  }
-  
-  .home-productos-container {
+}
+
+.home-productos-container {
     width: 100%;
-  }
-  
-  .home-productos-main {
+}
+
+.home-productos-main {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     justify-content: center;
@@ -276,71 +275,78 @@
     overflow-y: hidden;
     padding-bottom: 20px;
     width: 100%;
-  }
-  
-  .productos-card {
+}
+
+.productos-card {
     width: 100%; 
-    height: 400px; 
+    height: 500px; 
     flex-shrink: 0;
     cursor: pointer;
     position: relative;
-  }
-
-  .productos-universo-card {
-    text-align: left;
-    font-size: medium;
-    color: brown;
-    height: 20px;
-  }
-  
-  .productos-card img {
-    width: 100%;
-    height: 270px; 
-    object-fit: fill;
-    margin: auto;
-  }
-
-  .productos-info {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    height: 110px;
-  }
-  
-  .productos-titulo-card{
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    overflow: hidden;
+    padding: 16px;
+    box-sizing: border-box;
+}
+
+.productos-universo-card {
+    text-align: left;
+    font-size: medium;
+    color: brown;
+    height: 10px;
+}
+
+.productos-card img {
+    width: 100%;
+    height: 150px; 
+    object-fit: cover;
+}
+
+.productos-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+.productos-titulo-card {
     font-size: medium;
     text-align: start;
-    padding-top: 1rem;
-  }
-  
-  .productos-provedor-card {
+}
+
+.productos-provedor-card {
     font-size: medium;
     color: rgba(107, 105, 105, 0.959);
-    padding-top: 0.5rem;
-  }
-  
-  .productos-precio-card {
+}
+
+.productos-precio-card {
     font-size: medium;
-    position: absolute;
-    top: 60%;
-    left: 2%;
-    z-index: 1;
     background-color: white;
     padding: 0.5rem 1rem;
     border: 1px solid rgba(0, 0, 0, 0.103);
     border-radius: 5%;
-    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-  }
-  
-  .productos-card button {
-    background-color: white;
-    width: 80%;
-    height: 30px;
+
+}
+
+.productos-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.productos-card button {
+    width: 100%;
     cursor: pointer;
     border-radius: 5%;
     font-size: medium;
     border: 0;
-  }
+}
+
+
   
   /* Universo */
   

@@ -1,6 +1,7 @@
 import React, { useRef, useState, useEffect } from 'react';
 import useProductos from '../../context/Productos/useProductos';
 import { Producto } from '../../types/Productos';
+import Productos from './Productos';
 
 const MasReciente = () => {
   const [masRecienteProductos, setMasRecienteProductos] = useState<Producto[]>([]);
@@ -73,18 +74,6 @@ const MasReciente = () => {
     setTouchStartX(null);
   };
 
-  const handleCardClick = (link: string) => {
-    window.location.href = link;
-  };
-
-  const handleImageTouchStart = (e: React.TouchEvent<HTMLImageElement>, producto: Producto) => {
-    e.currentTarget.src = producto.imgEscena;
-  };
-
-  const handleImageTouchEnd = (e: React.TouchEvent<HTMLImageElement>, producto: Producto) => {
-    e.currentTarget.src = producto.imgProducto;
-  };
-
   const getDisplayCount = () => {
     return window.innerWidth >= 960 ? 4 : 2;
   };
@@ -100,23 +89,7 @@ const MasReciente = () => {
           onTouchEnd={handleTouchEnd}
         >
           {masRecienteProductos.slice(offset, offset + getDisplayCount()).map((producto) => (
-            <div className='productos-card' key={producto.codigo} onClick={() => handleCardClick(producto.link)}>
-              <h3 className='productos-universo-card'>{producto.universo}</h3>
-              <img
-                alt={producto.universo}
-                src={producto.imgProducto}
-                onMouseOver={(e) => { e.currentTarget.src = producto.imgEscena }}
-                onMouseOut={(e) => { e.currentTarget.src = producto.imgProducto }}
-                onTouchStart={(e) => handleImageTouchStart(e, producto)}
-                onTouchEnd={(e) => handleImageTouchEnd(e, producto)}
-                onTouchCancel={(e) => handleImageTouchEnd(e, producto)}
-              />
-              <div className='productos-info'>
-                <div className='productos-titulo-card'>{producto.nombre}</div>
-                <div className='productos-provedor-card'>{producto.vendedor}</div>
-              </div>
-              <div className='productos-precio-card'>${producto.precio}.00 MXN</div>
-            </div>
+            <Productos key={producto.codigo} producto={producto} />
           ))}
         </section>
         <div className='scroll-arrows'>

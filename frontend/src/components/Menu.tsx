@@ -50,7 +50,7 @@ const Menu = ({ showMenu, menuRef, navbarRef, setShowMenu }: MenuProps) => {
       </section>
       <section className="menu-icons-login">
           {
-          !user ? <LoginIcon /> : <Logout />
+          !user ? <LoginIcon /> : <Logout userPhoto={user.photos[0].value} />
           }
         <div className="menu-socialMedia">
           <i className="bi bi-twitter" onClick={() => handleSocialMediaClick('https://x.com/flixprop?t=KwAzK9BISpx6tPr06bb9mw&s=09')}></i>

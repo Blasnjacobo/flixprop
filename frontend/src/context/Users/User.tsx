@@ -30,8 +30,8 @@ export default function UserProvider({ children }: UserProviderProps): JSX.Eleme
             try {
                 const token = localStorage.getItem('jwtToken');
 
-                const response = await fetch('http://localhost:5000/auth/login/success', {
-                // const response = await fetch('https://flixprop-production.up.railway.app/auth/login/success', {
+                // const response = await fetch('http://localhost:5000/auth/login/success', {
+                const response = await fetch('https://flixprop-production.up.railway.app/auth/login/success', {
                     method: 'GET',
                     headers: {
                         Authorization: `Bearer ${token}`,
@@ -42,7 +42,6 @@ export default function UserProvider({ children }: UserProviderProps): JSX.Eleme
                 if (response.status === 200) {
                     const data = await response.json();
                     setUser(data.user);
-                    console.log(user)
                 } else {
                     throw new Error('Authentication has failed!');
                 }
