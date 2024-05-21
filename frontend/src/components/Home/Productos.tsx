@@ -15,19 +15,10 @@ const Productos = ({ producto }: StoreItemProps) => {
         nombre,
         universo,
         link,
-        descripcion,
         vendedor,
-        categoria,
-        tags,
         precio,
         imgProducto,
-        imgEscena,
-        imgModelo,
-        imgExtra,
-        estatus,
-        masVendido,
-        masReciente
-    } = producto;
+        imgEscena    } = producto;
 
     const user = useUser();
     console.log(user);
