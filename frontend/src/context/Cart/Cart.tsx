@@ -7,6 +7,7 @@ import { CartItem } from '../../types/Cart';
 export default function CartProvider({ children }: { children: ReactNode }) {
   const [isOpen, setIsOpen] = useState(false);
   const user = useUser()
+  console.log(isOpen)
 
   const totalQuantity = async (username: string) => {
     if (!username) {
