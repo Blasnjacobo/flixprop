@@ -5,6 +5,7 @@ import '../App.css';
 import LoginIcon from './Login/LoginIcon';
 import Logout from './Login/Logout';
 import useUser from '../context/Users/useUser';
+import CarritoLogo from './Cart/CarritoLogo';
 
 interface MenuProps {
   toggleMenu: () => void;
@@ -60,7 +61,7 @@ const Navbar = ({ toggleMenu, showMenu, navbarRef }: MenuProps) => {
         </section>
         <section className="navbar-icon flex-between">
           <i className="bi bi-search"></i>
-          <i className="bi bi-bag"></i>
+          <CarritoLogo />
           {
           (user && windowWidth > 990) ? <Logout userPhoto={user.photos[0].value} /> : <LoginIcon hideText={true} />
           }
