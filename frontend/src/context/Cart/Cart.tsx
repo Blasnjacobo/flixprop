@@ -1,9 +1,11 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { ReactNode, useEffect, useState } from "react";
 import CartContext from "./CartContext";
 import useUser from '../Users/useUser';
 import { CartItem } from '../../types/Cart';
 
 export default function CartProvider({ children }: { children: ReactNode }) {
+  const [isOpen, setIsOpen] = useState(false);
   const user = useUser()
 
   const totalQuantity = async (username: string) => {
@@ -47,6 +49,10 @@ export default function CartProvider({ children }: { children: ReactNode }) {
     };
     fetchQuantity();
   }, [user]);
+
+  const openCart = () => setIsOpen(true);
+
+  const closeCart = () => setIsOpen(false);
 
   const cartItems = async (username: string): Promise<CartItem[]> => {
     try {
@@ -197,6 +203,8 @@ export default function CartProvider({ children }: { children: ReactNode }) {
   return (
     <CartContext.Provider
       value={{
+        openCart,
+        closeCart,
         itemQuantity,
         increaseQuantity,
         decreaseQuantity,
