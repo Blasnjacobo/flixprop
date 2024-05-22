@@ -3,11 +3,11 @@ import { ReactNode, useEffect, useState } from "react";
 import CartContext from "./CartContext";
 import useUser from '../Users/useUser';
 import { CartItem } from '../../types/Cart';
+import Carrito from "../../components/Cart/Carrito";
 
 export default function CartProvider({ children }: { children: ReactNode }) {
   const [isOpen, setIsOpen] = useState(false);
   const user = useUser()
-  console.log(isOpen)
 
   const totalQuantity = async (username: string) => {
     if (!username) {
@@ -215,6 +215,7 @@ export default function CartProvider({ children }: { children: ReactNode }) {
       }}
     >
       {children}
+      <Carrito isOpen={isOpen} />
     </CartContext.Provider>
   );
 }

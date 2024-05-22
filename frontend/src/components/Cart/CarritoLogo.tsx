@@ -15,7 +15,7 @@ const CarritoLogo = () => {
                     <Button
                         onClick={openCart}
                         style={{ width: '2.5rem', height: '2.5rem', position: 'relative', display: 'flex', alignItems: 'center', justifyContent: 'center' }}
-                        variant='outline-secondary'
+                        variant='outline-black'
                         className='rounded-circle'
                     >
                         <i className="bi bi-bag" style={{ color: 'white' }}></i>
@@ -25,8 +25,8 @@ const CarritoLogo = () => {
                                 width: '1.5rem',
                                 height: '1.5rem',
                                 position: 'absolute',
-                                bottom: 30,
-                                right: 0,
+                                bottom: 28,
+                                right: 4,
                                 transform: 'translate(35%, 35%)',
                             }}
                         >
