@@ -28,6 +28,7 @@ export default function CartProvider({ children }: { children: ReactNode }) {
         throw new Error('Failed to fetch total quantity from server');
       }
       const total = await response.json();
+      console.log(total)
       return total;
     } catch (error) {
       console.log('Error fetching total quantity', error);
@@ -36,20 +37,6 @@ export default function CartProvider({ children }: { children: ReactNode }) {
   };
 
   const [quantity, setQuantity] = useState<number>(0);
-
-  useEffect(() => {
-    const fetchQuantity = async () => {
-      if (user) {
-        try {
-          const userQuantity = await totalQuantity(user.username);
-          setQuantity(userQuantity);
-        } catch (error) {
-          console.error('Error fetching quantity cart', error);
-        }
-      }
-    };
-    fetchQuantity();
-  }, [user]);
 
   const openCart = () => setIsOpen(true);
 
@@ -200,6 +187,20 @@ export default function CartProvider({ children }: { children: ReactNode }) {
       console.log('Error removing item from cart', error);
     }
   };
+
+  useEffect(() => {
+    const fetchQuantity = async () => {
+      if (user) {
+        try {
+          const userQuantity = await totalQuantity(user.username);
+          setQuantity(userQuantity);
+        } catch (error) {
+          console.error('Error fetching quantity cart', error);
+        }
+      }
+    };
+    fetchQuantity();
+  }, [user, increaseQuantity, decreaseQuantity, removeFromCart]);
 
   return (
     <CartContext.Provider

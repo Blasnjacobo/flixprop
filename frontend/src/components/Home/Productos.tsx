@@ -124,11 +124,11 @@ const Productos = ({ producto }: StoreItemProps) => {
                     ) : (
                         <div className="d-flex align-items-center flex-column" style={{ gap: '0.5rem' }}>
                             <div style={{ width: '100%', display: 'flex', justifyContent: 'center', alignItems: 'center', gap: '20px' }}>
-                                <Button style={{ width: '40px', borderRadius: '10px'}} onClick={handleDecreaseQuantity}>-</Button>
+                                <Button style={{ width: '40px', borderRadius: '10px'}} onClick={handleDecreaseQuantity} variant="dark">-</Button>
                                 <div>
                                     <span className="fs-3">{quantity}</span> en el <i className="bi bi-cart"></i>
                                 </div>
-                                <Button style={{ width: '40px', borderRadius: '10px'}} onClick={handleIncreaseQuantity}>+</Button>
+                                <Button style={{ width: '40px', borderRadius: '10px'}} onClick={handleIncreaseQuantity}  variant="dark">+</Button>
                             </div>
                             <Button
                                 variant="danger"

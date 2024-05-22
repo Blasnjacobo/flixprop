@@ -51,13 +51,13 @@ const Carrito = ({ isOpen }: CartProps) => {
                     ))}
                     <div className='ms-auto fw-bold fs-5'>
                         Total {' '}
-                        {(
+                        ${(
                             cartItem.reduce((total, cartItem) => {
                                 const storeItem = productos.find(i => i.codigo === cartItem.producto);
                                 const itemPrecio = storeItem ? Number(storeItem.precio) : 0; // Convert precio to number
                                 return total + (itemPrecio * cartItem.quantity);
                             }, 0)
-                        )}
+                        )}.00 MXN
                     </div>
                     <Button variant="danger">Pagar</Button>
                 </Stack>

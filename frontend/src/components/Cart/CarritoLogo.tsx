@@ -9,6 +9,7 @@ const CarritoLogo = () => {
         // console.log('Quantity changed:', quantity);
     }, [quantity]);
 
+    console.log(quantity)
     return (
         <div>
             <div>

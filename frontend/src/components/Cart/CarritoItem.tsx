@@ -50,10 +50,10 @@ const CarritoItem = ({ producto, quantity,  Productos }: CartItemProps) => {
     return (
         (updatedQuantity > 0) ? (
             <Stack direction="horizontal" gap={2} className="d-flex align-items-center">
-                <img src={item.imgProducto} style={{ width: '125px', height: '100px', objectFit: 'cover' }} />
+                <img src={item.imgProducto} style={{ width: '100px', height: '100px', objectFit: 'fill' }} />
                 <div className="me-auto">
-                    <div>
-                        {item.universo}{' '}
+                    <div style={{ fontSize:'12px' }}>
+                        {item.nombre}{' '}
                         {updatedQuantity > 1 && (
                             <span className="text-muted" style={{ fontSize: '0.9rem' }}>
                                 x{updatedQuantity}
@@ -61,21 +61,21 @@ const CarritoItem = ({ producto, quantity,  Productos }: CartItemProps) => {
                         )}
                     </div>
                     <div className="text-muted" style={{ fontSize: '0.75rem' }}>
-                        {(item.precio)}
+                        ${item.precio}.00 MXN
                     </div>
                 </div>
                 <div style={{ display: 'flex', flexDirection: 'column', gap: '1vh' }}>
                     <div style={{ display: 'flex', gap: '0.5vw', alignItems: 'center' }}>
-                        <div>{(totalPrice)}</div>
+                        <div style={{ fontSize: '12px', width: '80px' }}>${totalPrice}.00 MXN</div>
                         <Button variant="outline-danger" size="sm" style={{ height: '2rem' }} onClick={handleRemoveFromCart}>
                             x
                         </Button>
                     </div>
                     <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'flex-end', gap: '0.5vw' }}>
-                        <Button size="sm" style={{ fontSize: '15px' }} onClick={handleIncreaseQuantity}>
+                        <Button size="sm" style={{ fontSize: '15px', backgroundColor: 'red', border:'0px' }} onClick={handleIncreaseQuantity}>
                             +
                         </Button>
-                        <Button size="sm" style={{ fontSize: '15px' }} onClick={handleDecreaseQuantity}>
+                        <Button size="sm" style={{ fontSize: '15px', backgroundColor: 'red', border:'0px' }} onClick={handleDecreaseQuantity}>
                             -
                         </Button>
                     </div>
