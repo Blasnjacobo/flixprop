@@ -7,25 +7,22 @@ const cron = require("node-cron");
 const passport = require("passport");
 const passportSetup = require("./passport.js");
 dotenv.config();
-// const { updateDatabaseIfNeeded } = require("./config/dataUpdater")
 const universos = require("./routes/universos");
 const noticias = require("./routes/noticias");
 const productos = require("./routes/productos");
-const auth = require("./routes/auth.js")
+const auth = require("./routes/auth.js");
 const cart = require("./routes/cart.js");
 
 const app = express();
 app.use(morgan("dev"));
-
 app.use(passport.initialize());
-
 app.use(express.json());
 
 app.use(
   cors({
     origin: "*",
     methods: ["GET", "POST", "PUT", "DELETE"],
-    credentials: true
+    credentials: true,
   })
 );
 
