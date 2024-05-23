@@ -59,7 +59,11 @@ const Carrito = ({ isOpen }: CartProps) => {
                             }, 0)
                         )}.00 MXN
                     </div>
-                    <Button variant="danger">Pagar</Button>
+                    {
+                        (cartItem.length > 0) && (
+                            <Button variant="danger">Pagar</Button>
+                        )
+                    }
                 </Stack>
             </Offcanvas.Body>
         </Offcanvas>
