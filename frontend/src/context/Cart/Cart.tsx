@@ -21,8 +21,8 @@ export default function CartProvider({ children }: { children: ReactNode }) {
       const headers = {
         'authorization': `Bearer ${token}`
       };
-      const response = await fetch(`http://localhost:5000/cart/totalQuantity/${username}`, {
-      // const response = await fetch(`https://flixprop-production.up.railway.app/cart/totalQuantity/${username}`, {
+      // const response = await fetch(`http://localhost:5000/cart/totalQuantity/${username}`, {
+      const response = await fetch(`https://flixprop-production.up.railway.app/cart/totalQuantity/${username}`, {
         headers: headers
       });
       if (!response.ok) {
@@ -53,8 +53,8 @@ export default function CartProvider({ children }: { children: ReactNode }) {
       const headers = {
         'authorization': `Bearer ${token}`
       };
-      const response = await fetch(`http://localhost:5000/cart/${username}`, {
-      // const response = await fetch(`https://flixprop-production.up.railway.app/cart/${username}`, {
+      // const response = await fetch(`http://localhost:5000/cart/${username}`, {
+      const response = await fetch(`https://flixprop-production.up.railway.app/cart/${username}`, {
 
       
         headers: headers
@@ -81,8 +81,8 @@ export default function CartProvider({ children }: { children: ReactNode }) {
         'authorization': `Bearer ${token}`
       };
 
-      const response = await fetch(`http://localhost:5000/cart/itemQuantity/${username}/${codigo}`, {
-      // const response = await fetch(`https://flixprop-production.up.railway.app/cart/itemQuantity/${username}/${codigo}`, {
+      // const response = await fetch(`http://localhost:5000/cart/itemQuantity/${username}/${codigo}`, {
+      const response = await fetch(`https://flixprop-production.up.railway.app/cart/itemQuantity/${username}/${codigo}`, {
         headers: headers
       });
       if (!response.ok) {
@@ -107,8 +107,8 @@ export default function CartProvider({ children }: { children: ReactNode }) {
         'authorization': `Bearer ${token}`
       };
 
-      const response = await fetch(`http://localhost:5000/cart/increase/${codigo}/${username}`, {
-      // const response = await fetch(`https://flixprop-production.up.railway.app/cart/increase/${codigo}/${username}`, {
+      // const response = await fetch(`http://localhost:5000/cart/increase/${codigo}/${username}`, {
+      const response = await fetch(`https://flixprop-production.up.railway.app/cart/increase/${codigo}/${username}`, {
         method: 'POST',
         headers: headers
       });
@@ -138,8 +138,8 @@ export default function CartProvider({ children }: { children: ReactNode }) {
         'authorization': `Bearer ${token}`
       };
 
-      const response = await fetch(`http://localhost:5000/cart/decrease/${codigo}/${username}`, {
-      // const response = await fetch(`https://flixprop-production.up.railway.app/cart/decrease/${codigo}/${username}`, {
+      // const response = await fetch(`http://localhost:5000/cart/decrease/${codigo}/${username}`, {
+      const response = await fetch(`https://flixprop-production.up.railway.app/cart/decrease/${codigo}/${username}`, {
         method: 'POST',
         headers: headers
       });
@@ -169,8 +169,8 @@ export default function CartProvider({ children }: { children: ReactNode }) {
         'authorization': `Bearer ${token}`
       };
 
-      const response = await fetch(`http://localhost:5000/cart/delete/${codigo}/${username}`, {
-      // const response = await fetch(`https://flixprop-production.up.railway.app/cart/delete/${codigo}/${username}`, {
+      // const response = await fetch(`http://localhost:5000/cart/delete/${codigo}/${username}`, {
+      const response = await fetch(`https://flixprop-production.up.railway.app/cart/delete/${codigo}/${username}`, {
         method: 'DELETE',
         headers: headers
       });

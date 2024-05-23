@@ -5,14 +5,14 @@ const increaseQuantity = require("../controllers/cart/increaseQuantity");
 const decreaseQuantity = require("../controllers/cart/decreaseQuantity");
 const removeFromCart = require("../controllers/cart/removeFromCart");
 const cartItems = require("../controllers/cart/cartItems");
-// const authenticateToken = require("../middleware/auth.js");
+const authenticateToken = require("../middleware/auth.js");
 
 const router = express.Router();
-router.get("/totalQuantity/:username", totalQuantity);
-router.get("/itemQuantity/:username/:codigo",  itemQuantity);
-router.post("/increase/:codigo/:username", increaseQuantity);
-router.post("/decrease/:codigo/:username", decreaseQuantity);
-router.delete("/delete/:codigo/:username",  removeFromCart);
+router.get("/totalQuantity/:username", authenticateToken, totalQuantity);
+router.get("/itemQuantity/:username/:codigo",  authenticateToken, itemQuantity);
+router.post("/increase/:codigo/:username", authenticateToken, increaseQuantity);
+router.post("/decrease/:codigo/:username", authenticateToken, decreaseQuantity);
+router.delete("/delete/:codigo/:username",  authenticateToken, removeFromCart);
 router.get("/:username", cartItems);
 
 module.exports = router;
