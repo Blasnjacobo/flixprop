@@ -1,21 +1,20 @@
-import { useState, useEffect, MutableRefObject } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { NavLink } from 'react-router-dom';
 import flixprop from '../assets/flixprop-logo.png';
 import '../App.css';
 import LoginIcon from './Login/LoginIcon';
 import Logout from './Login/Logout';
 import useUser from '../context/Users/useUser';
-import CarritoLogo from './Cart/CarritoLogo';
 
 interface MenuProps {
   toggleMenu: () => void;
   showMenu: boolean;
-  navbarRef: MutableRefObject<null>;
 }
 
-const Navbar = ({ toggleMenu, showMenu, navbarRef }: MenuProps) => {
+const Navbar = ({ toggleMenu, showMenu }: MenuProps) => {
   const user = useUser();
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+  const navbarRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const handleResize = () => {
@@ -60,13 +59,8 @@ const Navbar = ({ toggleMenu, showMenu, navbarRef }: MenuProps) => {
         </section>
         <section className="navbar-icon flex-between">
           <i className="bi bi-search"></i>
-          <CarritoLogo />
-          {user && windowWidth > 990 && user.name !== 'Invitado' && (
-            <Logout userPhoto={user.photos[0].value} />
-          )}
-          {(!user || windowWidth <= 990 || user.name === 'Invitado') && (
-            <LoginIcon hideText={true} />
-          )}
+          <i className="bi bi-bag" style={{ paddingLeft: '15px'}}></i>
+          {(user && windowWidth > 990) ? <Logout userPhoto={user.photos[0].value} /> : <LoginIcon hideText={true} />}
         </section>
       </div>
     </div>
@@ -74,4 +68,3 @@ const Navbar = ({ toggleMenu, showMenu, navbarRef }: MenuProps) => {
 };
 
 export default Navbar;
-

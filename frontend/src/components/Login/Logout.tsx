@@ -3,6 +3,7 @@ interface PhotoProms {
 }
 
 const Logout = ({userPhoto}: PhotoProms) => {
+    console.log(userPhoto)
     const logout = () => {
         localStorage.removeItem('jwtToken');
         // window.location.href = "http://localhost:5173/flixprop/";

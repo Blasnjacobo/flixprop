@@ -89,7 +89,6 @@
   .navbar-icon {
   display: flex;
   justify-content: end;
-  gap: 1rem;
   }
   
   .navbar-icon i {
