@@ -9,10 +9,10 @@ const authenticateToken = require("../middleware/auth.js");
 
 const router = express.Router();
 router.get("/totalQuantity/:username", authenticateToken, totalQuantity);
-router.get("/itemQuantity/:username/:codigo",  authenticateToken, itemQuantity);
+router.get("/itemQuantity/:username/:codigo", authenticateToken, itemQuantity);
 router.post("/increase/:codigo/:username", authenticateToken, increaseQuantity);
 router.post("/decrease/:codigo/:username", authenticateToken, decreaseQuantity);
-router.delete("/delete/:codigo/:username",  authenticateToken, removeFromCart);
-router.get("/:username", cartItems);
+router.delete("/delete/:codigo/:username", authenticateToken, removeFromCart);
+router.get("/:username", authenticateToken, cartItems);
 
 module.exports = router;

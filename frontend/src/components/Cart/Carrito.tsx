@@ -22,12 +22,13 @@ const Carrito = ({ isOpen }: CartProps) => {
 
     useEffect(() => {
         const fetchCartItems = async () => {
+            let items: CartItem[] = [];
             if (user) {
-                const items = await cartItems(user.username);
-                setCartItem(items);
+                items = await cartItems(user.username);
             } else {
-                setCartItem([]);
+                items = await cartItems();
             }
+            setCartItem(items);
         };
 
         fetchCartItems();

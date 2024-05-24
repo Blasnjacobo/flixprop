@@ -21,7 +21,6 @@ const LoginModal: React.FC<ShowProps> = ({ show, handleClose }) => {
     const github = () => {
 
     };
-
     return (
         <Modal show={show} onHide={handleClose} centered>
             <div className='loginModal'>

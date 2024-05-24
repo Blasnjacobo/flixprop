@@ -14,10 +14,8 @@ export default function UserProvider({ children }: UserProviderProps): JSX.Eleme
             const urlParams = new URLSearchParams(window.location.search);
             const token = urlParams.get('token');
             if (token) {
-                // Token found in the URL, store it in local storage
                 localStorage.setItem('jwtToken', token);
 
-                // Remove token from current URL and navigate back to the original URL
                 const currentUrl = new URL(window.location.href);
                 currentUrl.searchParams.delete('token');
                 window.location.href = currentUrl.origin + currentUrl.pathname;

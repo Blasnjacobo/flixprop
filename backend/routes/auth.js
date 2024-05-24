@@ -7,6 +7,7 @@ const { User } = require("../models/user");
 const CLIENT_URL = "https://blasnjacobo.github.io/flixprop/";
 // const CLIENT_URL = "http://localhost:5173/flixprop/";
 
+
 router.get("/login/failed", (req, res) => {
   res.status(401).json({
     success: false,

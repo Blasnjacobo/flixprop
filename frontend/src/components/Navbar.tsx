@@ -15,7 +15,6 @@ interface MenuProps {
 
 const Navbar = ({ toggleMenu, showMenu, navbarRef }: MenuProps) => {
   const user = useUser();
-  console.log(user)
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
 
   useEffect(() => {
@@ -62,9 +61,12 @@ const Navbar = ({ toggleMenu, showMenu, navbarRef }: MenuProps) => {
         <section className="navbar-icon flex-between">
           <i className="bi bi-search"></i>
           <CarritoLogo />
-          {
-          (user && windowWidth > 990) ? <Logout userPhoto={user.photos[0].value} /> : <LoginIcon hideText={true} />
-          }
+          {user && windowWidth > 990 && user.name !== 'Invitado' && (
+            <Logout userPhoto={user.photos[0].value} />
+          )}
+          {(!user || windowWidth <= 990 || user.name === 'Invitado') && (
+            <LoginIcon hideText={true} />
+          )}
         </section>
       </div>
     </div>
@@ -72,3 +74,4 @@ const Navbar = ({ toggleMenu, showMenu, navbarRef }: MenuProps) => {
 };
 
 export default Navbar;
+

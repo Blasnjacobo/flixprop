@@ -21,7 +21,6 @@ const Productos = ({ producto }: StoreItemProps) => {
         imgEscena    } = producto;
 
     const user = useUser();
-    console.log(user);
 
     const {
         itemQuantity,
@@ -30,56 +29,50 @@ const Productos = ({ producto }: StoreItemProps) => {
         removeFromCart
     } = useCart();
 
+    console.log(itemQuantity, increaseQuantity, decreaseQuantity, removeFromCart)
+
     const [quantity, setQuantity] = useState<number>(0);
 
     useEffect(() => {
         const fetchQuantity = async () => {
-            if (user) {
-                try {
-                    const result = await itemQuantity(codigo, user.username);
-                    setQuantity(result);
-                } catch (error) {
-                    console.error("Error fetching quantity:", error);
-                }
-            }
+          try {
+            const result = await itemQuantity(codigo, user?.username || '');
+            setQuantity(result);
+          } catch (error) {
+            console.error("Error fetching quantity:", error);
+          }
         };
         fetchQuantity();
-    }, [user, codigo, itemQuantity, increaseQuantity]);
+      }, [user, codigo, itemQuantity, increaseQuantity]);
 
     const handleIncreaseQuantity = async () => {
-        if (user) {
             try {
-                await increaseQuantity(codigo, user.username);
-                const updatedQuantity = await itemQuantity(codigo, user.username);
+                await increaseQuantity(codigo, user?.username || '');
+                const updatedQuantity = await itemQuantity(codigo, user?.username || '');
                 setQuantity(updatedQuantity);
             } catch (error) {
                 console.error("Error increasing quantity:", error);
             }
-        }
     };
 
     const handleDecreaseQuantity = async () => {
-        if (user) {
             try {
-                await decreaseQuantity(codigo, user.username);
-                const updatedQuantity = await itemQuantity(codigo, user.username);
+                await decreaseQuantity(codigo, user?.username || '');
+                const updatedQuantity = await itemQuantity(codigo, user?.username || '');
                 setQuantity(updatedQuantity);
             } catch (error) {
                 console.error("Error decreasing quantity:", error);
             }
-        }
     };
 
     const handleRemoveFromCart = async () => {
-        if (user) {
             try {
-                await removeFromCart(codigo, user.username);
-                const updatedQuantity = await itemQuantity(codigo, user.username);
+                await removeFromCart(codigo, user?.username || '');
+                const updatedQuantity = await itemQuantity(codigo, user?.username || '');
                 setQuantity(updatedQuantity);
             } catch (error) {
                 console.error("Error removing from cart:", error);
             }
-        }
     };
 
     const handleCardClick = (link: string, vendedor: string, codigo: string) => {
@@ -115,7 +108,7 @@ const Productos = ({ producto }: StoreItemProps) => {
                 <div className='productos-provedor-card'>{vendedor}</div>
                 <div className='productos-precio-card'>${precio}.00 MXN</div>
             </div>
-            {(user && vendedor === 'Flixprop') && (
+            {( vendedor === 'Flixprop') && (
                 <div className="productos-actions">
                     {quantity === 0 ? (
                         <Button className="w-100" onClick={handleIncreaseQuantity}>

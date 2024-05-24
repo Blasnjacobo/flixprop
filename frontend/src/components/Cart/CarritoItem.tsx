@@ -25,23 +25,23 @@ const CarritoItem = ({ producto, quantity,  Productos }: CartItemProps) => {
     }, [quantity]);
 
     const item = Productos.find(i => i.codigo === producto);
-    if (!item || !user) return null;
+    if (!item) return null;
 
     const handleIncreaseQuantity = async () => {
-        await increaseQuantity(producto, user.username);
-        const updatedQty = await itemQuantity(producto, user.username);
+        await increaseQuantity(producto, user?.username || '');
+        const updatedQty = await itemQuantity(producto, user?.username || '');
         setUpdatedQuantity(updatedQty);
     };
 
     const handleDecreaseQuantity = async () => {
-        await decreaseQuantity(producto, user.username);
-        const updatedQty = await itemQuantity(producto, user.username);
+        await decreaseQuantity(producto, user?.username || '');
+        const updatedQty = await itemQuantity(producto, user?.username || '');
         setUpdatedQuantity(updatedQty);
     };
 
     const handleRemoveFromCart = async () => {
-        await removeFromCart(item.codigo, user.username);
-        const updatedQty = await itemQuantity(producto, user.username);
+        await removeFromCart(item.codigo, user?.username || '');
+        const updatedQty = await itemQuantity(producto, user?.username || '');
         setUpdatedQuantity(updatedQty);
     };
 

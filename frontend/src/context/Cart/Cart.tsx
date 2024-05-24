@@ -6,71 +6,83 @@ import useUser from '../Users/useUser';
 import { CartItem } from '../../types/Cart';
 import Carrito from "../../components/Cart/Carrito";
 
+const CART_STORAGE_KEY = "cart_items";
+
 export default function CartProvider({ children }: { children: ReactNode }) {
   const [isOpen, setIsOpen] = useState(false);
   const user = useUser()
 
-  const totalQuantity = async (username: string) => {
-    if (!username) {
-      console.log('User not found');
-      return 0;
-    }
-
-    try {
-      const token = localStorage.getItem('jwtToken');
-      const headers = {
-        'authorization': `Bearer ${token}`
-      };
-      // const response = await fetch(`http://localhost:5000/cart/totalQuantity/${username}`, {
-      const response = await fetch(`https://flixprop-production.up.railway.app/cart/totalQuantity/${username}`, {
-        headers: headers
-      });
-      if (!response.ok) {
-        throw new Error('Failed to fetch total quantity from server');
-      }
-      const total = await response.json();
-      console.log(total)
-      return total;
-    } catch (error) {
-      console.log('Error fetching total quantity', error);
-      return 0;
-    }
-  };
-
   const [quantity, setQuantity] = useState<number>(0);
 
   const openCart = () => setIsOpen(true);
-
   const closeCart = () => setIsOpen(false);
 
-  const cartItems = async (username: string): Promise<CartItem[]> => {
-    try {
-      if (!username) {
-        console.log('User not found');
-        return [];
-      }
-      const token = localStorage.getItem('jwtToken');
-      const headers = {
-        'authorization': `Bearer ${token}`
-      };
-      // const response = await fetch(`http://localhost:5000/cart/${username}`, {
-      const response = await fetch(`https://flixprop-production.up.railway.app/cart/${username}`, {
+  const saveCartToLocalStorage = (cartItems: CartItem[]) => {
+    localStorage.setItem(CART_STORAGE_KEY, JSON.stringify(cartItems));
+  };
 
-      
-        headers: headers
-      });
-      if (!response.ok) {
-        throw new Error('Failed to fetch cart from server');
+  const getCartFromLocalStorage = (): CartItem[] => {
+    const storedCart = localStorage.getItem(CART_STORAGE_KEY);
+    return storedCart ? JSON.parse(storedCart) : [];
+  };
+
+  const totalQuantity = async (username?: string) => {
+    if (username) {
+      try {
+        const token = localStorage.getItem('jwtToken');
+        const headers = {
+          'authorization': `Bearer ${token}`
+        };
+
+        const response = await fetch(`https://flixprop-production.up.railway.app/cart/totalQuantity/${username}`, {
+        // const response = await fetch(`http://localhost:5000/cart/totalQuantity/${username}`, {
+          headers: headers
+        });
+        if (!response.ok) {
+          throw new Error('Failed to fetch total quantity from server');
+        }
+        const total = await response.json();
+        console.log(total)
+        return total;
+      } catch (error) {
+        console.log('Error fetching total quantity', error);
+        return 0;
       }
-      const cartItems = await response.json();
-      return cartItems;
-    } catch (error) {
-      console.log('Error fetching carts items', error);
-      throw error;
+    } else {
+      const localCart = getCartFromLocalStorage();
+      return localCart.reduce((sum, item) => sum + item.quantity, 0);
+    }
+  };
+  
+
+  const cartItems = async (username?: string): Promise<CartItem[]> => {
+    if (username) {
+      try {
+        const token = localStorage.getItem('jwtToken');
+        const headers = {
+          'authorization': `Bearer ${token}`
+        };
+
+        // const response = await fetch(`http://localhost:5000/cart/${username}`, {
+        const response = await fetch(`https://flixprop-production.up.railway.app/cart/${username}`, {
+          headers: headers
+        });
+        if (!response.ok) {
+          throw new Error('Failed to fetch cart from server');
+        }
+        const cartItems = await response.json();
+        return cartItems;
+      } catch (error) {
+        console.log('Error fetching carts items', error);
+        throw error;
+      }
+    } else {
+      return getCartFromLocalStorage();
     }
   };
 
-  const itemQuantity = async (codigo: string, username: string): Promise<number> => {
+  const itemQuantity = async (codigo: string, username?: string): Promise<number> => {
+  if (username) {
     try {
       if (!username) {
         console.log('User not found');
@@ -94,9 +106,15 @@ export default function CartProvider({ children }: { children: ReactNode }) {
       console.log('Error fetching item quantity', error);
       return 0;
     }
+  } else {
+    const localCart = getCartFromLocalStorage();
+    const item = localCart.find(item => item.producto === codigo);
+    return item ? item.quantity : 0;
+  } 
   };
 
-  const increaseQuantity = async (codigo: string, username: string): Promise<void> => {
+  const increaseQuantity = async (codigo: string, username?: string): Promise<void> => {
+  if (username) {
     try {
       if (!username) {
         console.log('User not found');
@@ -118,74 +136,106 @@ export default function CartProvider({ children }: { children: ReactNode }) {
       const data = await response.json();
       setQuantity(prevQuantity => prevQuantity + data);
 
-      // Re-fetch the updated item quantity
       const updatedQuantity = await itemQuantity(codigo, username);
       setQuantity(updatedQuantity);
 
     } catch (error) {
       console.log('Error increasing quantity', error);
     }
+  } else {
+    const localCart = getCartFromLocalStorage();
+    const itemIndex = localCart.findIndex(item => item.producto === codigo);
+    if (itemIndex >= 0) {
+      localCart[itemIndex].quantity += 1;
+    } else {
+      localCart.push({ producto: codigo, quantity: 1 });
+    }
+    saveCartToLocalStorage(localCart);
+    setQuantity(prevQuantity => prevQuantity + 1);
+  }
   };
 
-  const decreaseQuantity = async (codigo: string, username: string): Promise<void> => {
-    try {
-      if (!username) {
-        console.log('User not found');
-        return;
+  const decreaseQuantity = async (codigo: string, username?: string): Promise<void> => {
+    if (username) {
+      try {
+        if (!username) {
+          console.log('User not found');
+          return;
+        }
+        const token = localStorage.getItem('jwtToken');
+        const headers = {
+          'authorization': `Bearer ${token}`
+        };
+  
+        // const response = await fetch(`http://localhost:5000/cart/decrease/${codigo}/${username}`, {
+        const response = await fetch(`https://flixprop-production.up.railway.app/cart/decrease/${codigo}/${username}`, {
+          method: 'POST',
+          headers: headers
+        });
+        if (!response.ok) {
+          throw new Error('Failed to decrease quantity on server');
+        }
+        const data = await response.json();
+        setQuantity(prevQuantity => prevQuantity - data);
+
+        const updatedQuantity = await itemQuantity(codigo, username);
+        setQuantity(updatedQuantity);
+  
+      } catch (error) {
+        console.log('Error decreasing quantity', error);
       }
-      const token = localStorage.getItem('jwtToken');
-      const headers = {
-        'authorization': `Bearer ${token}`
-      };
-
-      // const response = await fetch(`http://localhost:5000/cart/decrease/${codigo}/${username}`, {
-      const response = await fetch(`https://flixprop-production.up.railway.app/cart/decrease/${codigo}/${username}`, {
-        method: 'POST',
-        headers: headers
-      });
-      if (!response.ok) {
-        throw new Error('Failed to decrease quantity on server');
+    } else {
+      const localCart = getCartFromLocalStorage();
+      const itemIndex = localCart.findIndex(item => item.producto === codigo);
+      if (itemIndex >= 0) {
+        localCart[itemIndex].quantity -= 1;
+        if (localCart[itemIndex].quantity <= 0) {
+          localCart.splice(itemIndex, 1);
+        }
+        saveCartToLocalStorage(localCart);
+        setQuantity(prevQuantity => prevQuantity - 1);
       }
-      const data = await response.json();
-      setQuantity(prevQuantity => prevQuantity - data);
-
-      // Re-fetch the updated item quantity
-      const updatedQuantity = await itemQuantity(codigo, username);
-      setQuantity(updatedQuantity);
-
-    } catch (error) {
-      console.log('Error decreasing quantity', error);
     }
   };
 
-  const removeFromCart = async (codigo: string, username: string): Promise<void> => {
-    try {
-      if (!username) {
-        console.log('User not found');
-        return;
+  const removeFromCart = async (codigo: string, username?: string): Promise<void> => {
+    if (username) {
+      try {
+        if (!username) {
+          console.log('User not found');
+          return;
+        }
+        const token = localStorage.getItem('jwtToken');
+        const headers = {
+          'authorization': `Bearer ${token}`
+        };
+  
+        // const response = await fetch(`http://localhost:5000/cart/delete/${codigo}/${username}`, {
+        const response = await fetch(`https://flixprop-production.up.railway.app/cart/delete/${codigo}/${username}`, {
+          method: 'DELETE',
+          headers: headers
+        });
+        if (!response.ok) {
+          throw new Error('Failed to remove item from cart on server');
+        }
+        const data = await response.json();
+        setQuantity(prevQuantity => prevQuantity - data);
+  
+        const updatedQuantity = await itemQuantity(codigo, username);
+        setQuantity(updatedQuantity);
+  
+      } catch (error) {
+        console.log('Error removing item from cart', error);
       }
-      const token = localStorage.getItem('jwtToken');
-      const headers = {
-        'authorization': `Bearer ${token}`
-      };
-
-      // const response = await fetch(`http://localhost:5000/cart/delete/${codigo}/${username}`, {
-      const response = await fetch(`https://flixprop-production.up.railway.app/cart/delete/${codigo}/${username}`, {
-        method: 'DELETE',
-        headers: headers
-      });
-      if (!response.ok) {
-        throw new Error('Failed to remove item from cart on server');
+    } else {
+      const localCart = getCartFromLocalStorage();
+      const itemIndex = localCart.findIndex(item => item.producto === codigo);
+      if (itemIndex >= 0) {
+        const itemQuantity = localCart[itemIndex].quantity;
+        localCart.splice(itemIndex, 1);
+        saveCartToLocalStorage(localCart);
+        setQuantity(prevQuantity => prevQuantity - itemQuantity);
       }
-      const data = await response.json();
-      setQuantity(prevQuantity => prevQuantity - data);
-
-      // Re-fetch the updated item quantity
-      const updatedQuantity = await itemQuantity(codigo, username);
-      setQuantity(updatedQuantity);
-
-    } catch (error) {
-      console.log('Error removing item from cart', error);
     }
   };
 
@@ -198,6 +248,9 @@ export default function CartProvider({ children }: { children: ReactNode }) {
         } catch (error) {
           console.error('Error fetching quantity cart', error);
         }
+      } else {
+        const localCartQuantity = await totalQuantity();
+        setQuantity(localCartQuantity);
       }
     };
     fetchQuantity();
