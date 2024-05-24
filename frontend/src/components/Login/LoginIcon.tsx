@@ -15,7 +15,7 @@ const LoginIcon = ({ hideText = false }: LoginIconProps) => {
   return (
     <div>
       <NavbarBs as={NavLink} to='/flixprop/' style={{ textDecoration: 'none' }}>
-        <i className="bi bi-person login-icon-inicio" style={{ fontSize: '25px', paddingLeft: '10px' }} onClick={handleShow}>
+        <i className="bi bi-person login-icon-inicio" style={{ fontSize: '25px'}} onClick={handleShow}>
           {!hideText && <span style={{ fontSize: 'small' }}>Inicio de sesión</span>}
         </i>
       </NavbarBs>

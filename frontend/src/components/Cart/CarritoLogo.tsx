@@ -2,7 +2,11 @@ import { Button } from 'react-bootstrap';
 import useCart from '../../context/Cart/useCart';
 import { useEffect } from 'react';
 
-const CarritoLogo = () => {
+interface CarritoProps {
+    windowWidth: number
+  }
+
+const CarritoLogo = ({windowWidth}: CarritoProps) => {
     const { openCart, quantity } = useCart();
 
     useEffect(() => {
@@ -18,7 +22,7 @@ const CarritoLogo = () => {
                 variant='outline-black'
                 className='rounded-circle'
             >
-                <i className="bi bi-bag" style={{ color: 'white' }}></i>
+                <i className="bi bi-bag" style={{ color: 'white', paddingRight: windowWidth > 990 ? '15px' : '0' }}></i>
                 {
                     quantity > 0 && (
                         <div className='rounded-circle bg-dark-red d-flex justify-content-center align-items-center'
