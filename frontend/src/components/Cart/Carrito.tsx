@@ -26,7 +26,7 @@ const Carrito = ({ isOpen }: CartProps) => {
             if (user) {
                 items = await cartItems(user.username);
             } else {
-                items = await cartItems();
+                items = await cartItems('');
             }
             setCartItem(items);
         };
