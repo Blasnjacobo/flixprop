@@ -21,6 +21,9 @@ import TerminosyCondiciones from './pages/Footer/TerminosyCondiciones';
 import CompraSegura from './pages/Footer/CompraSegura';
 import MisionyVision from './pages/Footer/MisionyVision';
 
+import PagoExitoso from './pages/PagoExitoso'
+import PagoRechazado from './pages/PagoRechazado'
+
 import UniversosProvider from './context/Universos/Universos';
 import NoticiasProvider from './context/Noticias/Noticias';
 import ProductosProvider from './context/Productos/Productos';
@@ -51,6 +54,8 @@ function App() {
                   <Route path='/flixprop/colecciones/' element={<Colecciones />} />
                   <Route path='/flixprop/noticias/' element={<Noticias />} />
                   <Route path='/flixprop/quizzes/' element={<Quizzes />} />
+                  <Route path='/flixprop/payment/success' element={<PagoExitoso />} />
+                  <Route path='/flixprop/payment/rejected' element={<PagoRechazado />} />
                   {/* Footer Routes */}
                   <Route path='/flixprop/nuestra-mision-vision/' element={<MisionyVision />} />
                   <Route path='/flixprop/cultura-flixprop/' element={<Cultura />} />

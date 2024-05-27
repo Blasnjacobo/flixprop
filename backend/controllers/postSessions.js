@@ -39,7 +39,7 @@ module.exports.postSessions = async (req, res) => {
             line_items: lineItems,
             mode: "payment",
             success_url: "http://localhost:5173/flixprop/payment/success",
-            cancel_url: "http://localhost:5173/flixprop/payment/cancel"
+            cancel_url: "http://localhost:5173/flixprop/payment/rejected"
         });
 
         res.json({ id: session.id });
