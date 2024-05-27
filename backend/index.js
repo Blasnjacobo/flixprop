@@ -7,6 +7,7 @@ const cron = require("node-cron");
 const passport = require("passport");
 const passportSetup = require("./passport.js");
 dotenv.config();
+// const { updateDatabaseIfNeeded } = require("./config/dataUpdater")
 const universos = require("./routes/universos");
 const noticias = require("./routes/noticias");
 const productos = require("./routes/productos");
@@ -39,8 +40,8 @@ mongoose
   .connect(process.env.mongoDBURL, {})
   .then(() => {
     // Schedule cron job
-    cron.schedule("* * * * *", async () => {
-      // console.log("Checking for spreadsheet updates...");
+    cron.schedule("0 0 * * *", async () => {
+      console.log("Checking for spreadsheet updates...");
       // await updateDatabaseIfNeeded();
     });
 
