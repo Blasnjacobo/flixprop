@@ -7,7 +7,6 @@ const cron = require("node-cron");
 const passport = require("passport");
 const passportSetup = require("./passport.js");
 dotenv.config();
-// const { updateDatabaseIfNeeded } = require("./config/dataUpdater")
 const universos = require("./routes/universos");
 const noticias = require("./routes/noticias");
 const productos = require("./routes/productos");
