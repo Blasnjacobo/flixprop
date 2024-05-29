@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import flixprop from './../assets/flixprop-logo.png';
 
-const PagoExitoso = () => {
+const NotFound = () => {
   const [isWideScreen, setIsWideScreen] = useState(false);
 
   useEffect(() => {
@@ -19,22 +19,22 @@ const PagoExitoso = () => {
   }, []);
 
   return (
-    <div style={{ height: '100vh', width: '80vw', display: 'flex', justifyContent: 'space-around', alignItems: 'center', margin: 'auto' }}>
+    <div style={{ height: '70vh', width: '80vw', display: 'flex', justifyContent: 'space-around', alignItems: 'center', margin: 'auto' }}>
       {/* Column container */}
       <div style={{ display: 'flex', flexDirection: isWideScreen ? 'row' : 'column' }}>
         {/* First column */}
         <div style={{ flex: '2', textAlign: 'center', marginBottom: isWideScreen ? '0' : '2rem', marginTop: '1rem'}}>
           <div style={{ width: '70%', margin: 'auto' }}>
-            <p style={{ color: 'black', fontSize: '1.5rem', marginBottom: '1rem' }}>¡Pago Exitoso!</p>
+            <p style={{ color: 'black', fontSize: '1.5rem', marginBottom: '1rem' }}>La página solicitada no existe</p>
             <img src={flixprop} alt="Not Found Image" style={{ width: '100%', height: 'auto' }} />
-            <p style={{ color: 'black', textAlign: 'center', fontSize: '1rem', marginTop: '1rem' }}>Su pago se ha realizado exitosamente, a la brevedad recibira un correo con su comprobante de pago y una descripcion sobre sus articulos</p>
+            <p style={{ color: 'black', textAlign: 'center', fontSize: '1rem', marginTop: '1rem' }}>Ingresa correctamente el URL deseado, si el problema persiste favor de contactarnos</p>
           </div>
         </div>
         {/* Second column */}
-        <div style={{ flex: '1', width: '50%', margin: 'auto' }}>
+        <div style={{ flex: '1' }}>
           <img
-            src='https://jumpseller.s3.eu-west-1.amazonaws.com/store/chaac/assets/check.png'
-            alt="Successful Image"
+            src='https://static.vecteezy.com/system/resources/previews/008/568/882/original/website-page-not-found-error-404-robot-character-broken-chatbot-mascot-disabled-site-on-technical-work-web-design-template-cartoon-online-bot-crash-accident-robotic-assistance-failure-eps-vector.jpg'
+            alt="Not Found Image"
             style={{ width: '100%', height: 'auto' }}
           />
         </div>
@@ -43,4 +43,4 @@ const PagoExitoso = () => {
   );
 };
 
-export default PagoExitoso;
+export default NotFound;
