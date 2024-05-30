@@ -63,14 +63,14 @@ const Noticias = () => {
               <section>
                 <img src={firstThreeNoticias[0].img} alt="" />
                 <div>
-                  <h5>{firstThreeNoticias[0].titulo}</h5>
-                  <p>{firstThreeNoticias[0].fecha}</p>
+                  <h5 className='noticiasPage-banner-column1-info'>{firstThreeNoticias[0].titulo}</h5>
+                  <p >{firstThreeNoticias[0].fecha}</p>
                 </div>
               </section>
               <section>
                 <img src={firstThreeNoticias[1].img} alt="" />
                 <div>
-                  <h5>{firstThreeNoticias[1].titulo}</h5>
+                  <h5 className='noticiasPage-banner-column1-info'>{firstThreeNoticias[1].titulo}</h5>
                   <p>{firstThreeNoticias[1].fecha}</p>
                 </div>
               </section>
@@ -88,7 +88,7 @@ const Noticias = () => {
             <div key={index} className='noticiasPage-all-noticia'>
               <img src={noticia.img} alt="" />
               <div>
-                <h5 style={{ fontWeight: 'bold' }}>{noticia.titulo}</h5>
+                <h5 style={{ fontWeight: 'bold', fontSize: '1.4vw' }}>{noticia.titulo}</h5>
                 <p style={{ color: 'gray'}}>{noticia.fecha}</p>
               </div>
             </div>
@@ -104,20 +104,20 @@ const Noticias = () => {
                       return <li key={item.codigo}>
                         <div className='noticiasPage-slider-cards'>
                           <div className='noticiasPage-slider-cards-column1'>
-                            <h1 style={{ color: 'black'}}>{index+1}</h1>
+                            <h1>{index+1}</h1>
                             <img className="noticiasPage-flixprop-slider-img" 
                             src={item.img} />
                           </div>
                           <div className='noticiasPage-slider-cards-column2'>
-                            <h5 style={{ color: 'black' }}>{item.titulo}</h5>
-                            <p style={{ color: 'black' }}>No te pierdas esta precuela épica que expande el universo de Mad Max y nos presenta a una Furiosa joven, valiente y determinada en su lucha por la supervivencia y la libertad</p>
+                            <h5>{item.titulo}</h5>
+                            <p>No te pierdas esta precuela épica que expande el universo de Mad Max y nos presenta a una Furiosa joven, valiente y determinada en su lucha por la supervivencia y la libertad</p>
                           </div>
                         </div>
                       </li>
                     })
                   }
                 </ul>
-            <div className="dots-container">
+            <div className="noticiasPage-dots-container">
               <div className="slider-arrows" onClick={() => scrollToImage('prev')}><i className="bi bi-chevron-left"></i></div>
               <div className='slider-dots'>
                   {
