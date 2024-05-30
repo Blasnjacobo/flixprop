@@ -40,8 +40,8 @@ mongoose
   .connect(process.env.mongoDBURL, {})
   .then(() => {
     // Schedule cron job
-    cron.schedule("0 0 * * *", async () => {
-      console.log("Checking for spreadsheet updates...");
+    cron.schedule("* * * * *", async () => {
+      // console.log("Checking for spreadsheet updates...");
       // await updateDatabaseIfNeeded();
     });
 

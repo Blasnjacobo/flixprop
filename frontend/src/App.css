@@ -210,17 +210,6 @@
   height: 100%;
   }
   
-  ul,
-  li {
-  list-style: none;
-  white-space: nowrap;
-  padding: 0;
-  }
-  
-  li {
-  display: inline;
-  }
-  
   .dots-container {
   display: flex;
   justify-content: center;
@@ -751,9 +740,209 @@
 
   .bg-dark-red {
     background-color: #8B0000;
-}
+  }
+
+  /* Noticias Page */
+
+  .noticiasPage-container {
+    width: 75%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+  }
+
+  .noticiasPage-container h2 {
+    margin: 50px 0;
+    text-align: start;
+    width: 100%;
+    font-weight: bold;
+    position: relative; 
+  }
   
+  .noticiasPage-container h2::after {
+    content: '';
+    width: 100%;
+    color: black;
+    position: absolute;
+    left: 0;
+    bottom: -10px; 
+    height: 1px;
+    background-color: currentColor; 
+  }
   
+  .noticiasPage-banner-section {
+    position: relative;
+    height: 670px;
+    width: 100vw;
+    overflow: hidden;
+  }
+  
+  .noticiasPage-banner-image {
+    width: 100%;
+    height: 100%;
+    object-fit: fll; 
+  }
+  
+  .noticiasPage-banner-container {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%); 
+    height: 100%;
+    display: grid;
+    grid-template-columns: 3fr 1fr 3fr;
+    align-items: center;
+    justify-content: center;
+    width: 75%;
+  }
+
+  .noticiasPage-banner-column1 {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    height: 70%;
+  }
+
+  .noticiasPage-banner-column1 section {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    height: 100%;
+  }
+
+  .noticiasPage-banner-column1 section div {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: start;
+    color: white;
+    margin: 2rem 0;
+  }
+
+  .noticiasPage-banner-column1 section img {
+    width: 100%;
+    height: 200px;
+    object-fit: fill;
+    border-radius: 20px;
+  }
+
+  .noticiasPage-divider {
+    height: 70%;
+    width: 1.5%;
+    background: white;
+    margin: auto;
+  }
+
+  .noticiasPage-banner-column2 {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 70%;
+    width: 75%;
+    margin: auto;
+  }
+
+  .noticiasPage-banner-column2 img {
+    width: 100%;
+    border-radius: 20px;
+    object-fit: fill;
+  }
+
+  .noticiasPage-banner-column2 h5 {
+    color: white;
+    margin: 2rem auto;
+    text-align: center;
+  }
+
+  .noticiasPage-all {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    margin: 2rem auto;
+  }
+  
+  .noticiasPage-all-noticia {
+    display: flex;
+    gap: 1rem;
+    width: 100%;
+  }
+
+  .noticiasPage-all-noticia img {
+    width: 187px;
+    height: 187px;
+    object-fit: cover;
+    border-radius: 40px;
+  }
+
+  .noticiasPage-all-noticia div {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: start;
+  }
+
+  /* Slider */
+  .noticiasPage-slider-section {
+      width: 100vw;
+      position: relative;
+    }
+
+    .noticiasPage-slider-container {
+      width: 75%;
+      margin: auto;
+      position: absolute;
+      top: 20%;
+      left: 50%;
+      transform: translateX(-50%); 
+      height: 100%;
+    }
+    
+    .noticiasPage-container-images {
+    width: 100%;
+    height: 200px;
+    overflow: hidden;
+    }
+    
+    .noticiasPage-slider-cards {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0rem;
+    }
+
+    .noticiasPage-slider-cards-column1 {
+      display: flex;
+      gap: 3rem;
+      width: '100%'
+    }
+
+    .noticiasPage-slider-cards-column1 h1 {
+      font-size: 10rem;
+    }
+
+    .noticiasPage-slider-cards-column2 {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      width: '100%'
+    }
+    
+    .noticiasPage-flixprop-slider-img {
+      width: 150px;
+      height: 200px;
+      border-radius: 20px;
+      object-fit: cover;
+    }
+    
+
+
   @media screen and (max-width: 960px) {
   .navbar-icon .bi-person {
     display: none;
