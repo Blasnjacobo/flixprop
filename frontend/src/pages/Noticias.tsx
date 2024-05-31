@@ -9,6 +9,9 @@ const Noticias = () => {
   const firstThreeNoticias = noticiasPage.slice(0, 3);
   const restNoticias = noticiasPage.slice(3, 11);
 
+  const numDots = Math.ceil(restNoticias.length / 4);
+
+
   const bannerListRef = useRef<HTMLUListElement | null>(null);
   const sliderListRef = useRef<HTMLUListElement | null>(null);
   const noticiasAllListRef = useRef<HTMLUListElement | null>(null);
@@ -52,10 +55,10 @@ const Noticias = () => {
   useEffect(() => {
     const listNode = noticiasAllListRef.current;
     const slides = listNode?.querySelectorAll("li");
-
+  
     if (slides) {
       slides.forEach((slide, index) => {
-        slide.style.display = index === noticiasAllCurrentIndex ? "block" : "none";
+        slide.style.display = (index >= noticiasAllCurrentIndex && index < noticiasAllCurrentIndex + 4) ? "block" : "none";
       });
     }
   }, [noticiasAllCurrentIndex]);
@@ -102,9 +105,9 @@ const Noticias = () => {
 
   const scrollToAllNoticiasImage = (direction: string) => {
     if (direction === 'prev') {
-      setNoticiasAllCurrentIndex(curr => (curr === 0 ? restNoticias.length - 1 : curr - 1));
+      setNoticiasAllCurrentIndex(curr => (curr === 0 ? (numDots - 1) * 4 : curr - 4));
     } else {
-      setNoticiasAllCurrentIndex(curr => (curr === restNoticias.length - 1 ? 0 : curr + 1));
+      setNoticiasAllCurrentIndex(curr => (curr >= (numDots - 1) * 4 ? 0 : curr + 4));
     }
   };
 
@@ -117,7 +120,7 @@ const Noticias = () => {
   };
 
   const goToAllNoticiasSlide = (allNoticiasIndex: number) => {
-    setNoticiasAllCurrentIndex(allNoticiasIndex);
+    setNoticiasAllCurrentIndex(allNoticiasIndex * 4);
   };
 
   return (
@@ -216,50 +219,49 @@ const Noticias = () => {
         {/* All noticias */}
         {
           !isMobile ? (
-        <section className="noticiasPage-all">
-          {restNoticias.map((noticia, index) => (
-            <div key={index} className='noticiasPage-all-noticia'>
-              <img src={noticia.img} alt="" />
-              <div>
-                <h5 style={{ fontWeight: 'bold', fontSize: '1.4vw' }}>{noticia.titulo}</h5>
-                <p style={{ color: 'gray'}}>{noticia.fecha}</p>
-              </div>
-            </div>
-          ))}
-        </section>
-    ): 
-    (
-      <section className="noticiasPage-all">
-        <ul ref={noticiasAllListRef}>
-        {
-          restNoticias.map((noticia, index) => (
-          <div key={index} className='noticiasPage-all-noticia'>
-            <img src={noticia.img} alt="" />
-            <div>
-              <h5>{noticia.titulo}</h5>
-              <p>{noticia.fecha}</p>
-            </div>
-          </div>
-        ))}
-        </ul>
-        <div className="noticiasPage-dots-container">
-          <div className="slider-arrows" onClick={() => scrollToAllNoticiasImage('prev')}><i className="bi bi-chevron-left"></i></div>
-            <div className='slider-dots'>
-              {
-                restNoticias.map((_, idx) => (
-                <div key={idx}
-                  className="dot-container-item"
-                  onClick={() => goToAllNoticiasSlide(idx)}>
-                  <i className={`bi bi-circle-fill ${idx === noticiasAllCurrentIndex ? "active" : ""}`}></i>
+            <section className="noticiasPage-all">
+              {restNoticias.slice(0, 4).map((noticia, index) => (
+                <div key={index} className='noticiasPage-all-noticia'>
+                  <img src={noticia.img} alt="" />
+                  <div>
+                    <h5 style={{ fontWeight: 'bold', fontSize: '1.4vw' }}>{noticia.titulo}</h5>
+                    <p style={{ color: 'gray'}}>{noticia.fecha}</p>
+                  </div>
                 </div>
-                ))
-              }
-            </div>
-          <div className="slider-arrows" onClick={() => scrollToAllNoticiasImage('next')}><i className="bi bi-chevron-right"></i></div>
-        </div>
-      </section>
-    )
-  }
+              ))}
+            </section>
+          ) : (
+            <section className="noticiasPage-all">
+              <ul ref={noticiasAllListRef}>
+                {restNoticias.map((noticia, index) => (
+                  <li key={index} className='noticiasPage-all-noticia'>
+                    <img src={noticia.img} alt="" />
+                    <div>
+                      <h5>{noticia.titulo}</h5>
+                      <p>{noticia.fecha}</p>
+                    </div>
+                  </li>
+                ))}
+              </ul>
+              <div className="noticiasPage-dots-container">
+                <div className="slider-arrows" onClick={() => scrollToAllNoticiasImage('prev')}><i className="bi bi-chevron-left"></i></div>
+                <div className='slider-dots'>
+                  {[...Array(numDots)].map((_, idx) => (
+                    <div key={idx}
+                      className="dot-container-item"
+                      onClick={() => goToAllNoticiasSlide(idx)}>
+                      <i className={`bi bi-circle-fill ${idx === Math.floor(noticiasAllCurrentIndex / 4) ? "active" : ""}`}></i>
+                    </div>
+                  ))}
+                </div>
+                <div className="slider-arrows" onClick={() => scrollToAllNoticiasImage('next')}><i className="bi bi-chevron-right"></i></div>
+              </div>
+            </section>
+          )
+        }
+
+        {/* Recomendaciones Section */}
+
         <h2>Recomendaciones de la semana</h2>
         <section className="noticiasPage-slider-section">
         <img src={noticiasBanner} alt="Noticias Banner" className="noticiasPage-banner-image" />
