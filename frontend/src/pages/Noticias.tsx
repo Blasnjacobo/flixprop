@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import noticiasBanner from '../assets/Noticias/noticias-banner-section.jpg';
 import useNoticias from '../../src/context/Noticias/useNoticias';
+import '../NoticiasPage.css';
 
 const Noticias = () => {
   const noticias = useNoticias();
@@ -8,54 +9,126 @@ const Noticias = () => {
   const firstThreeNoticias = noticiasPage.slice(0, 3);
   const restNoticias = noticiasPage.slice(3, 11);
 
-  const listRef = useRef<HTMLUListElement | null>(null);
-  const [currentIndex, setCurrentIndex] = useState<number>(0);
+  const bannerListRef = useRef<HTMLUListElement | null>(null);
+  const sliderListRef = useRef<HTMLUListElement | null>(null);
+  const noticiasAllListRef = useRef<HTMLUListElement | null>(null);
+
+  const [bannerCurrentIndex, setBannerCurrentIndex] = useState<number>(0);
+  const [sliderCurrentIndex, setSliderCurrentIndex] = useState<number>(0);
+  const [noticiasAllCurrentIndex, setNoticiasAllCurrentIndex] = useState<number>(0);
+  const [isMobile, setIsMobile] = useState<boolean>(window.innerWidth < 960);
 
   useEffect(() => {
-    const listNode = listRef.current;
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 960);
+    };
+
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
+  useEffect(() => {
+    const listNode = bannerListRef.current;
     const slides = listNode?.querySelectorAll("li");
-  
+
     if (slides) {
       slides.forEach((slide, index) => {
-        if (index === currentIndex) {
-          slide.style.display = "block"; 
-        } else {
-          slide.style.display = "none";
-        }
+        slide.style.display = index === bannerCurrentIndex ? "block" : "none";
       });
     }
-  }, [currentIndex]);
+  }, [bannerCurrentIndex]);
+
+  useEffect(() => {
+    const listNode = sliderListRef.current;
+    const slides = listNode?.querySelectorAll("li");
+
+    if (slides) {
+      slides.forEach((slide, index) => {
+        slide.style.display = index === sliderCurrentIndex ? "block" : "none";
+      });
+    }
+  }, [sliderCurrentIndex]);
+
+  useEffect(() => {
+    const listNode = noticiasAllListRef.current;
+    const slides = listNode?.querySelectorAll("li");
+
+    if (slides) {
+      slides.forEach((slide, index) => {
+        slide.style.display = index === noticiasAllCurrentIndex ? "block" : "none";
+      });
+    }
+  }, [noticiasAllCurrentIndex]);
 
   useEffect(() => {
     const interval = setInterval(() => {
-      scrollToImage('next');
-    }, 7000); 
+      scrollToBannerImage('next');
+    }, 7000);
 
     return () => clearInterval(interval);
   }, []);
 
-  const scrollToImage = (direction: string) => {
+  useEffect(() => {
+    const interval = setInterval(() => {
+      scrollToSliderImage('next');
+    }, 7000);
+
+    return () => clearInterval(interval);
+  }, []);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      scrollToAllNoticiasImage('next');
+    }, 7000);
+
+    return () => clearInterval(interval);
+  }, []);
+
+  const scrollToBannerImage = (direction: string) => {
     if (direction === 'prev') {
-      setCurrentIndex(curr => {
-        const isFirstSlide = curr === 0;
-        return isFirstSlide ? noticiasPage.length - 1 : curr - 1;
-      });
+      setBannerCurrentIndex(curr => (curr === 0 ? firstThreeNoticias.length - 1 : curr - 1));
     } else {
-      setCurrentIndex(curr => {
-        const isLastSlide = curr === noticiasPage.length - 1;
-        return isLastSlide ? 0 : curr + 1;
-      });
+      setBannerCurrentIndex(curr => (curr === firstThreeNoticias.length - 1 ? 0 : curr + 1));
     }
-  }
-  
-  const goToSlide = (slideIndex: number) => {
-    setCurrentIndex(slideIndex);
-  }
+  };
+
+  const scrollToSliderImage = (direction: string) => {
+    if (direction === 'prev') {
+      setSliderCurrentIndex(curr => (curr === 0 ? noticiasPage.length - 1 : curr - 1));
+    } else {
+      setSliderCurrentIndex(curr => (curr === noticiasPage.length - 1 ? 0 : curr + 1));
+    }
+  };
+
+  const scrollToAllNoticiasImage = (direction: string) => {
+    if (direction === 'prev') {
+      setNoticiasAllCurrentIndex(curr => (curr === 0 ? restNoticias.length - 1 : curr - 1));
+    } else {
+      setNoticiasAllCurrentIndex(curr => (curr === restNoticias.length - 1 ? 0 : curr + 1));
+    }
+  };
+
+  const goToBannerSlide = (bannerIndex: number) => {
+    setBannerCurrentIndex(bannerIndex);
+  };
+
+  const goToSliderSlide = (slideIndex: number) => {
+    setSliderCurrentIndex(slideIndex);
+  };
+
+  const goToAllNoticiasSlide = (allNoticiasIndex: number) => {
+    setNoticiasAllCurrentIndex(allNoticiasIndex);
+  };
 
   return (
     <div className="noticiasPage-section">
+
+    {/* noticiasPage */}
+
       <div className="noticiasPage-container">
         <h2>Noticias</h2>
+        {
+          !isMobile ? (
         <section className="noticiasPage-banner-section">
           <img src={noticiasBanner} alt="Noticias Banner" className="noticiasPage-banner-image" />
           <div className='noticiasPage-banner-container'>
@@ -64,7 +137,7 @@ const Noticias = () => {
                 <img src={firstThreeNoticias[0].img} alt="" />
                 <div>
                   <h5 className='noticiasPage-banner-column1-info'>{firstThreeNoticias[0].titulo}</h5>
-                  <p >{firstThreeNoticias[0].fecha}</p>
+                  <p>{firstThreeNoticias[0].fecha}</p>
                 </div>
               </section>
               <section>
@@ -82,7 +155,67 @@ const Noticias = () => {
               <p>{firstThreeNoticias[2].fecha}</p>
             </div>
           </div>
+          <div className="noticiasPage-dots-container">
+              <div className="slider-arrows" onClick={() => scrollToBannerImage('prev')}><i className="bi bi-chevron-left"></i></div>
+              <div className='slider-dots'>
+                  {
+                    noticiasPage.map((_, idx) => (
+                      <div key={idx}
+                        className="dot-container-item"
+                        onClick={() => goToBannerSlide(idx)}>
+                        <i className={`bi bi-circle-fill ${idx === bannerCurrentIndex ? "active" : ""}`}></i>
+                      </div>))
+                  }
+              </div>
+              <div className="slider-arrows" onClick={() => scrollToBannerImage('next')}><i className="bi bi-chevron-right"></i></div>
+            </div>
         </section>
+        ) : (
+          <section className="noticiasPage-banner-section">
+              <img src={noticiasBanner} alt="Noticias Banner" className="noticiasPage-banner-image" />
+              <div className='noticiasPage-banner-container'>
+                <h3>Últimas noticias</h3>
+                <ul ref={bannerListRef}>
+                  {
+                    firstThreeNoticias.map((item) => (
+                      <li key={item.codigo}>
+                        <div className='noticiasPage-slider-cards'>
+                          <div className='noticiasPage-slider-cards-column'>
+                            <img className="noticiasPage-flixprop-slider-img" 
+                            src={item.img} alt="" />
+                          </div>
+                          <div className='noticiasPage-slider-cards-column'>
+                            <h5>{item.titulo}</h5>
+                            <p>{item.fecha}</p>
+                          </div>
+                        </div>
+                      </li>
+                    ))
+                  }
+                </ul>
+                <div className="noticiasPage-dots-container">
+                  <div className="slider-arrows" onClick={() => scrollToBannerImage('prev')}><i className="bi bi-chevron-left"></i></div>
+                  <div className='slider-dots'>
+                    {
+                      firstThreeNoticias.map((_, idx) => (
+                        <div key={idx}
+                          className="dot-container-item"
+                          onClick={() => goToBannerSlide(idx)}>
+                          <i className={`bi bi-circle-fill ${idx === bannerCurrentIndex ? "active" : ""}`}></i>
+                        </div>
+                      ))
+                    }
+                  </div>
+                  <div className="slider-arrows" onClick={() => scrollToBannerImage('next')}><i className="bi bi-chevron-right"></i></div>
+                </div>
+              </div>
+            </section>
+          )
+        }
+            
+        {/* All noticias */}
+        {
+          !isMobile ? (
         <section className="noticiasPage-all">
           {restNoticias.map((noticia, index) => (
             <div key={index} className='noticiasPage-all-noticia'>
@@ -94,11 +227,44 @@ const Noticias = () => {
             </div>
           ))}
         </section>
+    ): 
+    (
+      <section className="noticiasPage-all">
+        <ul ref={noticiasAllListRef}>
+        {
+          restNoticias.map((noticia, index) => (
+          <div key={index} className='noticiasPage-all-noticia'>
+            <img src={noticia.img} alt="" />
+            <div>
+              <h5>{noticia.titulo}</h5>
+              <p>{noticia.fecha}</p>
+            </div>
+          </div>
+        ))}
+        </ul>
+        <div className="noticiasPage-dots-container">
+          <div className="slider-arrows" onClick={() => scrollToAllNoticiasImage('prev')}><i className="bi bi-chevron-left"></i></div>
+            <div className='slider-dots'>
+              {
+                restNoticias.map((_, idx) => (
+                <div key={idx}
+                  className="dot-container-item"
+                  onClick={() => goToAllNoticiasSlide(idx)}>
+                  <i className={`bi bi-circle-fill ${idx === noticiasAllCurrentIndex ? "active" : ""}`}></i>
+                </div>
+                ))
+              }
+            </div>
+          <div className="slider-arrows" onClick={() => scrollToAllNoticiasImage('next')}><i className="bi bi-chevron-right"></i></div>
+        </div>
+      </section>
+    )
+  }
         <h2>Recomendaciones de la semana</h2>
         <section className="noticiasPage-slider-section">
         <img src={noticiasBanner} alt="Noticias Banner" className="noticiasPage-banner-image" />
         <div className='noticiasPage-slider-container'>
-        <ul ref={listRef}>
+        <ul ref={sliderListRef}>
                   {
                     noticiasPage.map((item, index) => {
                       return <li key={item.codigo}>
@@ -118,18 +284,18 @@ const Noticias = () => {
                   }
                 </ul>
             <div className="noticiasPage-dots-container">
-              <div className="slider-arrows" onClick={() => scrollToImage('prev')}><i className="bi bi-chevron-left"></i></div>
+              <div className="slider-arrows" onClick={() => scrollToSliderImage('prev')}><i className="bi bi-chevron-left"></i></div>
               <div className='slider-dots'>
                   {
                     noticiasPage.map((_, idx) => (
                       <div key={idx}
                         className="dot-container-item"
-                        onClick={() => goToSlide(idx)}>
-                        <i className={`bi bi-circle-fill ${idx === currentIndex ? "active" : ""}`}></i>
+                        onClick={() => goToSliderSlide(idx)}>
+                        <i className={`bi bi-circle-fill ${idx === sliderCurrentIndex ? "active" : ""}`}></i>
                       </div>))
                   }
               </div>
-              <div className="slider-arrows" onClick={() => scrollToImage('next')}><i className="bi bi-chevron-right"></i></div>
+              <div className="slider-arrows" onClick={() => scrollToSliderImage('next')}><i className="bi bi-chevron-right"></i></div>
             </div>
           </div>      
         </section>
