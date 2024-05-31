@@ -3,6 +3,8 @@ import noticiasBanner from '../assets/Noticias/noticias-banner-section.jpg';
 import useNoticias from '../../src/context/Noticias/useNoticias';
 import '../NoticiasPage.css';
 import Ofrecemos from '../components/Home/Ofrecemos';
+import { useNavigate } from 'react-router-dom';
+import { Noticia } from '../types/Noticias';
 
 const Noticias = () => {
   const noticias = useNoticias();
@@ -21,6 +23,8 @@ const Noticias = () => {
   const [sliderCurrentIndex, setSliderCurrentIndex] = useState<number>(0);
   const [noticiasAllCurrentIndex, setNoticiasAllCurrentIndex] = useState<number>(0);
   const [isMobile, setIsMobile] = useState<boolean>(window.innerWidth < 960);
+
+  const navigate = useNavigate();  // Get the navigate function
 
   useEffect(() => {
     const handleResize = () => {
@@ -124,6 +128,10 @@ const Noticias = () => {
     setNoticiasAllCurrentIndex(allNoticiasIndex * 4);
   };
 
+  const handleCardClickSlider = (noticia: Noticia) => {
+    navigate(`/flixprop/noticias/${noticia.codigo}`);
+  }
+
   return (
     <div className="noticiasPage-section">
 
@@ -137,14 +145,14 @@ const Noticias = () => {
           <img src={noticiasBanner} alt="Noticias Banner" className="noticiasPage-banner-image" />
           <div className='noticiasPage-banner-container'>
             <div className='noticiasPage-banner-column1'>
-              <section>
+              <section onClick={() => handleCardClickSlider(firstThreeNoticias[0])} style={{ cursor: 'pointer' }}>
                 <img src={firstThreeNoticias[0].img} alt="" />
                 <div>
                   <h5 className='noticiasPage-banner-column1-info'>{firstThreeNoticias[0].titulo}</h5>
                   <p>{firstThreeNoticias[0].fecha}</p>
                 </div>
               </section>
-              <section>
+              <section onClick={() => handleCardClickSlider(firstThreeNoticias[1])} style={{ cursor: 'pointer' }}>
                 <img src={firstThreeNoticias[1].img} alt="" />
                 <div>
                   <h5 className='noticiasPage-banner-column1-info'>{firstThreeNoticias[1].titulo}</h5>
@@ -153,7 +161,8 @@ const Noticias = () => {
               </section>
             </div>
             <div className='noticiasPage-divider' />
-            <div className='noticiasPage-banner-column2'>
+            <div className='noticiasPage-banner-column2' 
+              onClick={() => handleCardClickSlider(firstThreeNoticias[2])} style={{ cursor: 'pointer' }}>
               <img src={firstThreeNoticias[2].img} alt="" />
               <h5>{firstThreeNoticias[2].titulo}</h5>
               <p>{firstThreeNoticias[2].fecha}</p>
@@ -182,7 +191,7 @@ const Noticias = () => {
                 <ul ref={bannerListRef}>
                   {
                     firstThreeNoticias.map((item) => (
-                      <li key={item.codigo}>
+                      <li key={item.codigo} onClick={() => handleCardClickSlider(item)} style={{ cursor: 'pointer' }}>
                         <div className='noticiasPage-slider-cards'>
                           <div className='noticiasPage-slider-cards-column'>
                             <img className="noticiasPage-flixprop-slider-img" 
@@ -222,7 +231,8 @@ const Noticias = () => {
           !isMobile ? (
             <section className="noticiasPage-all">
               {restNoticias.slice(0, 8).map((noticia, index) => (
-                <div key={index} className='noticiasPage-all-noticia'>
+                <div key={index} className='noticiasPage-all-noticia'
+                onClick={() => handleCardClickSlider(noticia)} style={{ cursor: 'pointer' }}>
                   <img src={noticia.img} alt="" />
                   <div>
                     <h5>{noticia.titulo}</h5>
@@ -235,7 +245,8 @@ const Noticias = () => {
             <section className="noticiasPage-all">
               <ul ref={noticiasAllListRef}>
                 {restNoticias.map((noticia, index) => (
-                  <li key={index} className='noticiasPage-all-noticia'>
+                  <li key={index} className='noticiasPage-all-noticia'
+                  onClick={() => handleCardClickSlider(noticia)} style={{ cursor: 'pointer' }}>
                     <img src={noticia.img} alt="" />
                     <div>
                       <h5>{noticia.titulo}</h5>
@@ -271,7 +282,8 @@ const Noticias = () => {
                   {
                     noticiasPage.map((item, index) => {
                       return <li key={item.codigo}>
-                        <div className='noticiasPage-slider-cards'>
+                        <div className='noticiasPage-slider-cards'
+                        onClick={() => handleCardClickSlider(item)} style={{ cursor: 'pointer' }}>
                           <div className='noticiasPage-slider-cards-column1'>
                             <h1>{index+1}</h1>
                             <img className="noticiasPage-flixprop-slider-img" 

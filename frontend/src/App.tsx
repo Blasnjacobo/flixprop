@@ -29,6 +29,7 @@ import NoticiasProvider from './context/Noticias/Noticias';
 import ProductosProvider from './context/Productos/Productos';
 import UserProvider from './context/Users/User';
 import CartProvider from './context/Cart/Cart';
+import Noticia from './pages/Noticia';
 
 function App() {
   const [showMenu, setShowMenu] = useState(false);
@@ -53,6 +54,7 @@ function App() {
                   <Route path='/flixprop/universos/' element={<Universos />} />
                   <Route path='/flixprop/colecciones/' element={<Colecciones />} />
                   <Route path='/flixprop/noticias/' element={<Noticias />} />
+                  <Route path='/flixprop/noticias/:codigo' element={<Noticia />} />
                   <Route path='/flixprop/quizzes/' element={<Quizzes />} />
                   <Route path='/flixprop/payment/success' element={<PagoExitoso />} />
                   <Route path='/flixprop/payment/rejected' element={<PagoRechazado />} />
