@@ -75,7 +75,7 @@ const MasVendido = () => {
   };
 
   const getDisplayCount = () => {
-    return window.innerWidth >= 960 ? 4 : 2;
+    return window.innerWidth >= 960 ? 4 : 1;
   };
 
   return (

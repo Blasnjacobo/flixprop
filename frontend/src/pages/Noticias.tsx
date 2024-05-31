@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import noticiasBanner from '../assets/Noticias/noticias-banner-section.jpg';
 import useNoticias from '../../src/context/Noticias/useNoticias';
 import '../NoticiasPage.css';
+import Ofrecemos from '../components/Home/Ofrecemos';
 
 const Noticias = () => {
   const noticias = useNoticias();
@@ -220,7 +221,7 @@ const Noticias = () => {
         {
           !isMobile ? (
             <section className="noticiasPage-all">
-              {restNoticias.slice(0, 4).map((noticia, index) => (
+              {restNoticias.slice(0, 8).map((noticia, index) => (
                 <div key={index} className='noticiasPage-all-noticia'>
                   <img src={noticia.img} alt="" />
                   <div>
@@ -301,6 +302,7 @@ const Noticias = () => {
             </div>
           </div>      
         </section>
+          { isMobile ? '' : <Ofrecemos />}
       </div>
     </div>
   );

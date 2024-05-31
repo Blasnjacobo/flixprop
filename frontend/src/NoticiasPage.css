@@ -235,6 +235,10 @@
           width: 90%;
         }
 
+        .noticiasPage-container h2 {
+          margin: 20px 0;
+        }
+
       .noticiasPage-banner-container {
           display: flex;
           flex-direction: column;
@@ -311,6 +315,10 @@
           font-size: 15px;
         }
 
+        .noticiasPage-slider-section {
+          margin-bottom: 10px;
+        }
+
         .noticiasPage-slider-container {
           width: 90vw;
           height: 300px;
@@ -347,5 +355,7 @@
         .noticiasPage-slider-cards-column2 p {
           font-size: 10px;
         }
+
+        
 
       }
