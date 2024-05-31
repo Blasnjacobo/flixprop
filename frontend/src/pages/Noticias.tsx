@@ -58,7 +58,7 @@ const Noticias = () => {
   
     if (slides) {
       slides.forEach((slide, index) => {
-        slide.style.display = (index >= noticiasAllCurrentIndex && index < noticiasAllCurrentIndex + 4) ? "block" : "none";
+        slide.style.display = (index >= noticiasAllCurrentIndex && index < noticiasAllCurrentIndex + 4) ? "grid" : "none";
       });
     }
   }, [noticiasAllCurrentIndex]);
@@ -224,8 +224,8 @@ const Noticias = () => {
                 <div key={index} className='noticiasPage-all-noticia'>
                   <img src={noticia.img} alt="" />
                   <div>
-                    <h5 style={{ fontWeight: 'bold', fontSize: '1.4vw' }}>{noticia.titulo}</h5>
-                    <p style={{ color: 'gray'}}>{noticia.fecha}</p>
+                    <h5>{noticia.titulo}</h5>
+                    <p>{noticia.fecha}</p>
                   </div>
                 </div>
               ))}
