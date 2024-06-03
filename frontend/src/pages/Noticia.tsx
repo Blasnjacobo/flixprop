@@ -13,7 +13,7 @@ const Noticia = () => {
     return <div>Noticia no encontrada</div>;
   }
 
-  console.log(noticia)
+  console.log(noticia.descripcion)
 
   return (
     <div className="noticiasItem-section">
@@ -27,8 +27,8 @@ const Noticia = () => {
             <h4>Equipo Flixprop</h4>
           </div>
         </section>
-        <section>
-          Hola
+        <section className="noticiasItem-description">
+          {noticia.descripcion}
         </section>
       </div>
       
