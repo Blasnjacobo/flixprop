@@ -131,13 +131,13 @@
   
   .noticiasPage-all-noticia {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr 2fr;
     gap: 1rem;
   }
 
   .noticiasPage-all-noticia img {
-    width: 15vw;
-    height: 187px;
+    width: 115vw;
+    height: 115px;
     object-fit: cover;
     border-radius: 10px;
   }

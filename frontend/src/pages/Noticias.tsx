@@ -170,7 +170,6 @@ const Noticias = () => {
             </div>
           </div>
           <div className="noticiasPage-dots-container">
-              <div className="slider-arrows" onClick={() => scrollToBannerImage('prev')}><i className="bi bi-chevron-left"></i></div>
               <div className='slider-dots'>
                   {
                     noticiasPage.map((_, idx) => (
@@ -181,7 +180,6 @@ const Noticias = () => {
                       </div>))
                   }
               </div>
-              <div className="slider-arrows" onClick={() => scrollToBannerImage('next')}><i className="bi bi-chevron-right"></i></div>
             </div>
         </section>
         ) : (
@@ -208,7 +206,6 @@ const Noticias = () => {
                   }
                 </ul>
                 <div className="noticiasPage-dots-container">
-                  <div className="slider-arrows" onClick={() => scrollToBannerImage('prev')}><i className="bi bi-chevron-left"></i></div>
                   <div className='slider-dots'>
                     {
                       firstThreeNoticias.map((_, idx) => (
@@ -220,7 +217,6 @@ const Noticias = () => {
                       ))
                     }
                   </div>
-                  <div className="slider-arrows" onClick={() => scrollToBannerImage('next')}><i className="bi bi-chevron-right"></i></div>
                 </div>
               </div>
             </section>
@@ -234,7 +230,7 @@ const Noticias = () => {
               {restNoticias.slice(0, 8).map((noticia, index) => (
                 <div key={index} className='noticiasPage-all-noticia'
                 onClick={() => handleCardClickSlider(noticia)} style={{ cursor: 'pointer' }}>
-                  <img src={noticia.img} alt="" />
+                  <img src={noticia.img} alt={`imagen de ${noticia.universo}`} />
                   <div>
                     <h5>{noticia.titulo}</h5>
                     <p>{noticia.fecha}</p>
@@ -257,7 +253,6 @@ const Noticias = () => {
                 ))}
               </ul>
               <div className="noticiasPage-dots-container">
-                <div className="slider-arrows" onClick={() => scrollToAllNoticiasImage('prev')}><i className="bi bi-chevron-left"></i></div>
                 <div className='slider-dots'>
                   {[...Array(numDots)].map((_, idx) => (
                     <div key={idx}
@@ -267,7 +262,6 @@ const Noticias = () => {
                     </div>
                   ))}
                 </div>
-                <div className="slider-arrows" onClick={() => scrollToAllNoticiasImage('next')}><i className="bi bi-chevron-right"></i></div>
               </div>
             </section>
           )
@@ -300,7 +294,6 @@ const Noticias = () => {
                   }
                 </ul>
             <div className="noticiasPage-dots-container">
-              <div className="slider-arrows" onClick={() => scrollToSliderImage('prev')}><i className="bi bi-chevron-left"></i></div>
               <div className='slider-dots'>
                   {
                     noticiasPage.map((_, idx) => (
@@ -311,7 +304,6 @@ const Noticias = () => {
                       </div>))
                   }
               </div>
-              <div className="slider-arrows" onClick={() => scrollToSliderImage('next')}><i className="bi bi-chevron-right"></i></div>
             </div>
           </div>      
         </section>
