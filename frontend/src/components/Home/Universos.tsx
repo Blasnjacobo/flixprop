@@ -1,5 +1,6 @@
 import { useRef, useState, useEffect } from 'react';
 import useUniverso from '../../context/Universos/useUniversos';
+import { Universo as universoType } from '../../types/Universos'
 import universosBanner from '../../assets/Noticias/noticias-banner-section.jpg';
 import { useNavigate } from "react-router-dom";
 
@@ -34,7 +35,7 @@ const Universos = () => {
       let newOffset = offset + displayCount;
       const activeUniversos = universos.filter((element) => element.activo === "TRUE");
       if (newOffset >= activeUniversos.length) {
-        newOffset = newOffset % activeUniversos.length; // Wrap to the start
+        newOffset = newOffset % activeUniversos.length;
       }
       setOffset(newOffset);
     }
@@ -71,9 +72,8 @@ const Universos = () => {
     setTouchStartX(null);
   };
 
-  const handleCardClick = (index: number) => {
-    const newIndex = (index + 1) % universos.length;
-    setOffset(newIndex);
+  const handleCardClick = (universo: universoType) => {
+    navigate(`/flixprop/universos/${universo.codigo}`)
   };
 
   const handleVerTodos = () => {
@@ -87,9 +87,9 @@ const Universos = () => {
   const activeUniversos = universos.filter((element) => element.activo === "TRUE");
 
   return (
-    <div className='home-universoPage-section'>
-      <div className='home-universoPage-container'>
-        <img src={universosBanner} alt="Universos Banner" className="universosPage-banner-image" />
+    <div className='home-universo-section'>
+      <div className='home-universo-container'>
+        <img src={universosBanner} alt="Universos Banner" className="home-universo-banner-image" />
         <section
           className='home-universo-main'
           ref={containerRef}
@@ -97,26 +97,25 @@ const Universos = () => {
           onTouchMove={handleTouchMove}
           onTouchEnd={handleTouchEnd}
         >
-          <div className='home-universoPage-titleVerMas'>
+          <div className='home-universo-titleVerMas'>
             <h3>Universos</h3>
             <p onClick={handleVerTodos}>Ver Todos</p>
           </div>
-          <div className='home-universoPage-mainCards'>
-            {activeUniversos.slice(offset, offset + getDisplayCount()).map((universo, index) => (
-              <a href="https://flixprop.com/" className='home-universo-card' key={universo.codigo} onClick={() => handleCardClick(index)}>
+          <div className='home-universo-mainCards'>
+            {activeUniversos.slice(offset, offset + getDisplayCount()).map((universo) => (
+              <div className='home-universo-card' key={universo.codigo} onClick={() => handleCardClick(universo)}>
                 <img src={universo.url} alt={universo.universo} />
-                <div>{universo.universo}</div>
-              </a>
+              </div>
             ))}
           </div>
-          <div className='scroll-arrows'>
-            <button className='scroll-left' onClick={scrollLeft}>
+          <div className='home-universo-scroll-arrows'>
+            <button className='home-univero-scroll-left' onClick={scrollLeft}>
               <i className="bi bi-caret-left"></i>
             </button>
-            <div className='home-universoPage-cardsCount'>
+            <div className='home-universo-cardsCount'>
               {Math.ceil(offset / getDisplayCount()) + 1} / {Math.ceil(activeUniversos.length / getDisplayCount())}
             </div>
-            <button className='scroll-right' onClick={scrollRight}>
+            <button className='home-univero-scroll-right' onClick={scrollRight}>
               <i className="bi bi-caret-right"></i>
             </button>
           </div>
