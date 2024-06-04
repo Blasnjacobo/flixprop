@@ -129,6 +129,7 @@ const Noticias = () => {
   };
 
   const handleCardClickSlider = (noticia: Noticia) => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
     navigate(`/flixprop/noticias/${noticia.codigo}`);
   }
 
