@@ -12,7 +12,6 @@ const Home = () => {
       <Slider />
       <h3 className='homeContainer-text'>NUEVOS PROPS</h3>
       <MasReciente />
-      <h3 className='homeContainer-text'>UNIVERSOS</h3>
       <Universos />
       <h3 className='homeContainer-text'>COLECCIONES</h3>
       <Colecciones />
