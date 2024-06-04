@@ -82,6 +82,7 @@ const Noticia = () => {
       <section className="noticiasItem-slider-section">
         <img src={noticiasBanner} alt="Noticias Banner" className="noticiasItem-banner-image" />
         <div className='noticiasItem-slider-container'>
+          <h3 className="noticiasItem-masNoticiasText">Más Noticias</h3>
           <ul>
             {currentItems.map((item) => (
               <li key={item.codigo}
