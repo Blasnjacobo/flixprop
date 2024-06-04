@@ -10,7 +10,7 @@ interface Categoria {
   img3: string;
 }
 
-const Colecciones = () => {
+const Categorias = () => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
   useEffect(() => {
@@ -38,4 +38,4 @@ const Colecciones = () => {
   );
 };
 
-export default Colecciones;
+export default Categorias;

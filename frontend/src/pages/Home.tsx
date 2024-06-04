@@ -1,4 +1,4 @@
-import Colecciones from '../components/Home/Colecciones'
+import Categorias from '../components/Home/Categorias'
 import MasReciente from '../components/Home/MasReciente'
 import Noticias from '../components/Home/Noticias'
 import Ofrecemos from '../components/Home/Ofrecemos'
@@ -10,15 +10,11 @@ const Home = () => {
   return (
     <div className='home-container'>
       <Slider />
-      <h3 className='homeContainer-text'>NUEVOS PROPS</h3>
       <MasReciente />
       <Universos />
-      <h3 className='homeContainer-text'>COLECCIONES</h3>
-      <Colecciones />
-      <h3 className='homeContainer-text'>LO MAS VENDIDO</h3>
-      <MasVendido />
-      <h3 className='homeContainer-text'>NOTICIAS</h3>
       <Noticias />
+      <Categorias />
+      <MasVendido />
       <Ofrecemos />
     </div>
   )

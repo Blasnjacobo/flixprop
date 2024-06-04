@@ -109,13 +109,13 @@ const Universos = () => {
             ))}
           </div>
           <div className='home-universo-scroll-arrows'>
-            <button className='home-univero-scroll-left' onClick={scrollLeft}>
+            <button className='home-universo-scroll-left' onClick={scrollLeft}>
               <i className="bi bi-caret-left"></i>
             </button>
             <div className='home-universo-cardsCount'>
               {Math.ceil(offset / getDisplayCount()) + 1} / {Math.ceil(activeUniversos.length / getDisplayCount())}
             </div>
-            <button className='home-univero-scroll-right' onClick={scrollRight}>
+            <button className='home-universo-scroll-right' onClick={scrollRight}>
               <i className="bi bi-caret-right"></i>
             </button>
           </div>

@@ -1,9 +1,7 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import { useState, useEffect } from "react";
-import { Button } from "react-bootstrap";
-import useUser from '../../context/Users/useUser';
 import { Producto } from "../../types/Productos";
-import useCart from '../../context/Cart/useCart';
+import amazon from '../../assets/Productos/amazon.jpg'
+import flixprop from '../../assets/Productos/flixprop.jpg'
 
 interface StoreItemProps {
     producto: Producto;
@@ -19,61 +17,9 @@ const Productos = ({ producto }: StoreItemProps) => {
         precio,
         imgProducto,
         imgEscena    } = producto;
+        console.log(producto)
 
-    const user = useUser();
-
-    const {
-        itemQuantity,
-        increaseQuantity,
-        decreaseQuantity,
-        removeFromCart
-    } = useCart();
-
-    console.log(itemQuantity, increaseQuantity, decreaseQuantity, removeFromCart)
-
-    const [quantity, setQuantity] = useState<number>(0);
-
-    useEffect(() => {
-        const fetchQuantity = async () => {
-          try {
-            const result = await itemQuantity(codigo, user?.username || '');
-            setQuantity(result);
-          } catch (error) {
-            console.error("Error fetching quantity:", error);
-          }
-        };
-        fetchQuantity();
-      }, [user, codigo, itemQuantity, increaseQuantity]);
-
-    const handleIncreaseQuantity = async () => {
-            try {
-                await increaseQuantity(codigo, user?.username || '');
-                const updatedQuantity = await itemQuantity(codigo, user?.username || '');
-                setQuantity(updatedQuantity);
-            } catch (error) {
-                console.error("Error increasing quantity:", error);
-            }
-    };
-
-    const handleDecreaseQuantity = async () => {
-            try {
-                await decreaseQuantity(codigo, user?.username || '');
-                const updatedQuantity = await itemQuantity(codigo, user?.username || '');
-                setQuantity(updatedQuantity);
-            } catch (error) {
-                console.error("Error decreasing quantity:", error);
-            }
-    };
-
-    const handleRemoveFromCart = async () => {
-            try {
-                await removeFromCart(codigo, user?.username || '');
-                const updatedQuantity = await itemQuantity(codigo, user?.username || '');
-                setQuantity(updatedQuantity);
-            } catch (error) {
-                console.error("Error removing from cart:", error);
-            }
-    };
+        const productoProvedor = ((producto.vendedor === 'Amazon') ? amazon : flixprop )
 
     const handleCardClick = (link: string, vendedor: string, codigo: string) => {
         if (vendedor === 'Flixprop') {
@@ -91,8 +37,7 @@ const Productos = ({ producto }: StoreItemProps) => {
     };
 
     return (
-        <div className='productos-card' key={codigo}>
-            <h3 className='productos-universo-card'>{universo}</h3>
+        <div className='home-productos-card' key={codigo}>
             <img
                 alt={universo}
                 src={imgProducto}
@@ -103,43 +48,11 @@ const Productos = ({ producto }: StoreItemProps) => {
                 onTouchCancel={(e) => handleImageTouchEnd(e, imgProducto)}
                 onClick={() => handleCardClick(link, vendedor, codigo)}
             />
-            <div className='productos-info'>
-                <div className='productos-titulo-card'>{nombre}</div>
-                <div className='productos-provedor-card'>{vendedor}</div>
-                <div className='productos-precio-card'>${precio}.00 MXN</div>
+            <div className='home-productos-info'>
+                <h3 className='home-productos-universo-card'>{universo}</h3>
+                <div className='home-productos-titulo-card'>{nombre}</div>
+                <div className='home-productos-precio-card'>${precio}.00 MXN</div>
             </div>
-            {( vendedor === 'Flixprop') && (
-                <div className="productos-actions">
-                    {quantity === 0 ? (
-                        <Button className="w-100" onClick={handleIncreaseQuantity}>
-                            + Añadir al carrito <i className="bi bi-cart"></i>
-                        </Button>
-                    ) : (
-                        <div className="d-flex align-items-center flex-column" style={{ gap: '0.5rem' }}>
-                            <div style={{ width: '100%', display: 'flex', justifyContent: 'center', alignItems: 'center', gap: '20px' }}>
-                                <Button style={{ width: '40px', borderRadius: '10px'}} onClick={handleDecreaseQuantity} variant="dark">-</Button>
-                                <div>
-                                    <span className="fs-3">{quantity}</span> en el <i className="bi bi-cart"></i>
-                                </div>
-                                <Button style={{ width: '40px', borderRadius: '10px'}} onClick={handleIncreaseQuantity}  variant="dark">+</Button>
-                            </div>
-                            <Button
-                                variant="danger"
-                                size="sm"
-                                style={{ borderRadius: 10 }}
-                                onClick={handleRemoveFromCart}
-                            >
-                                Remove
-                            </Button>
-                        </div>
-                    )}
-                </div>
-            )}
-            {(user && vendedor !== 'Flixprop') && (
-                <div className="productos-actions" style={{ margin:'0 auto' }}>
-                   Ir a producto
-                </div>
-            )}
         </div>
     );
 };

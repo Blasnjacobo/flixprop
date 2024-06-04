@@ -75,12 +75,13 @@ const MasReciente = () => {
   };
 
   const getDisplayCount = () => {
-    return window.innerWidth >= 960 ? 4 : 1;
+    return window.innerWidth >= 960 ? 4 : 2;
   };
 
   return (
-    <div className='home-productos'>
+    <div className='home-productos-section'>
       <div className='home-productos-container'>
+        <h3 className='home-productos-container-title'>NUEVOS PROPS</h3>
         <section
           className='home-productos-main'
           ref={containerRef}
@@ -96,7 +97,9 @@ const MasReciente = () => {
           <button className='scroll-left' onClick={scrollLeft}>
             <i className="bi bi-caret-left"></i>
           </button>
-          <div>Flixprop</div>
+          <div className='home-productos-cardsCount'>
+              {Math.ceil(offset / getDisplayCount()) + 1} / {Math.ceil(masRecienteProductos.length / getDisplayCount())}
+          </div>
           <button className='scroll-right' onClick={scrollRight}>
             <i className="bi bi-caret-right"></i>
           </button>
