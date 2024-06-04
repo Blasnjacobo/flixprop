@@ -49,7 +49,7 @@ const Productos = ({ producto }: StoreItemProps) => {
                 onClick={() => handleCardClick(link, vendedor, codigo)}
                 className="home-productos-card-imagen"
             />
-            <img src={productoProvedor} alt={`imagen del proocedor ${vendedor}`} 
+            <img src={productoProvedor} alt={`imagen del provedor ${vendedor}`} 
                 className="home-productos-imagenProvedor"/>
             <div className='home-productos-info'>
                 <h3 className='home-productos-universo-card'>{universo}</h3>

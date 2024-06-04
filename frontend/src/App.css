@@ -843,10 +843,28 @@
     grid-template-columns: repeat(2, 1fr);
     width: 80%;
     margin: auto;
+    padding: 0;
+    gap: 2rem;
+    height: 330px;
+  }
+
+  .home-productos-card {
+    height: 330px;
+    margin-top: 15px;
+}
+
+  .home-productos-card-imagen {
+    height: 154px; 
+  }
+
+  .home-productos-imagenProvedor {
+    width: 50px;
+    top: 40%;
+    left: 80%;
   }
   
   .home-productos-titulo-card{
-    font-size: 18px;
+    font-size: 14px;
   }
   
   .home-productos-precio-card {
