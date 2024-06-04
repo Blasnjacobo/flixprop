@@ -109,11 +109,6 @@
   height: 100%;
 }
 
-.noticiasPage-banner-image {
-  width: 100vw;
-  height: 100%;
-  object-fit: fill;
-}
 
 .noticiasItem-slider-container {
   position: absolute;
