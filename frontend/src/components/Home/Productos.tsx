@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { Producto } from "../../types/Productos";
 import amazon from '../../assets/Productos/amazon.jpg'
-import flixprop from '../../assets/Productos/flixprop.jpg'
+import flixprop from '../../assets/flixprop-logo.png'
 
 interface StoreItemProps {
     producto: Producto;
@@ -47,7 +47,10 @@ const Productos = ({ producto }: StoreItemProps) => {
                 onTouchEnd={(e) => handleImageTouchEnd(e, imgProducto)}
                 onTouchCancel={(e) => handleImageTouchEnd(e, imgProducto)}
                 onClick={() => handleCardClick(link, vendedor, codigo)}
+                className="home-productos-card-imagen"
             />
+            <img src={productoProvedor} alt={`imagen del proocedor ${vendedor}`} 
+                className="home-productos-imagenProvedor"/>
             <div className='home-productos-info'>
                 <h3 className='home-productos-universo-card'>{universo}</h3>
                 <div className='home-productos-titulo-card'>{nombre}</div>
