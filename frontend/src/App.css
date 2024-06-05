@@ -471,69 +471,73 @@
   
   /* Noticias */
   
-  .home-noticias {
-  width: 100%;
+  .home-noticias-section {
+    width: 100%;
+    margin-bottom: 2rem;
   }
   
   .home-noticias-container {
-  margin: 0rem 9vw;
+    width: 85%;
+    margin: auto;
   }
-  
+
+  .home-noticias-container-text {
+    padding: 1rem 0 2rem 0;
+    font-weight: 700;
+    color: black;
+  }
   
   .home-noticias-main {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  gap: 20px;
-  padding-bottom: 20px;
-  width: 100%;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    padding-bottom: 20px;
+    width: 100%;
   }
   
-  .noticias-card {
-  display: flex;
-  gap: 1rem;
-  width: 100%; 
-  height: 120px; 
-  cursor: pointer;
-  flex-shrink: 0;
+  .home-noticias-card {
+    display: flex;
+    gap: 1rem;
+    width: 100%; 
+    height: 120px; 
+    cursor: pointer;
+    flex-shrink: 0;
+    align-items: flex-start;
   }
   
-  .noticias-card img {
-  width: 60%;
-  height: 100%; 
-  object-fit: fill;
+  .home-noticias-card img {
+    width: 120px;
+    height: 120px; 
+    object-fit: cover;
+    border-radius: 15px;
   }
   
-  .noticias-universo-card {
-  text-align: left;
-  font-size: medium;
-  color: brown;
+  .home-noticias-card-description {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .home-noticias-universo-card {
+    font-size: 16px;
+    color: red;
+  }
+
+  .home-noticias-titulo-card {
+    font-weight: bold;
+    font-size: 18px;
+  }
+
+  .home-noticias-cardsCount {
+    color: black;
   }
   
-  .noticias-card div {
-  font-size: large;
-  text-align: start;
-  font-weight: bold;
-  }
-  
-  .noticias-card-description {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  }
-  
-  .noticias-card-description h3 {
-  font-size: small;
-  }
-  
-  .noticias-card-description .noticias-titulo-card {
-  font-size: medium;
-  }
   
   /* Ofrecemos */
   
   .Ofrecemos-section {
-  width: 50%;
-  margin: 2rem auto;
+    width: 50%;
+    margin: 2rem auto;
   }
   
   .ofrecemos-title {
@@ -854,7 +858,7 @@
 }
 
   .home-productos-card-imagen {
-    height: 154px; 
+    height: 120px; 
   }
 
   .home-productos-imagenProvedor {
@@ -878,16 +882,17 @@
     margin: auto;
   }
   
-  .noticias-card img{
-    width: 400px;
+  .home-noticias-card img {
+    width: 100px;
     flex-shrink: 0;
   }
   
-  .noticias-card-description h3 {
+  .home-noticias-card-description h3 {
     font-size: small;
   }
   
-  .noticias-card-description .noticias-titulo-card {
+  .home-noticias-card-description,
+  .home-noticias-titulo-card {
     font-size: medium;
     width: 80%;
   }

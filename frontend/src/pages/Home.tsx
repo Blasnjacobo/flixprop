@@ -1,4 +1,4 @@
-import Categorias from '../components/Home/Categorias'
+// import Categorias from '../components/Home/Categorias'
 import MasReciente from '../components/Home/MasReciente'
 import Noticias from '../components/Home/Noticias'
 import Ofrecemos from '../components/Home/Ofrecemos'
@@ -13,7 +13,7 @@ const Home = () => {
       <MasReciente />
       <Universos />
       <Noticias />
-      <Categorias />
+      {/*<Categorias />*/}
       <MasVendido />
       <Ofrecemos />
     </div>
