@@ -772,7 +772,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    padding-top: 15px;
+    margin: 0;
   }
   
   .scroll-left,
@@ -845,16 +845,17 @@
 
   .home-productos-main {
     grid-template-columns: repeat(2, 1fr);
-    width: 80%;
+    width: 95%;
     margin: auto;
     padding: 0;
     gap: 2rem;
-    height: 330px;
+    height: 210px;
+    padding-top: 20px;
   }
 
   .home-productos-card {
-    height: 330px;
-    margin-top: 15px;
+    height: 210px;
+    padding: 0;
 }
 
   .home-productos-card-imagen {
@@ -866,13 +867,17 @@
     top: 40%;
     left: 80%;
   }
+
+  .home-productos-universo-card {
+    font-size: 12px;
+  }
   
   .home-productos-titulo-card{
-    font-size: 14px;
+    font-size: 12px;
   }
   
   .home-productos-precio-card {
-    font-size: 16px;
+    font-size: 14px;
   }
 
   /* Noticias */
