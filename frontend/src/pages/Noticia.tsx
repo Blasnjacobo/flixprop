@@ -1,5 +1,5 @@
 import { useParams, useNavigate } from "react-router-dom";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import useNoticias from '../../src/context/Noticias/useNoticias';
 import type { Noticia as NoticiaType } from '../types/Noticias';
 import '../css/NoticiasItem.css';
@@ -12,12 +12,26 @@ const Noticia = () => {
   const noticia = noticias.find((noticia: NoticiaType) => noticia.codigo === codigo);
   const [sliderCurrentIndex, setSliderCurrentIndex] = useState<number>(0);
   const navigate = useNavigate();
+  const intervalRef = useRef<NodeJS.Timeout | null>(null)
 
   if (!noticia) {
     return <div>Noticia no encontrada</div>;
   }
 
-  console.log(noticia.descripcion);
+  useEffect(() => {
+    intervalRef.current = setInterval(() => {
+      setSliderCurrentIndex(curr => {
+        const maxIndex = Math.ceil(noticias.length) - 1;
+        return curr === maxIndex ? 0 : curr + 1; 
+      })
+    }, 7000)
+
+    return () => {
+      if (intervalRef.current) {
+        clearInterval(intervalRef.current)
+      }
+    }
+  }, [noticias.length])
 
   const handleSocialMediaClick = (url: string) => {
     window.open(url, '_blank');
@@ -28,21 +42,11 @@ const Noticia = () => {
     navigate(`/flixprop/noticias/${noticia.codigo}`);
   };
 
-  const scrollToSliderImage = (direction: string) => {
-    setSliderCurrentIndex(curr => {
-      const maxIndex = Math.ceil(noticias.length) - 1;
-      if (curr === undefined) return 0; // Safety check
-      return direction === 'prev'
-        ? (curr === 0 ? maxIndex : curr - 1)
-        : (curr === maxIndex ? 0 : curr + 1);
-    });
-  };
-
   const goToSliderSlide = (slideIndex: number) => {
     setSliderCurrentIndex(slideIndex);
   };
 
-  const currentItems = noticias.slice(sliderCurrentIndex * 1, sliderCurrentIndex + 1);
+  const currentItems = noticias.slice(sliderCurrentIndex * 1, (window.innerWidth > 960) ? sliderCurrentIndex + 2 : sliderCurrentIndex + 1);
 
   return (
     <div className="noticiasItem-section">
@@ -107,24 +111,18 @@ const Noticia = () => {
             ))}
           </ul>
           <div className="noticiasItem-dots-container">
-                      <div className="sliderItem-arrows" onClick={() => scrollToSliderImage('prev')}>
-                        <i className="bi bi-chevron-left"></i>
-                      </div>
-                      <div className='sliderItem-dots'>
-                        {Array.from({ length: Math.ceil(noticias.length) }).map((_, idx) => (
-                          <div 
-                            key={idx}
-                            className="dotItem-container-item"
-                            onClick={() => goToSliderSlide(idx)}
-                          >
-                            <i className={`bi bi-circle-fill ${idx === sliderCurrentIndex ? "active" : ""}`}></i>
-                          </div>
-                        ))}
-                      </div>
-                      <div className="sliderItem-arrows" onClick={() => scrollToSliderImage('next')}>
-                        <i className="bi bi-chevron-right"></i>
-                      </div>
-                    </div>
+            <div className='sliderItem-dots'>
+              {Array.from({ length: Math.ceil(noticias.length) }).map((_, idx) => (
+                <div 
+                  key={idx}
+                  className="dotItem-container-item"
+                  onClick={() => goToSliderSlide(idx)}
+                >
+                  <i className={`bi bi-circle-fill ${idx === sliderCurrentIndex ? "active" : ""}`}></i>
+                </div>
+              ))}
+            </div>
+          </div>
         </div>
       </section>
     </div>

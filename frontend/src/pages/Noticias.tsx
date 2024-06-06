@@ -24,7 +24,7 @@ const Noticias = () => {
   const [noticiasAllCurrentIndex, setNoticiasAllCurrentIndex] = useState<number>(0);
   const [isMobile, setIsMobile] = useState<boolean>(window.innerWidth < 960);
 
-  const navigate = useNavigate();  // Get the navigate function
+  const navigate = useNavigate();
 
   useEffect(() => {
     const handleResize = () => {

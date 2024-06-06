@@ -121,7 +121,7 @@
 
   .noticiasPage-all {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: repeat(2, 1fr);
     gap: 3rem;
     width: 100%;
     justify-content: center;
@@ -136,8 +136,8 @@
   }
 
   .noticiasPage-all-noticia img {
-    width: 115vw;
-    height: 115px;
+    width: 186px;
+    height: 186px;
     object-fit: cover;
     border-radius: 10px;
   }
@@ -147,12 +147,11 @@
     flex-direction: column;
     justify-content: space-between;
     align-items: start;
-    font-size: 20vw;
   }
 
   .noticiasPage-all-noticia div h5 {
     font-weight: bold;
-    font-size: 1.4vw;
+    font-size: 22px;
   }
 
   .noticiasPage-all-noticia div p {
