@@ -1,13 +1,14 @@
 import { useRef, useState, useEffect } from 'react';
 // import noticias from '../../assets/Noticias/noticias.json';
-import useNoticias from '../../context/Noticias/useNoticias';
 import type { Noticia as NoticiaType } from '../../types/Noticias';
 import { useNavigate } from 'react-router-dom';
 
 
-const Noticias = () => {
-  const { noticias } = useNoticias()
-  console.log(noticias)
+interface NoticiasPromps {
+  noticias: NoticiaType[]
+}
+
+const HomeNoticias = ({ noticias }: NoticiasPromps) => {
   const containerRef = useRef<HTMLDivElement>(null);
   const [touchStartX, setTouchStartX] = useState<number | null>(null);
   const [hasScrolled, setHasScrolled] = useState<boolean>(false);
@@ -116,4 +117,4 @@ const Noticias = () => {
   );
 };
 
-export default Noticias;
+export default HomeNoticias;

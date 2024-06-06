@@ -1,3 +1,43 @@
+/* Universo Page */
+
+.universosPage-section {
+  width: 100vw;
+  margin: 0;
+  background: radial-gradient(circle, red 0%, black 100%)
+}
+
+.universosPage-text {
+  margin: auto;
+  text-align: center;
+  font-size: 100px;
+  font-family: fantasy;
+  padding: 1rem 0;
+  color: white;
+}
+
+.universosPage-Cards-container {
+  width: 85%;
+  margin: auto;
+  padding: 0 0 2rem 0;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 5px;
+}
+
+.universosPage-card {
+  width: 100%;
+  height: 250px;
+  cursor: pointer;
+}
+
+.universosPage-card img {
+  width: 100%;
+  height: 100%;
+  border-radius: 5%;
+}
+
+/* UniversosProducts */
+
 .universoProducts-section {
     width: 100vw;
     margin: 0;
@@ -164,6 +204,14 @@
 
   .universoProducts-noticias-all-noticia div p {
     color: gray;
+  }
+
+  .universosPage-text {
+    font-size: 32px;
+  }
+
+  .universosPage-card {
+    height: 75px;
   }
 
   }

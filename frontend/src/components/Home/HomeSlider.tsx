@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import flixpropSlider from '../../assets/slider/flixprop-slider.json';
 
-export const Slider = () => {
+export const HomeSlider = () => {
   const [isMobile, setIsMobile] = useState(false);
   const listRef = useRef<HTMLUListElement | null>(null);
   const [currentIndex, setCurrentIndex] = useState<number>(0);
@@ -90,4 +90,4 @@ export const Slider = () => {
   )
 }
 
-export default Slider;
+export default HomeSlider;

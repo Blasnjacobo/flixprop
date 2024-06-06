@@ -1,11 +1,13 @@
 import { useRef, useState, useEffect } from 'react';
-import useUniverso from '../../context/Universos/useUniversos';
 import { Universo as universoType } from '../../types/Universos'
 import universosBanner from '../../assets/Noticias/noticias-banner-section.jpg';
 import { useNavigate } from "react-router-dom";
 
-const Universos = () => {
-  const { universos } = useUniverso();
+interface universosPromp {
+  universos: universoType[]
+}
+
+const HomeUniversos = ({ universos }: universosPromp) => {
   const containerRef = useRef<HTMLDivElement>(null);
   const [touchStartX, setTouchStartX] = useState<number | null>(null);
   const [hasScrolled, setHasScrolled] = useState<boolean>(false);
@@ -125,4 +127,4 @@ const Universos = () => {
   );
 };
 
-export default Universos;
+export default HomeUniversos;

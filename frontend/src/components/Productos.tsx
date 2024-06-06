@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import { Producto } from "../../types/Productos";
-import amazon from '../../assets/Productos/amazon.jpg'
-import flixprop from '../../assets/flixprop-logo.png'
+import { Producto } from "../types/Productos";
+import amazon from '../assets/Productos/amazon.jpg'
+import flixprop from '../assets/flixprop-logo.png'
 
 interface StoreItemProps {
     producto: Producto;

@@ -9,8 +9,8 @@ const PagoExitoso = () => {
       setIsWideScreen(window.innerWidth > 990);
     };
 
-    handleResize(); // Initial call to set initial screen size
-    window.addEventListener('resize', handleResize); // Add event listener to track window resize
+    handleResize();
+    window.addEventListener('resize', handleResize);
 
     // Cleanup event listener on component unmount
     return () => {

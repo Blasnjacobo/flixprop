@@ -8,7 +8,8 @@ import Menu from './components/Menu';
 import Footer from './components/Footer';
 
 import Home from './pages/Home';
-import Universos from './pages/Universos';
+import Universo from './pages/Universo';
+import Universos from './pages/Universos'
 import Colecciones from './pages/Colecciones';
 import Noticias from './pages/Noticias';
 import Quizzes from './pages/Quizzes';
@@ -51,7 +52,8 @@ function App() {
                 <Menu showMenu={showMenu} menuRef={menuRef} navbarRef={navbarRef} setShowMenu={setShowMenu} />
                 <Routes>
                   <Route path='/flixprop/' element={<Home />} />
-                  <Route path='/flixprop/universos/:codigo' element={<Universos />} />
+                  <Route path='flixprop/universos/' element={<Universos />} />
+                  <Route path='/flixprop/universos/:codigo' element={<Universo />} />
                   <Route path='/flixprop/colecciones/' element={<Colecciones />} />
                   <Route path='/flixprop/noticias/' element={<Noticias />} />
                   <Route path='/flixprop/noticias/:codigo' element={<Noticia />} />
