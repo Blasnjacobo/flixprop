@@ -52,7 +52,7 @@ function App() {
                 <Menu showMenu={showMenu} menuRef={menuRef} navbarRef={navbarRef} setShowMenu={setShowMenu} />
                 <Routes>
                   <Route path='/flixprop/' element={<Home />} />
-                  <Route path='flixprop/universos/' element={<Universos />} />
+                  <Route path='/flixprop/universos/' element={<Universos />} />
                   <Route path='/flixprop/universos/:codigo' element={<Universo />} />
                   <Route path='/flixprop/colecciones/' element={<Colecciones />} />
                   <Route path='/flixprop/noticias/' element={<Noticias />} />
