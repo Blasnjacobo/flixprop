@@ -5,6 +5,7 @@ import type { Noticia as NoticiaType } from '../types/Noticias';
 import '../css/NoticiasItem.css';
 import noticiasBanner from '../assets/Noticias/noticias-banner-section.jpg';
 import flixprop from '../assets/flixpropFondo.jpg';
+import Ofrecemos from "../components/Home/Ofrecemos";
 
 const Noticia = () => {
   const { codigo } = useParams<{ codigo: string }>();
@@ -124,6 +125,9 @@ const Noticia = () => {
             </div>
           </div>
         </div>
+      </section>
+      <section>
+        <Ofrecemos />
       </section>
     </div>
   )
