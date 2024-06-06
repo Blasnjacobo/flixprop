@@ -150,6 +150,13 @@
   .universoProducts-noticias-all-noticia div p {
     color: gray;
   }
+
+  .universoProducts-banner-text {
+    width: 85%;
+    margin: 1rem auto;
+    font-weight: bold;
+  }
+
   
   @media screen and (max-width: 960px) {
     .universoProducts-productos-filter {

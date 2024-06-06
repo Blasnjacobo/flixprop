@@ -195,7 +195,7 @@ i.active {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     justify-content: center;
-    gap: 1rem;
+    gap: 0rem;
 }
 
 .home-universo-card {
@@ -395,12 +395,38 @@ i.active {
 
 /* Home - Universo */
 
+.home-universo-section {
+    height: 380px;
+}
+
 .home-universo-mainCards {
-    grid-template-columns: repeat(1, 1fr);
+    display: flex; 
+    overflow-x: auto; 
+    width: 100vw;
+    gap: 1rem;
+}
+
+.home-universo-banner-image {
+    height: 380px;
 }
 
 .home-universo-main {
-    height: 400px;
+    height: 250px;
+    display: flex;
+    flex-direction: column;
+    width: 95%;
+}
+
+.home-universo-card {
+    width: 100px;
+    height: 100px;
+    flex: 0 0 auto; /* Prevent flex items from shrinking */
+    cursor: pointer;
+    margin: auto 0;
+}
+
+.home-universo-card img {
+    width: 100%;
 }
 
 .home-univero-scroll-arrows {

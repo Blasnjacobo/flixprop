@@ -5,9 +5,10 @@ import { useNavigate } from "react-router-dom";
 
 interface universosPromp {
   universos: universoType[]
+  text: string
 }
 
-const HomeUniversos = ({ universos }: universosPromp) => {
+const HomeUniversos = ({ text, universos }: universosPromp) => {
   const containerRef = useRef<HTMLDivElement>(null);
   const [touchStartX, setTouchStartX] = useState<number | null>(null);
   const [hasScrolled, setHasScrolled] = useState<boolean>(false);
@@ -83,7 +84,7 @@ const HomeUniversos = ({ universos }: universosPromp) => {
   }
 
   const getDisplayCount = () => {
-    return window.innerWidth >= 960 ? 4 : 1;
+    return window.innerWidth >= 960 ? 4 : 3;
   };
 
   const activeUniversos = universos.filter((element) => element.activo === "TRUE");
@@ -100,7 +101,7 @@ const HomeUniversos = ({ universos }: universosPromp) => {
           onTouchEnd={handleTouchEnd}
         >
           <div className='home-universo-titleVerMas'>
-            <h3>Universos</h3>
+            <h3>{text}</h3>
             <p onClick={handleVerTodos}>Ver Todos</p>
           </div>
           <div className='home-universo-mainCards'>

@@ -13,6 +13,7 @@ import { Producto } from '../types/Productos';
 
 import universoBanner from '../assets/Universos/universoBanner.jpg';
 import '../css/UniversosPage.css';
+import HomeUniversos from "../components/Home/HomeUniversos";
 
 const Universo = () => {
   const { codigo } = useParams<{ codigo: string }>();
@@ -23,6 +24,8 @@ const Universo = () => {
 
   const [universoProducts, setUniversoProducts] = useState<Producto[]>([]);
   const [universoNoticias, setUniversoNoticias] = useState<NoticiaType[]>([]);
+  const [otrosUniversos, setOtrosUniversos] = useState<UniversoType[]>([]);
+
 
   const [sortOption, setSortOption] = useState('');
   const [isWideScreen, setIsWideScreen] = useState(window.innerWidth >= 960);
@@ -59,7 +62,19 @@ const Universo = () => {
       }
     };
 
+    const fetchOtrosUniversos = () => {
+      try {
+        if (universo) {
+          const filteredOtrosUniversos = universos.filter(element => element !== universo);
+          setOtrosUniversos(filteredOtrosUniversos);
+        }
+      } catch (error) {
+        console.error('Error:', error);
+      }
+    };
+
     fetchProductos();
+    fetchOtrosUniversos()
   }, [universo, productos]);
 
   const handleSortChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
@@ -283,6 +298,10 @@ const Universo = () => {
           </div>
         </section>
         )}
+        <div>
+          <h1 className="universoProducts-banner-text">Explora otros universos</h1>
+          <HomeUniversos universos={otrosUniversos} text=""/>
+        </div>
         <HomeProductos productos={productos} text="TE PODRIA INTERESAR"/>
       </div>
     </div>

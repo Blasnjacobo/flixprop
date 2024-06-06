@@ -41,7 +41,7 @@ const Home = () => {
     <div className='home-container'>
       <HomeSlider />
       <HomeProductos productos={masRecienteProductos} text={masRecienteText} />
-      <HomeUniversos universos={universos} />
+      <HomeUniversos universos={universos} text='Universos'/>
       <HomeNoticias noticias={noticias} />
       {/*<HomeCategorias />*/}
       <HomeProductos productos={masVendidoProductos} text={masVendidoText} />
