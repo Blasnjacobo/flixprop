@@ -3,13 +3,12 @@ import { Producto } from '../../types/Productos';
 import Productos from '../Productos';
 
 interface ProductosPromps {
-  productos: Producto[]
-  text: string
+  productos: Producto[];
+  text: string;
 }
 
-const HomeProductos = ({ productos, text } : ProductosPromps) => {
+const HomeProductos = ({ productos, text }: ProductosPromps) => {
   const containerRef = useRef<HTMLDivElement>(null);
-  console.log(productos)
   const [touchStartX, setTouchStartX] = useState<number | null>(null);
   const [hasScrolled, setHasScrolled] = useState<boolean>(false);
   const [offset, setOffset] = useState<number>(0);
@@ -18,10 +17,14 @@ const HomeProductos = ({ productos, text } : ProductosPromps) => {
     setOffset(0);
   }, [productos]);
 
-
   const scrollLeft = () => {
     if (containerRef.current && !hasScrolled) {
       const displayCount = getDisplayCount();
+      const firstChildElement = containerRef.current.firstChild as HTMLElement;
+      const itemWidth = firstChildElement ? firstChildElement.clientWidth : 0;
+      const scrollAmount = displayCount * itemWidth;
+      containerRef.current.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
+
       let newOffset = offset - displayCount;
       if (newOffset < 0) {
         newOffset = productos.length - (productos.length % displayCount || displayCount); // Wrap to the end
@@ -33,6 +36,11 @@ const HomeProductos = ({ productos, text } : ProductosPromps) => {
   const scrollRight = () => {
     if (containerRef.current && !hasScrolled) {
       const displayCount = getDisplayCount();
+      const firstChildElement = containerRef.current.firstChild as HTMLElement;
+      const itemWidth = firstChildElement ? firstChildElement.clientWidth : 0;
+      const scrollAmount = displayCount * itemWidth;
+      containerRef.current.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+
       let newOffset = offset + displayCount;
       if (newOffset >= productos.length) {
         newOffset = 0;
@@ -96,7 +104,7 @@ const HomeProductos = ({ productos, text } : ProductosPromps) => {
             <i className="bi bi-caret-left"></i>
           </button>
           <div className='home-productos-cardsCount'>
-              {Math.ceil(offset / getDisplayCount()) + 1} / {Math.ceil(productos.length / getDisplayCount())}
+            {Math.ceil(offset / getDisplayCount()) + 1} / {Math.ceil(productos.length / getDisplayCount())}
           </div>
           <button className='scroll-right' onClick={scrollRight}>
             <i className="bi bi-caret-right"></i>

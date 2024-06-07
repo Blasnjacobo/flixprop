@@ -78,9 +78,18 @@ i.active {
     overflow-y: hidden;
     padding-bottom: 20px;
     width: 100%;
+    scroll-behavior: smooth;
+}
+
+.home-productos-main > div {
+    scroll-snap-align: start;
 }
 
 /* ------------------------------------ */
+
+.home-productos-section {
+    scroll-snap-type: x mandatory;
+  }
 
 .home-productos-card {
     width: 100%; 
@@ -453,22 +462,26 @@ i.active {
     margin: auto;
     padding: 0;
     gap: 2rem;
-    height: 210px;
+    height: 330px;
     padding-top: 20px;
 }
 
 .home-productos-card {
-    height: 210px;
+    height: 280px;
     padding: 0;
 }
 
 .home-productos-card-imagen {
-    height: 120px; 
+    height: 220px;
+}
+
+.home-productos-info {
+    height: 60px;
 }
 
 .home-productos-imagenProvedor {
     width: 50px;
-    top: 40%;
+    top: 60%;
     left: 80%;
 }
 

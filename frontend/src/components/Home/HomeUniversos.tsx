@@ -1,5 +1,5 @@
 import { useRef, useState, useEffect } from 'react';
-import { Universo as universoType } from '../../types/Universos'
+import { Universo as universoType } from '../../types/Universos';
 import universosBanner from '../../assets/Noticias/noticias-banner-section.jpg';
 import { useNavigate } from "react-router-dom";
 
@@ -23,10 +23,13 @@ const HomeUniversos = ({ text, universos }: universosPromp) => {
   const scrollLeft = () => {
     if (containerRef.current && !hasScrolled) {
       const displayCount = getDisplayCount();
+      const activeUniversos = universos.filter((element) => element.activo === "TRUE");
       let newOffset = offset - displayCount;
       if (newOffset < 0) {
-        const activeUniversos = universos.filter((element) => element.activo === "TRUE");
-        newOffset = activeUniversos.length - (Math.abs(newOffset) % activeUniversos.length || activeUniversos.length); // Wrap to the end
+        newOffset = activeUniversos.length - (activeUniversos.length % displayCount || displayCount);
+        if (newOffset === activeUniversos.length) {
+          newOffset -= displayCount;
+        }
       }
       setOffset(newOffset);
     }
@@ -35,10 +38,10 @@ const HomeUniversos = ({ text, universos }: universosPromp) => {
   const scrollRight = () => {
     if (containerRef.current && !hasScrolled) {
       const displayCount = getDisplayCount();
-      let newOffset = offset + displayCount;
       const activeUniversos = universos.filter((element) => element.activo === "TRUE");
+      let newOffset = offset + displayCount;
       if (newOffset >= activeUniversos.length) {
-        newOffset = newOffset % activeUniversos.length;
+        newOffset = 0;
       }
       setOffset(newOffset);
     }
@@ -58,10 +61,14 @@ const HomeUniversos = ({ text, universos }: universosPromp) => {
       if (Math.abs(deltaX) > 100) {
         const displayCount = getDisplayCount();
         let newOffset = offset + direction * displayCount;
+        const activeUniversos = universos.filter((element) => element.activo === "TRUE");
 
         if (newOffset < 0) {
-          newOffset = universos.length - (universos.length % displayCount || displayCount); // Wrap to the end
-        } else if (newOffset >= universos.length) {
+          newOffset = activeUniversos.length - (activeUniversos.length % displayCount || displayCount);
+          if (newOffset === activeUniversos.length) {
+            newOffset -= displayCount;
+          }
+        } else if (newOffset >= activeUniversos.length) {
           newOffset = 0;
         }
 
@@ -88,6 +95,9 @@ const HomeUniversos = ({ text, universos }: universosPromp) => {
   };
 
   const activeUniversos = universos.filter((element) => element.activo === "TRUE");
+
+  const currentPage = Math.floor(offset / getDisplayCount()) + 1;
+  const totalPages = Math.ceil(activeUniversos.length / getDisplayCount());
 
   return (
     <div className='home-universo-section'>
@@ -116,7 +126,7 @@ const HomeUniversos = ({ text, universos }: universosPromp) => {
               <i className="bi bi-caret-left"></i>
             </button>
             <div className='home-universo-cardsCount'>
-              {Math.ceil(offset / getDisplayCount()) + 1} / {Math.ceil(activeUniversos.length / getDisplayCount())}
+              {currentPage} / {totalPages}
             </div>
             <button className='home-universo-scroll-right' onClick={scrollRight}>
               <i className="bi bi-caret-right"></i>
