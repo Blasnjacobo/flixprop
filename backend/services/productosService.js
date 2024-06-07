@@ -18,27 +18,28 @@ async function updateProductosCollection() {
       if (!matchInDB) {
         await productosCollection.insertOne({
           codigo: sheetItem[0],
-          nombre: sheetItem[1],
-          universo: sheetItem[2],
-          personaje: sheetItem[3],
-          link: sheetItem[4],
-          descripcion: sheetItem[5],
-          vendedor: sheetItem[6],
-          categoria: sheetItem[7],
-          tags: sheetItem[8],
-          precio: sheetItem[9],
-          imgProducto: sheetItem[10],
-          imgEscena: sheetItem[11],
-          imgModelo: sheetItem[12],
-          imgExtra: sheetItem[13],
-          estatus: sheetItem[14],
-          masVendido: sheetItem[15],
-          masReciente: sheetItem[16]
+          codigoUniverso: sheetItem[1],
+          nombre: sheetItem[2],
+          universo: sheetItem[3],
+          personaje: sheetItem[4],
+          link: sheetItem[5],
+          descripcion: sheetItem[6],
+          vendedor: sheetItem[7],
+          categoria: sheetItem[8],
+          tags: sheetItem[9],
+          precio: sheetItem[10],
+          imgProducto: sheetItem[11],
+          imgEscena: sheetItem[12],
+          imgModelo: sheetItem[13],
+          imgExtra: sheetItem[14],
+          estatus: sheetItem[15],
+          masVendido: sheetItem[16],
+          masReciente: sheetItem[17]
         });
         console.log(`New item added to MongoDB (productos): ${sheetItem[0]}`);
       } else {
         const fieldsToCheck = [
-          "codigo", "nombre", "universo", "personaje", "link", "descripcion",
+          "codigo", "codigoUniverso", "nombre", "universo", "personaje", "link", "descripcion",
           "vendedor", "categoria", "tags", "precio", "imgProducto", "imgEscena", "imgModelo", "imgExtra", "estatus",
           "masVendido", "masReciente"
         ];
@@ -56,22 +57,23 @@ async function updateProductosCollection() {
             {
               $set: {
                 codigo: sheetItem[0],
-                nombre: sheetItem[1],
-                universo: sheetItem[2],
-                personaje: sheetItem[3],
-                link: sheetItem[4],
-                descripcion: sheetItem[5],
-                vendedor: sheetItem[6],
-                categoria: sheetItem[7],
-                tags: sheetItem[8],
-                precio: sheetItem[9],
-                imgProducto: sheetItem[10],
-                imgEscena: sheetItem[11],
-                imgModelo: sheetItem[12],
-                imgExtra: sheetItem[13],
-                estatus: sheetItem[14],
-                masVendido: sheetItem[15],
-                masReciente: sheetItem[16]
+                codigoUniverso: sheetItem[1],
+                nombre: sheetItem[2],
+                universo: sheetItem[3],
+                personaje: sheetItem[4],
+                link: sheetItem[5],
+                descripcion: sheetItem[6],
+                vendedor: sheetItem[7],
+                categoria: sheetItem[8],
+                tags: sheetItem[9],
+                precio: sheetItem[10],
+                imgProducto: sheetItem[11],
+                imgEscena: sheetItem[12],
+                imgModelo: sheetItem[13],
+                imgExtra: sheetItem[14],
+                estatus: sheetItem[15],
+                masVendido: sheetItem[16],
+                masReciente: sheetItem[17]
               },
             }
           );

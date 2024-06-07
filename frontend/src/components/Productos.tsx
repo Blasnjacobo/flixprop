@@ -2,6 +2,7 @@
 import { Producto } from "../types/Productos";
 import amazon from '../assets/Productos/amazon.jpg'
 import flixprop from '../assets/flixprop-logo.png'
+import { useNavigate } from "react-router-dom";
 
 interface StoreItemProps {
     producto: Producto;
@@ -19,13 +20,15 @@ const Productos = ({ producto }: StoreItemProps) => {
         imgEscena    } = producto;
         console.log(producto)
 
+        const navigate = useNavigate();
         const productoProvedor = ((producto.vendedor === 'Amazon') ? amazon : flixprop )
 
     const handleCardClick = (link: string, vendedor: string, codigo: string) => {
+        console.log(codigo)
         if (vendedor === 'Flixprop') {
-            link = codigo
-        }
-        window.location.href = link;
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+            navigate(`/flixprop/productos/${codigo}`);
+        } else window.location.href = link;
     };
 
     const handleImageTouchStart = (e: React.TouchEvent<HTMLImageElement>, imgEscena: string) => {

@@ -1,6 +1,7 @@
 export interface Producto {
     codigo: string;
-    nombre: string; 
+    nombre: string;
+    nombreUniverso: string;
     universo: string; 
     personaje: string; 
     link: string; 
