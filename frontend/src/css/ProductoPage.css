@@ -44,9 +44,9 @@
 }
 
 .ProductoPage-productoInfo-imagenes-principal img {
-    width: 100%;
+    width: 90%;
     height: 450px;
-    object-fit: cover;
+    object-fit: fill;
     border-radius: 10%;
 }
 
@@ -63,7 +63,8 @@
     flex-direction: column;
 }
 
-.ProductoPage-productoInfo-details-cantidad {
+
+.ProductoPage-productoInfo-details-cantidad-values {
     width: 240px;
     height: 70px;
     display: flex;
@@ -73,7 +74,7 @@
     border-radius: 5%;
 }
 
-.ProductoPage-productoInfo-details-cantidad h2 {
+.ProductoPage-productoInfo-details-cantidad-values h2 {
     padding:5px 15px;
 }
 

@@ -2,8 +2,10 @@ import { useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import useProducts from '../context/Productos/useProductos';
 import useUniversos from "../context/Universos/useUniversos";
+import useUser from '../context/Users/useUser';
+import useCart from '../context/Cart/useCart';
 import { Producto as ProductoType } from '../types/Productos';
-import type { Universo as UniversoType } from '../types/Universos';
+import { Universo as UniversoType } from '../types/Universos';
 import HomeUniversos from '../components/Home/HomeUniversos';
 import HomeProductos from '../components/Home/HomeProductos';
 import Ofrecemos from '../components/Ofrecemos';
@@ -16,18 +18,51 @@ const Producto = () => {
   const producto = productos.find((producto: ProductoType) => producto.codigo === codigo);
 
   const [selectedImage, setSelectedImage] = useState<string | undefined>(producto?.imgProducto);
+  const [isImageManuallySelected, setIsImageManuallySelected] = useState<boolean>(false);
   const [otrosUniversos, setOtrosUniversos] = useState<UniversoType[]>([]);
-  const [otrosProductos, setOtrosProductos] = useState<ProductoType[]>([])
-  const [productosRelacionados, setProductosRelacionados] = useState<ProductoType[]>([])
-  const [isMobile, setIsMobile] = useState<boolean>(window.innerWidth < 960)
+  const [otrosProductos, setOtrosProductos] = useState<ProductoType[]>([]);
+  const user = useUser();
+  const [productosRelacionados, setProductosRelacionados] = useState<ProductoType[]>([]);
+  const [isMobile, setIsMobile] = useState<boolean>(window.innerWidth < 960);
   const [sliderCurrentIndex, setSliderCurrentIndex] = useState<number>(0);
+  const [quantity, setQuantity] = useState<number>(0);
+
 
   const images = [
     producto?.imgProducto,
     producto?.imgEscena,
     producto?.imgModelo,
     producto?.imgExtra
-  ].filter(Boolean); // Remove undefined values
+  ].filter(Boolean);
+
+  const {
+    itemQuantity,
+    increaseQuantity,
+    decreaseQuantity,
+  } = useCart();
+
+  const handleIncreaseQuantity = async () => {
+    if (!producto) return;
+    try {
+        await increaseQuantity(producto.codigo, user?.username || '');
+        const updatedQuantity = await itemQuantity(producto.codigo, user?.username || '');
+        setQuantity(updatedQuantity);
+    } catch (error) {
+        console.error("Error increasing quantity:", error);
+    }
+  };
+
+  const handleDecreaseQuantity = async () => {
+    if (!producto) return;
+    try {
+        await decreaseQuantity(producto.codigo, user?.username || '');
+        const updatedQuantity = await itemQuantity(producto.codigo, user?.username || '');
+        setQuantity(updatedQuantity);
+    } catch (error) {
+        console.error("Error decreasing quantity:", error);
+    }
+  };
+
 
   useEffect(() => {
     const handleResize = () => {
@@ -55,8 +90,10 @@ const Producto = () => {
   }, [producto, productos, universos]);
 
   useEffect(() => {
-    setSelectedImage(images[sliderCurrentIndex]);
-  }, [sliderCurrentIndex, images]);
+    if (!isImageManuallySelected) {
+      setSelectedImage(images[sliderCurrentIndex]);
+    }
+  }, [sliderCurrentIndex, images, isImageManuallySelected]);
 
   if (!producto) {
     return <div>Producto no encontrado</div>;
@@ -64,16 +101,19 @@ const Producto = () => {
 
   const handleImageClick = (image: string) => {
     setSelectedImage(image);
+    setIsImageManuallySelected(true);
   };
 
   const goToSliderSlide = (slideIndex: number) => {
     setSliderCurrentIndex(slideIndex);
+    setIsImageManuallySelected(false);
   };
 
   return (
     <div className='ProductoPage-section'>
       <div className='ProductoPage-container'>
         {
+          /*  CODE WHEN IS DESKTOP*/
           !isMobile ? (
             <section className='ProductoPage-productoInfo'>
               <div className='ProductoPage-productoInfo-imagenes'>
@@ -112,14 +152,25 @@ const Producto = () => {
                   <h4>${producto.precio}.00 MXN</h4>
                 </div>
                 <div className='ProductoPage-productoInfo-details-cantidad'>
-                  <h2>-</h2>
-                  <h2>0</h2>
-                  <h2>+</h2>
-                </div>
-                <button>Agregar al carrito</button>
+                  <h3>Cantidad</h3>
+                  <div className='ProductoPage-productoInfo-details-cantidad-values'>
+                    <h2 onClick={handleDecreaseQuantity}>-</h2>
+                    <h2>{quantity}</h2>
+                    <h2 onClick={handleIncreaseQuantity}>+</h2>
+                  </div>
+              </div>
+                {quantity === 0 ? (
+                  <button onClick={handleIncreaseQuantity}>Agregar al carrito</button>
+                ) : (
+                  <h4>{`${quantity} producto(s) agregado al Carrito`}<i className="bi bi-check" style={{ color: 'green', fontSize:'40px' }}></i></h4>
+                )}
               </div>
             </section>
-          ) : (
+          ) 
+          
+          : /*  CODE WHEN IS MOBILE*/ 
+          
+          (
             <section className='ProductoPage-productoInfo-mobile'>
               <div className='ProductoPage-productoInfo-titleUniverso-mobile'>
                 <h3>{producto.nombre}</h3>
@@ -147,17 +198,20 @@ const Producto = () => {
               <div className='ProductoPage-productoInfo-cantidad-mobile'>
                 <h5>Cantidad</h5>
                 <div className='ProductoPage-productoInfo-cantidad-info-mobile'>
-                  <h2>-</h2>
-                  <h2>0</h2>
-                  <h2>+</h2>
+                  <h2 onClick={handleDecreaseQuantity}>-</h2>
+                  <h2>{quantity}</h2>
+                  <h2 onClick={handleIncreaseQuantity}>+</h2>
                 </div>
               </div>
-              <button>Agregar al carrito</button>
-              <div className='ProductoPage-productoDescripcion'>
-                {producto.descripcion}
-              </div>
+              {quantity === 0 ? (
+                <button onClick={handleIncreaseQuantity}>Agregar al carrito</button>
+              ) : (
+                <h4>{`${quantity} producto(s) agregado al Carrito`}<i className="bi bi-check" style={{ color: 'green', fontSize:'40px' }}></i></h4>
+              )}
+            <div className='ProductoPage-productoDescripcion'>
+                  {producto.descripcion}
+            </div>
             </section>
-            
           )
         }
         <HomeProductos productos={productosRelacionados} text={`Más productos de ${producto.universo}`} />
