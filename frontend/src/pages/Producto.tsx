@@ -152,6 +152,7 @@ const Producto = () => {
                   <h2>+</h2>
                 </div>
               </div>
+              <button>Agregar al carrito</button>
               <div className='ProductoPage-productoDescripcion'>
                 {producto.descripcion}
               </div>
@@ -159,7 +160,7 @@ const Producto = () => {
             
           )
         }
-        <HomeProductos productos={productosRelacionados} text={'Productos Relacionados'} />
+        <HomeProductos productos={productosRelacionados} text={`Más productos de ${producto.universo}`} />
         <HomeUniversos universos={otrosUniversos} text="Explora otros universos"/>
         {otrosProductos.length > 0 && (
           <HomeProductos productos={otrosProductos} text={'Podria interesarte'} />

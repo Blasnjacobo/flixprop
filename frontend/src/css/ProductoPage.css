@@ -120,8 +120,8 @@
     }
 
     .ProductoPage-productoInfo-imagenes-imagen-mobile {
-        width: 80%;
-        height: 350px;
+        width: 70%;
+        height: 300px;
         margin: auto;
     }
 
@@ -154,5 +154,14 @@
 
     .ProductoPage-productoInfo-cantidad-info-mobile h2{
         margin: 0;
+    }
+
+    .ProductoPage-productoInfo-mobile button{
+        max-width: 430px;
+        height: 50px;
+        background-color: gray;
+        color: white;
+        font-size: 25px;
+        border-radius: 10px;
     }
     }
