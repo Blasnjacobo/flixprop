@@ -41,9 +41,12 @@ const Producto = () => {
     decreaseQuantity,
   } = useCart();
 
+  const { openCart } = useCart();
+
   const handleIncreaseQuantity = async () => {
     if (!producto) return;
     try {
+        openCart
         await increaseQuantity(producto.codigo, user?.username || '');
         const updatedQuantity = await itemQuantity(producto.codigo, user?.username || '');
         setQuantity(updatedQuantity);
@@ -67,6 +70,7 @@ const Producto = () => {
   useEffect(() => {
     const handleResize = () => {
       setIsMobile(window.innerWidth < 960);
+
     };
 
     window.addEventListener('resize', handleResize);
@@ -159,11 +163,12 @@ const Producto = () => {
                     <h2 onClick={handleIncreaseQuantity}>+</h2>
                   </div>
               </div>
-                {quantity === 0 ? (
-                  <button onClick={handleIncreaseQuantity}>Agregar al carrito</button>
-                ) : (
-                  <h4>{`${quantity} producto(s) agregado al Carrito`}<i className="bi bi-check" style={{ color: 'green', fontSize:'40px' }}></i></h4>
-                )}
+              {
+              (!quantity) ? 
+              <h5>Este producto no se ha agregado al carrito</h5> :
+              <h5>{`Hay ${quantity} producto(s) agregados al carrito`}</h5>
+              }
+              <button onClick={openCart}>Ir al carrito <i className="bi bi-cart" /></button>
               </div>
             </section>
           ) 
@@ -203,11 +208,12 @@ const Producto = () => {
                   <h2 onClick={handleIncreaseQuantity}>+</h2>
                 </div>
               </div>
-              {quantity === 0 ? (
-                <button onClick={handleIncreaseQuantity}>Agregar al carrito</button>
-              ) : (
-                <h4>{`${quantity} producto(s) agregado al Carrito`}<i className="bi bi-check" style={{ color: 'green', fontSize:'40px' }}></i></h4>
-              )}
+              {
+              (!quantity) ? 
+              <h5>Este producto no se ha agregado al carrito</h5> :
+              <h5>{`Hay ${quantity} producto(s) agregados al carrito`}</h5>
+              }
+              <button onClick={openCart}>Ir al carrito <i className="bi bi-cart" /></button>
             <div className='ProductoPage-productoDescripcion'>
                   {producto.descripcion}
             </div>
