@@ -4,12 +4,14 @@
 }
 
 .ProductoPage-container {
-    width: 85%;
+    width: 100%;
     margin: auto;
 }
 
 .ProductoPage-productoInfo {
     height: 500px;
+    width: 85%;
+    margin: auto;
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 15px;
@@ -31,13 +33,13 @@
     gap: 10px;
 }
 .ProductoPage-productoInfo-imagenes-secundarios img {
-    width: 100px;
+    max-width: 100px;
     height: 80px;
     border-radius: 10%;
 }
 
 .ProductoPage-productoInfo-imagenes-principal {
-    width: 100%;
+    max-width: 100%;
     height: 100%;
 }
 
@@ -55,17 +57,18 @@
     justify-content: space-around;
 }
 
+
 .ProductoPage-productoInfo-details-basics {
     display: flex;
     flex-direction: column;
-    gap: 0.5rem;
 }
 
 .ProductoPage-productoInfo-details-cantidad {
-    width: 200px;
+    width: 240px;
+    height: 70px;
     display: flex;
     justify-content: space-between;
-    gap: 1rem;
+    align-items: center;
     border: 1px solid black;
     border-radius: 5%;
 }
@@ -74,10 +77,82 @@
     padding:5px 15px;
 }
 
+.ProductoPage-productoInfo-details button {
+    max-width: 430px;
+    height: 70px;
+    background-color: gray;
+    color: white;
+    font-size: 25px;
+    border-radius: 10px;
+}
+
+.ProductoPage-productoDescripcion {
+    width: 85%;
+    margin: auto;
+}
 
 @media screen and (max-width:960px) {
     
     .ProductoPage-container {
         width: 100%;
     }
-}
+
+    .ProductoPage-productoInfo-mobile {
+        width: 90%;
+        margin: auto;
+        display: flex;
+        flex-direction: column;
+        gap: 2rem;
+    }
+    
+    .ProductoPage-productoInfo-titleUniverso-mobile {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+
+    .ProductoPage-productoInfo-titleUniverso-mobile h3 {
+        font-weight: bold;
+    }
+
+    .ProductoPage-productoInfo-titleUniverso-mobile h5 {
+        color: gray;
+    }
+
+    .ProductoPage-productoInfo-imagenes-imagen-mobile {
+        width: 80%;
+        height: 350px;
+        margin: auto;
+    }
+
+    .ProductoPage-productoInfo-imagenes-imagen-mobile img {
+        width: 100%;
+        height: 100%;
+    }
+
+    .ProductoPage-productoDescripcion {
+        width: 100%;
+        margin: auto;
+    }
+
+    .ProductoPage-productoInfo-cantidad-mobile {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        
+    }
+
+    .ProductoPage-productoInfo-cantidad-info-mobile {
+        border: 1px solid black;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 230px;
+        height: 50px;
+        padding: 5px 20px;
+    }
+
+    .ProductoPage-productoInfo-cantidad-info-mobile h2{
+        margin: 0;
+    }
+    }
