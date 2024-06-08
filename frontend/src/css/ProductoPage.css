@@ -1,0 +1,83 @@
+.ProductoPage-section {
+    width: 100vw;
+    margin: 2rem 0;
+}
+
+.ProductoPage-container {
+    width: 85%;
+    margin: auto;
+}
+
+.ProductoPage-productoInfo {
+    height: 500px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+}
+
+.ProductoPage-productoInfo-imagenes {
+    height: 100%;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+    gap: 5px;
+}
+
+.ProductoPage-productoInfo-imagenes-secundarios {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 10px;
+}
+.ProductoPage-productoInfo-imagenes-secundarios img {
+    width: 100px;
+    height: 80px;
+    border-radius: 10%;
+}
+
+.ProductoPage-productoInfo-imagenes-principal {
+    width: 100%;
+    height: 100%;
+}
+
+.ProductoPage-productoInfo-imagenes-principal img {
+    width: 100%;
+    height: 450px;
+    object-fit: cover;
+    border-radius: 10%;
+}
+
+.ProductoPage-productoInfo-details {
+    height: 400px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+.ProductoPage-productoInfo-details-basics {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.ProductoPage-productoInfo-details-cantidad {
+    width: 200px;
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    border: 1px solid black;
+    border-radius: 5%;
+}
+
+.ProductoPage-productoInfo-details-cantidad h2 {
+    padding:5px 15px;
+}
+
+
+@media screen and (max-width:960px) {
+    
+    .ProductoPage-container {
+        width: 100%;
+    }
+}

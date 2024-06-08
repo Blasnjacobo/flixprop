@@ -7,6 +7,7 @@ import type { Universo as UniversoType } from '../types/Universos';
 import HomeUniversos from '../components/Home/HomeUniversos';
 import HomeProductos from '../components/Home/HomeProductos';
 import Ofrecemos from '../components/Ofrecemos';
+import '../css/ProductoPage.css'
 
 const Producto = () => {
   const { codigo } = useParams<{ codigo: string }>();
@@ -72,12 +73,9 @@ const Producto = () => {
   return (
     <div className='ProductoPage-section'>
         <div className='ProductoPage-container'>
-            <section className='ProductoPage-ProductoInfo'>
-                <div>
-                    <div>
-                        <img src={selectedImage} alt={`imagen del producto del producto: ${producto.codigo}`} />
-                    </div>
-                    <div>
+            <section className='ProductoPage-productoInfo'>
+                <div className='ProductoPage-productoInfo-imagenes'>
+                    <div className='ProductoPage-productoInfo-imagenes-secundarios'>
                         <img
                         src={producto.imgProducto}
                         alt={`imagen del producto del producto: ${producto.codigo}`}
@@ -103,17 +101,20 @@ const Producto = () => {
                             )
                         }
                     </div>
+                    <div className='ProductoPage-productoInfo-imagenes-principal'>
+                        <img src={selectedImage} alt={`imagen del producto del producto: ${producto.codigo}`} />
+                    </div>
                 </div>
-                <div>
-                    <div>
+                <div className='ProductoPage-productoInfo-details'>
+                    <div className='ProductoPage-productoInfo-details-basics'>
                         <div>{producto.nombre}</div>
                         <div>{producto.universo}</div>
-                        <div>{producto.precio}</div>
+                        <div>${producto.precio}.00 MXN</div>
                     </div>
-                    <div>
-                        <h1>-</h1>
-                        <h1>0</h1>
-                        <h1>+</h1>
+                    <div className='ProductoPage-productoInfo-details-cantidad'>
+                        <h2>-</h2>
+                        <h2>0</h2>
+                        <h2>+</h2>
                     </div>
                     <button>Agregar al carrito</button>
                 </div>
