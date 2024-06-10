@@ -6,29 +6,29 @@ module.exports.postSessions = async (req, res) => {
         const { cartItem } = req.body;
 
         const productoPromises = cartItem.map(async (item) => {
-            const producto = await Producto.findOne({ codigo: item.producto.slice(0,10) });
-            return producto;
+            const codigo = item.producto.slice(0, 10);  // Assuming the product code is the first 10 characters
+            const producto = await Producto.findOne({ codigo: codigo });
+            return { producto, talla: item.producto.slice(11) };  // Extracting the talla from the item
         });
 
-        console.log('productoPromises: ' + productoPromises)
+        const productosWithTalla = await Promise.all(productoPromises);
 
-        const productos = await Promise.all(productoPromises);
-
-        console.log('productos: ' + productos)
-
-        const lineItems = productos.map((producto, index) => {
+        const lineItems = productosWithTalla.map(({ producto, talla }, index) => {
             const item = cartItem[index];
             const unitAmount = parseFloat(producto.precio) * 100;
             if (isNaN(unitAmount)) {
                 throw new Error(`Invalid precio value: ${producto.precio}`);
             }
-        
+
             return {
                 price_data: {
                     currency: "mxn",
                     product_data: {
                         name: producto.nombre,
-                        images: [producto.imgProducto]
+                        images: [producto.imgProducto],
+                        metadata: {
+                            talla: talla
+                        }
                     },
                     unit_amount: unitAmount
                 },
