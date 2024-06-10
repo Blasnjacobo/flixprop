@@ -14,6 +14,7 @@ module.exports.postSessions = async (req, res) => {
         const productosWithTalla = await Promise.all(productoPromises);
 
         const lineItems = productosWithTalla.map(({ producto, talla }, index) => {
+            console.log(talla)
             const item = cartItem[index];
             const unitAmount = parseFloat(producto.precio) * 100;
             if (isNaN(unitAmount)) {
