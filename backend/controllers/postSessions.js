@@ -28,7 +28,7 @@ module.exports.postSessions = async (req, res) => {
                         name: producto.nombre,
                         images: [producto.imgProducto],
                         metadata: {
-                            talla: talla
+                            talla: S
                         }
                     },
                     unit_amount: unitAmount
@@ -42,7 +42,7 @@ module.exports.postSessions = async (req, res) => {
             line_items: lineItems,
             mode: "payment",
             success_url: "http://localhost:5173/flixprop/payment/success",
-            cancel_url: "http://localhost:5173/flixprop/payment/rejected"
+            cancel_url: "https://blasnjacobo.github.io/flixprop/"
         });
 
         res.json({ id: session.id });
