@@ -8,6 +8,27 @@
     margin: auto;
 }
 
+.ProductoPage-dots-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.ProductoPage-dots {
+    display: flex;
+    justify-content: center;
+    margin: 0 1rem;
+    gap: 12px;
+}
+
+.ProductoPage-dots-container-item {
+    margin: 0px 3px;
+    cursor: pointer;
+    font-size: 12px;
+    text-align: center;
+}
+
 .ProductoPage-productoInfo {
     height: 500px;
     width: 85%;
@@ -55,6 +76,7 @@
     display: flex;
     flex-direction: column;
     justify-content: space-around;
+    gap: 1rem;
 }
 
 
@@ -63,6 +85,40 @@
     flex-direction: column;
 }
 
+.ProductoPage-productoInfo-talla {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .ProductoPage-productoInfo-talla-list {
+        width: 100%;
+        display: grid;
+        grid-template-columns: repeat(5, 1fr);
+        gap: 1rem;
+    }
+    .ProductoPage-productoInfo-talla-list h3 {
+        border: 1px solid black;
+        text-align: center;
+        border-radius: 15px;
+    }
+    .ProductoPage-productoInfo-talla-list h3 {
+        cursor: pointer;
+        padding: 5px 10px;
+        margin: 5px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        transition: all 0.3s ease;
+}
+
+    .ProductoPage-productoInfo-talla-list h3:hover {        background-color: #f0f0f0;
+    }
+
+    .ProductoPage-productoInfo-talla-list h3.selected {
+        background-color: #ff0000;
+        color: white;
+        border-color: #ff0000;
+    }
 
 .ProductoPage-productoInfo-details-cantidad-values {
     width: 240px;
@@ -89,7 +145,7 @@
 
 .ProductoPage-productoDescripcion {
     width: 85%;
-    margin: auto;
+    margin: 1rem auto;
 }
 
 @media screen and (max-width:960px) {
@@ -137,9 +193,8 @@
 
     .ProductoPage-productoInfo-cantidad-mobile {
         display: flex;
-        justify-content: space-between;
+        justify-content: space-around;
         align-items: center;
-        
     }
 
     .ProductoPage-productoInfo-cantidad-info-mobile {
@@ -147,9 +202,14 @@
         display: flex;
         justify-content: space-between;
         align-items: center;
-        width: 230px;
-        height: 50px;
-        padding: 5px 20px;
+        width: 180px;
+        height: 45px;
+        padding: 5px 30px;
+        border-radius: 10px;
+    }
+
+    .ProductoPage-productoInfo-cantidad-mobile h5 {
+        margin: 0;
     }
 
     .ProductoPage-productoInfo-cantidad-info-mobile h2{
@@ -163,5 +223,10 @@
         color: white;
         font-size: 25px;
         border-radius: 10px;
+    }
+
+    .ProductoPage-productoDescripcion {
+        width: 95%;
+        margin: 1rem auto;
     }
     }

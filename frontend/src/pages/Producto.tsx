@@ -25,52 +25,57 @@ const Producto = () => {
   const [productosRelacionados, setProductosRelacionados] = useState<ProductoType[]>([]);
   const [isMobile, setIsMobile] = useState<boolean>(window.innerWidth < 960);
   const [sliderCurrentIndex, setSliderCurrentIndex] = useState<number>(0);
-  const [quantity, setQuantity] = useState<number>(0);
 
+  // New state for sizes and quantities
+  const [selectedSize, setSelectedSize] = useState<string>('S');
+  const [sizeQuantities, setSizeQuantities] = useState<{ [key: string]: number }>({
+    S: 0,
+    M: 0,
+    L: 0,
+    XL: 0,
+    '2XL': 0,
+  });
 
   const images = [
     producto?.imgProducto,
     producto?.imgEscena,
     producto?.imgModelo,
-    producto?.imgExtra
+    producto?.imgExtra,
   ].filter(Boolean);
 
-  const {
-    itemQuantity,
-    increaseQuantity,
-    decreaseQuantity,
-  } = useCart();
-
+  const { itemQuantity, increaseQuantity, decreaseQuantity } = useCart();
   const { openCart } = useCart();
 
   const handleIncreaseQuantity = async () => {
     if (!producto) return;
     try {
-        openCart
-        await increaseQuantity(producto.codigo, user?.username || '');
-        const updatedQuantity = await itemQuantity(producto.codigo, user?.username || '');
-        setQuantity(updatedQuantity);
+      await increaseQuantity(`${producto.codigo}-${selectedSize}`, user?.username || '');
+      const updatedQuantity = await itemQuantity(`${producto.codigo}-${selectedSize}`, user?.username || '');
+      setSizeQuantities((prev) => ({ ...prev, [selectedSize]: updatedQuantity }));
     } catch (error) {
-        console.error("Error increasing quantity:", error);
+      console.error('Error increasing quantity:', error);
     }
   };
 
   const handleDecreaseQuantity = async () => {
     if (!producto) return;
     try {
-        await decreaseQuantity(producto.codigo, user?.username || '');
-        const updatedQuantity = await itemQuantity(producto.codigo, user?.username || '');
-        setQuantity(updatedQuantity);
+      await decreaseQuantity(`${producto.codigo}-${selectedSize}`, user?.username || '');
+      const updatedQuantity = await itemQuantity(`${producto.codigo}-${selectedSize}`, user?.username || '');
+      setSizeQuantities((prev) => ({ ...prev, [selectedSize]: updatedQuantity }));
     } catch (error) {
-        console.error("Error decreasing quantity:", error);
+      console.error('Error decreasing quantity:', error);
     }
   };
 
+  // Handle size selection
+  const handleSizeChange = (size: string) => {
+    setSelectedSize(size);
+  };
 
   useEffect(() => {
     const handleResize = () => {
       setIsMobile(window.innerWidth < 960);
-
     };
 
     window.addEventListener('resize', handleResize);
@@ -82,13 +87,13 @@ const Producto = () => {
 
   useEffect(() => {
     if (producto) {
-      const filteredOtrosUniversos = universos.filter(element => element.universo !== producto.universo);
+      const filteredOtrosUniversos = universos.filter((element) => element.universo !== producto.universo);
       setOtrosUniversos(filteredOtrosUniversos);
 
-      const filteredProductosRelacionados = productos.filter(element => element.universo === producto.universo);
+      const filteredProductosRelacionados = productos.filter((element) => element.universo === producto.universo);
       setProductosRelacionados(filteredProductosRelacionados);
 
-      const filteredOtrosProductos = productos.filter(element => element.universo !== producto.universo);
+      const filteredOtrosProductos = productos.filter((element) => element.universo !== producto.universo);
       setOtrosProductos(filteredOtrosProductos);
     }
   }, [producto, productos, universos]);
@@ -114,14 +119,14 @@ const Producto = () => {
   };
 
   return (
-    <div className='ProductoPage-section'>
-      <div className='ProductoPage-container'>
+    <div className="ProductoPage-section">
+      <div className="ProductoPage-container">
         {
-          /*  CODE WHEN IS DESKTOP*/
+          /* CODE WHEN IS DESKTOP */
           !isMobile ? (
-            <section className='ProductoPage-productoInfo'>
-              <div className='ProductoPage-productoInfo-imagenes'>
-                <div className='ProductoPage-productoInfo-imagenes-secundarios'>
+            <section className="ProductoPage-productoInfo">
+              <div className="ProductoPage-productoInfo-imagenes">
+                <div className="ProductoPage-productoInfo-imagenes-secundarios">
                   <img
                     src={producto.imgProducto}
                     alt={`imagen del producto del producto: ${producto.codigo}`}
@@ -145,86 +150,115 @@ const Producto = () => {
                     />
                   )}
                 </div>
-                <div className='ProductoPage-productoInfo-imagenes-principal'>
+                <div className="ProductoPage-productoInfo-imagenes-principal">
                   <img src={selectedImage} alt={`imagen del producto del producto: ${producto.codigo}`} />
                 </div>
               </div>
-              <div className='ProductoPage-productoInfo-details'>
-                <div className='ProductoPage-productoInfo-details-basics'>
+              <div className="ProductoPage-productoInfo-details">
+                <div className="ProductoPage-productoInfo-details-basics">
                   <h2>{producto.nombre}</h2>
                   <h5>{producto.universo}</h5>
                   <h4>${producto.precio}.00 MXN</h4>
                 </div>
-                <div className='ProductoPage-productoInfo-details-cantidad'>
+                {producto.categoria === 'Ropa' && (
+                  <div className="ProductoPage-productoInfo-talla">
+                    <h2>Talla</h2>
+                    <div className="ProductoPage-productoInfo-talla-list">
+                      {['S', 'M', 'L', 'XL', '2XL'].map((size) => (
+                        <h3
+                          key={size}
+                          className={selectedSize === size ? 'selected' : ''}
+                          onClick={() => handleSizeChange(size)}
+                        >
+                          {size}
+                        </h3>
+                      ))}
+                    </div>
+                  </div>
+                )}
+                <div className="ProductoPage-productoInfo-details-cantidad">
                   <h3>Cantidad</h3>
-                  <div className='ProductoPage-productoInfo-details-cantidad-values'>
+                  <div className="ProductoPage-productoInfo-details-cantidad-values">
                     <h2 onClick={handleDecreaseQuantity}>-</h2>
-                    <h2>{quantity}</h2>
+                    <h2>{sizeQuantities[selectedSize]}</h2>
                     <h2 onClick={handleIncreaseQuantity}>+</h2>
                   </div>
-              </div>
-              {
-              (!quantity) ? 
-              <h5>Este producto no se ha agregado al carrito</h5> :
-              <h5>{`Hay ${quantity} producto(s) agregados al carrito`}</h5>
-              }
-              <button onClick={openCart}>Ir al carrito <i className="bi bi-cart" /></button>
+                </div>
+                {!sizeQuantities[selectedSize] ? (
+                  <h5>Este producto no se ha agregado al carrito</h5>
+                ) : (
+                  <h5>{`Hay ${sizeQuantities[selectedSize]} producto(s) de talla ${selectedSize} agregados al carrito`}</h5>
+                )}
+                <button onClick={openCart}>
+                  Ir al carrito <i className="bi bi-cart" />
+                </button>
               </div>
             </section>
-          ) 
-          
-          : /*  CODE WHEN IS MOBILE*/ 
-          
-          (
-            <section className='ProductoPage-productoInfo-mobile'>
-              <div className='ProductoPage-productoInfo-titleUniverso-mobile'>
+          ) : (
+            /* CODE WHEN IS MOBILE */
+            <section className="ProductoPage-productoInfo-mobile">
+              <div className="ProductoPage-productoInfo-titleUniverso-mobile">
                 <h3>{producto.nombre}</h3>
                 <h5>{producto.universo}</h5>
+                <h2>${producto.precio}.00 MXN</h2>
               </div>
-              <div className='ProductoPage-productoInfo-imagenes-mobile'>
-                <div className='ProductoPage-productoInfo-imagenes-imagen-mobile'>
+              <div className="ProductoPage-productoInfo-imagenes-mobile">
+                <div className="ProductoPage-productoInfo-imagenes-imagen-mobile">
                   <img src={images[sliderCurrentIndex]} alt="" />
                 </div>
-                <div className="noticiasItem-dots-container">
-                  <div className='sliderItem-dots'>
+                <div className="ProductoPage-dots-container">
+                  <div className="ProductoPage-dots">
                     {images.map((_, idx) => (
-                      <div 
+                      <div
                         key={idx}
-                        className="dotItem-container-item"
+                        className="ProductoPage-dots-container-item"
                         onClick={() => goToSliderSlide(idx)}
                       >
-                        <i className={`bi bi-circle-fill ${idx === sliderCurrentIndex ? "active" : ""}`}></i>
+                        <i className={`bi bi-circle-fill ${idx === sliderCurrentIndex ? 'active' : ''}`}></i>
                       </div>
                     ))}
                   </div>
                 </div>
               </div>
-              <h2>${producto.precio}.00 MXN</h2>
-              <div className='ProductoPage-productoInfo-cantidad-mobile'>
+              {producto.categoria === 'Ropa' && (
+                <div className="ProductoPage-productoInfo-talla">
+                  <h2>Talla</h2>
+                  <div className="ProductoPage-productoInfo-talla-list">
+                    {['S', 'M', 'L', 'XL', '2XL'].map((size) => (
+                      <h3
+                        key={size}
+                        className={selectedSize === size ? 'selected' : ''}
+                        onClick={() => handleSizeChange(size)}
+                      >
+                        {size}
+                      </h3>
+                    ))}
+                  </div>
+                </div>
+              )}
+              <div className="ProductoPage-productoInfo-cantidad-mobile">
                 <h5>Cantidad</h5>
-                <div className='ProductoPage-productoInfo-cantidad-info-mobile'>
+                <div className="ProductoPage-productoInfo-cantidad-info-mobile">
                   <h2 onClick={handleDecreaseQuantity}>-</h2>
-                  <h2>{quantity}</h2>
+                  <h2>{sizeQuantities[selectedSize]}</h2>
                   <h2 onClick={handleIncreaseQuantity}>+</h2>
                 </div>
               </div>
-              {
-              (!quantity) ? 
-              <h5>Este producto no se ha agregado al carrito</h5> :
-              <h5>{`Hay ${quantity} producto(s) agregados al carrito`}</h5>
-              }
-              <button onClick={openCart}>Ir al carrito <i className="bi bi-cart" /></button>
-            <div className='ProductoPage-productoDescripcion'>
-                  {producto.descripcion}
-            </div>
+              {!sizeQuantities[selectedSize] ? (
+                <h5>Este producto no se ha agregado al carrito</h5>
+              ) : (
+                <h5>{`Hay ${sizeQuantities[selectedSize]} producto(s) de talla ${selectedSize} agregados al carrito`}</h5>
+              )}
+              <button onClick={openCart}>
+                Ir al carrito <i className="bi bi-cart" />
+              </button>
             </section>
           )
         }
+        <h3 className="ProductoPage-productoDescripcion">{producto.descripcion}</h3>
         <HomeProductos productos={productosRelacionados} text={`Más productos de ${producto.universo}`} />
-        <HomeUniversos universos={otrosUniversos} text="Explora otros universos"/>
-        {otrosProductos.length > 0 && (
-          <HomeProductos productos={otrosProductos} text={'Podria interesarte'} />
-        )}
+        <HomeUniversos universos={otrosUniversos} text="Explora otros universos" />
+        {otrosProductos.length > 0 && <HomeProductos productos={otrosProductos} text={'Podría interesarte'} />}
         <section>
           <Ofrecemos />
         </section>
