@@ -4,15 +4,17 @@ const { Producto } = require("../models/producto.js");
 module.exports.postSessions = async (req, res) => {
     try {
         const { cartItem } = req.body;
-        console.log(cartItem);
 
         const productoPromises = cartItem.map(async (item) => {
-            const producto = await Producto.findOne({ codigo: item.producto });
+            const producto = await Producto.findOne({ codigo: item.producto.slice(0,10) });
             return producto;
         });
 
+        console.log('productoPromises: ' + productoPromises)
+
         const productos = await Promise.all(productoPromises);
-        console.log(productos)
+
+        console.log('productos: ' + productos)
 
         const lineItems = productos.map((producto, index) => {
             const item = cartItem[index];

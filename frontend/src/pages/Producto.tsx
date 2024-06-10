@@ -9,7 +9,7 @@ import { Universo as UniversoType } from '../types/Universos';
 import HomeUniversos from '../components/Home/HomeUniversos';
 import HomeProductos from '../components/Home/HomeProductos';
 import Ofrecemos from '../components/Ofrecemos';
-import '../css/ProductoPage.css'
+import '../css/ProductoPage.css';
 
 const Producto = () => {
   const { codigo } = useParams<{ codigo: string }>();
@@ -27,13 +27,14 @@ const Producto = () => {
   const [sliderCurrentIndex, setSliderCurrentIndex] = useState<number>(0);
 
   // New state for sizes and quantities
-  const [selectedSize, setSelectedSize] = useState<string>('S');
+  const [selectedSize, setSelectedSize] = useState<string>('NON');
   const [sizeQuantities, setSizeQuantities] = useState<{ [key: string]: number }>({
-    S: 0,
-    M: 0,
-    L: 0,
-    XL: 0,
+    'S': 0,
+    'M': 0,
+    'L': 0,
+    'XL': 0,
     '2XL': 0,
+    'NON' : 0,
   });
 
   const images = [
@@ -43,7 +44,7 @@ const Producto = () => {
     producto?.imgExtra,
   ].filter(Boolean);
 
-  const { itemQuantity, increaseQuantity, decreaseQuantity } = useCart();
+  const { itemQuantity, increaseQuantity, decreaseQuantity, setTriggerEffect, triggerEffect } = useCart();
   const { openCart } = useCart();
 
   const handleIncreaseQuantity = async () => {
@@ -52,6 +53,7 @@ const Producto = () => {
       await increaseQuantity(`${producto.codigo}-${selectedSize}`, user?.username || '');
       const updatedQuantity = await itemQuantity(`${producto.codigo}-${selectedSize}`, user?.username || '');
       setSizeQuantities((prev) => ({ ...prev, [selectedSize]: updatedQuantity }));
+      setTriggerEffect(!triggerEffect);
     } catch (error) {
       console.error('Error increasing quantity:', error);
     }
@@ -63,14 +65,19 @@ const Producto = () => {
       await decreaseQuantity(`${producto.codigo}-${selectedSize}`, user?.username || '');
       const updatedQuantity = await itemQuantity(`${producto.codigo}-${selectedSize}`, user?.username || '');
       setSizeQuantities((prev) => ({ ...prev, [selectedSize]: updatedQuantity }));
+      setTriggerEffect(!triggerEffect);
     } catch (error) {
       console.error('Error decreasing quantity:', error);
     }
   };
 
   // Handle size selection
-  const handleSizeChange = (size: string) => {
+  const handleSizeChange = async (size: string) => {
     setSelectedSize(size);
+    if (producto) {
+      const updatedQuantity = await itemQuantity(`${producto.codigo}-${size}`, user?.username || '');
+      setSizeQuantities((prev) => ({ ...prev, [size]: updatedQuantity }));
+    }
   };
 
   useEffect(() => {
@@ -86,17 +93,35 @@ const Producto = () => {
   }, []);
 
   useEffect(() => {
+    console.log(producto);
     if (producto) {
-      const filteredOtrosUniversos = universos.filter((element) => element.universo !== producto.universo);
+      const filteredOtrosUniversos = universos.filter((element) => (element.universo !== producto.universo));
       setOtrosUniversos(filteredOtrosUniversos);
 
-      const filteredProductosRelacionados = productos.filter((element) => element.universo === producto.universo);
+      const filteredProductosRelacionados = productos.filter((element) => (element.universo === producto.universo) && (element.codigo !== producto.codigo));
       setProductosRelacionados(filteredProductosRelacionados);
 
       const filteredOtrosProductos = productos.filter((element) => element.universo !== producto.universo);
       setOtrosProductos(filteredOtrosProductos);
     }
   }, [producto, productos, universos]);
+
+  useEffect(() => {
+    if (producto) {
+      const fetchQuantities = async () => {
+        const sizeKeys = ['S', 'M', 'L', 'XL', '2XL', 'NON'];
+        const quantities = await Promise.all(
+          sizeKeys.map(size => itemQuantity(`${producto.codigo}-${size}`, user?.username || ''))
+        );
+        const newSizeQuantities = sizeKeys.reduce((acc, size, index) => {
+          acc[size] = quantities[index];
+          return acc;
+        }, {} as { [key: string]: number });
+        setSizeQuantities(newSizeQuantities);
+      };
+      fetchQuantities();
+    }
+  }, [producto, triggerEffect]);
 
   useEffect(() => {
     if (!isImageManuallySelected) {
@@ -255,7 +280,7 @@ const Producto = () => {
             </section>
           )
         }
-        <h3 className="ProductoPage-productoDescripcion">{producto.descripcion}</h3>
+         <h3 className="ProductoPage-productoDescripcion">{producto.descripcion}</h3>
         <HomeProductos productos={productosRelacionados} text={`Más productos de ${producto.universo}`} />
         <HomeUniversos universos={otrosUniversos} text="Explora otros universos" />
         {otrosProductos.length > 0 && <HomeProductos productos={otrosProductos} text={'Podría interesarte'} />}

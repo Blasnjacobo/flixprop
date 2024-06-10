@@ -13,6 +13,7 @@ export default function CartProvider({ children }: { children: ReactNode }) {
   const user = useUser()
 
   const [quantity, setQuantity] = useState<number>(0);
+  const [triggerEffect, setTriggerEffect] = useState(false);
 
   const openCart = () => setIsOpen(true);
   const closeCart = () => setIsOpen(false);
@@ -254,7 +255,7 @@ export default function CartProvider({ children }: { children: ReactNode }) {
       }
     };
     fetchQuantity();
-  }, [user, increaseQuantity, decreaseQuantity, removeFromCart]);
+  }, [user, increaseQuantity, decreaseQuantity, removeFromCart,  triggerEffect]);
 
   return (
     <CartContext.Provider
@@ -266,7 +267,9 @@ export default function CartProvider({ children }: { children: ReactNode }) {
         decreaseQuantity,
         removeFromCart,
         cartItems,
-        quantity
+        quantity,
+        triggerEffect,
+        setTriggerEffect,
       }}
     >
       {children}

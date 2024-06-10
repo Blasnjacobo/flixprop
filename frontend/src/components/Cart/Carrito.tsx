@@ -18,6 +18,7 @@ interface CartItem {
 const Carrito = ({ isOpen }: CartProps) => {
     const { closeCart, cartItems } = useCart();
     const [cartItem, setCartItem] = useState<CartItem[]>([]);
+    console.log(cartItem)
     const { productos } = useProductos();
     const user = useUser();
 
@@ -94,7 +95,8 @@ const Carrito = ({ isOpen }: CartProps) => {
                         Total {' '}
                         ${(
                             cartItem.reduce((total, cartItem) => {
-                                const storeItem = productos.find(i => i.codigo === cartItem.producto);
+                                console.log(cartItem)
+                                const storeItem = productos.find(i => i.codigo === cartItem.producto.slice(0,10));
                                 const itemPrecio = storeItem ? Number(storeItem.precio) : 0; // Convert precio to number
                                 return total + (itemPrecio * cartItem.quantity);
                             }, 0)

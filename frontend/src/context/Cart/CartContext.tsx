@@ -10,6 +10,8 @@ type CartContextType = {
   removeFromCart: (_id: string, username: string) => Promise<void>;
   cartItems: (username: string) => Promise<CartItem[]>;
   quantity: number;
+  triggerEffect: boolean;
+  setTriggerEffect: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
 const CartContext = createContext<CartContextType>({} as CartContextType);
