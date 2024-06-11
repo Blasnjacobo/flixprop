@@ -1,6 +1,5 @@
 import { useParams, useNavigate } from "react-router-dom";
 import { useEffect, useRef, useState } from "react";
-
 import useNoticias from '../../src/context/Noticias/useNoticias';
 import Ofrecemos from "../components/Ofrecemos";
 import type { Noticia as NoticiaType } from '../types/Noticias';
@@ -22,7 +21,7 @@ const Noticia = () => {
     intervalRef.current = setInterval(() => {
       setSliderCurrentIndex(curr => {
         const maxIndex = Math.ceil(noticias.length) - 1;
-        return curr === maxIndex ? 0 : curr + 1; 
+        return curr === maxIndex ? 0 : curr + 1;
       });
     }, 7000);
 
@@ -91,18 +90,10 @@ const Noticia = () => {
               <h3 className="noticiasItem-masNoticiasText">Más Noticias</h3>
               <ul>
                 {currentItems.map((item) => (
-                  <li key={item.codigo}
-                  onClick={() => handleCardClickSlider(item)}
-                  >
-                    <div 
-                      className='noticiasItem-slider-cards' 
-                      style={{ cursor: 'pointer' }}
-                    >
+                  <li key={item.codigo} onClick={() => handleCardClickSlider(item)}>
+                    <div className='noticiasItem-slider-cards' style={{ cursor: 'pointer' }}>
                       <div className='noticiasItem-slider-cards-img'>
-                        <img 
-                          src={item.img} 
-                          alt={item.titulo} 
-                        />
+                        <img src={item.img} alt={item.titulo} />
                       </div>
                       <div className='noticiasItem-slider-cards-info'>
                         <h5>{item.titulo}</h5>
@@ -115,7 +106,7 @@ const Noticia = () => {
               <div className="noticiasItem-dots-container">
                 <div className='sliderItem-dots'>
                   {Array.from({ length: Math.ceil(noticias.length) }).map((_, idx) => (
-                    <div 
+                    <div
                       key={idx}
                       className="dotItem-container-item"
                       onClick={() => goToSliderSlide(idx)}
