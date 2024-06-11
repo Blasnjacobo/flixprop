@@ -25,7 +25,7 @@ module.exports.postSessions = async (req, res) => {
                 price_data: {
                     currency: "mxn",
                     product_data: {
-                        name: `${producto.nombre} (Talla: ${talla})`,
+                        name: (talla === 'NON') ? producto.name : `${producto.nombre} (Talla: ${talla})`,
                         images: [producto.imgProducto]
                     },
                     unit_amount: unitAmount
