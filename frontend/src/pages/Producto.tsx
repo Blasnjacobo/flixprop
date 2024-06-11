@@ -143,6 +143,16 @@ const Producto = () => {
     setIsImageManuallySelected(false);
   };
 
+  const cartItems = Object.entries(sizeQuantities)
+  .map(([size, quantity]) => {
+    if (quantity > 0) {
+      return (quantity === 1) ? `${quantity} producto talla ${size}`:  `${quantity} productos talla ${size}`
+    }
+    return null;
+  })
+  .filter(item => item !== null )
+  console.log(cartItems)
+
   return (
     <div className="ProductoPage-section">
       <div className="ProductoPage-container">
@@ -209,11 +219,6 @@ const Producto = () => {
                     <h2 onClick={handleIncreaseQuantity}>+</h2>
                   </div>
                 </div>
-                {!sizeQuantities[selectedSize] ? (
-                  <h5>Este producto no se ha agregado al carrito</h5>
-                ) : (
-                  <h5>{`Hay ${sizeQuantities[selectedSize]} producto(s) de talla ${selectedSize} agregados al carrito`}</h5>
-                )}
                 <button onClick={openCart}>
                   Ir al carrito <i className="bi bi-cart" />
                 </button>
@@ -261,24 +266,37 @@ const Producto = () => {
                   </div>
                 </div>
               )}
-              <div className="ProductoPage-productoInfo-cantidad-mobile">
-                <h5>Cantidad</h5>
-                <div className="ProductoPage-productoInfo-cantidad-info-mobile">
-                  <h2 onClick={handleDecreaseQuantity}>-</h2>
-                  <h2>{sizeQuantities[selectedSize]}</h2>
-                  <h2 onClick={handleIncreaseQuantity}>+</h2>
+              
+              {
+                (selectedSize !== 'NON') && (
+                <div className="ProductoPage-productoInfo-cantidad-mobile">
+                  <h5>Cantidad</h5>
+                  <div className="ProductoPage-productoInfo-cantidad-info-mobile">
+                    <h2 onClick={handleDecreaseQuantity}>-</h2>
+                    <h2>{sizeQuantities[selectedSize]}</h2>
+                    <h2 onClick={handleIncreaseQuantity}>+</h2>
+                  </div>
                 </div>
-              </div>
-              {!sizeQuantities[selectedSize] ? (
-                <h5>Este producto no se ha agregado al carrito</h5>
-              ) : (
-                <h5>{`Hay ${sizeQuantities[selectedSize]} producto(s) de talla ${selectedSize} agregados al carrito`}</h5>
-              )}
+                )
+              }
+              
               <button onClick={openCart}>
                 Ir al carrito <i className="bi bi-cart" />
               </button>
             </section>
           )
+        }
+        {
+          (cartItems.length > 0) &&
+          <div className='ProductosPage-productoInfo-tallas-descripcion'>
+          <h5>Productos agregados al carrito:</h5>
+          {cartItems.map((item) => (
+                <div className='ProductosPage-productoInfo-tallas-descripcion-list'>
+                  <h6>{item}</h6>
+                  <br />
+                </div>
+              ))}
+          </div>
         }
          <h3 className="ProductoPage-productoDescripcion">{producto.descripcion}</h3>
         <HomeProductos productos={productosRelacionados} text={`Más productos de ${producto.universo}`} />
