@@ -28,7 +28,7 @@ module.exports.postSessions = async (req, res) => {
                         name: producto.nombre,
                         images: [producto.imgProducto],
                         metadata: {
-                            talla: S
+                            talla: 'S'
                         }
                     },
                     unit_amount: unitAmount
