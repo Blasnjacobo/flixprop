@@ -211,14 +211,22 @@ const Producto = () => {
                     </div>
                   </div>
                 )}
+
+{
+                (selectedSize === ('S') || selectedSize === ('M') 
+                || selectedSize === ('L') || selectedSize === ('XL')
+                || selectedSize === ('2XL') || producto.categoria !== 'Ropa') && 
+                (
                 <div className="ProductoPage-productoInfo-details-cantidad">
-                  <h3>Cantidad</h3>
+                  <h5>Cantidad</h5>
                   <div className="ProductoPage-productoInfo-details-cantidad-values">
                     <h2 onClick={handleDecreaseQuantity}>-</h2>
                     <h2>{sizeQuantities[selectedSize]}</h2>
                     <h2 onClick={handleIncreaseQuantity}>+</h2>
                   </div>
                 </div>
+                )
+              }
                 <button onClick={openCart}>
                   Ir al carrito <i className="bi bi-cart" />
                 </button>
@@ -268,7 +276,10 @@ const Producto = () => {
               )}
               
               {
-                (selectedSize !== 'NON') && (
+                (selectedSize === ('S') || selectedSize === ('M') 
+                || selectedSize === ('L') || selectedSize === ('XL')
+                || selectedSize === ('2XL') || producto.categoria !== 'Ropa') && 
+                (
                 <div className="ProductoPage-productoInfo-cantidad-mobile">
                   <h5>Cantidad</h5>
                   <div className="ProductoPage-productoInfo-cantidad-info-mobile">
@@ -287,7 +298,7 @@ const Producto = () => {
           )
         }
         {
-          (cartItems.length > 0) &&
+          (cartItems.length > 0 && producto.categoria === 'Ropa') &&
           <div className='ProductosPage-productoInfo-tallas-descripcion'>
           <h5>Productos agregados al carrito:</h5>
           {cartItems.map((item) => (
