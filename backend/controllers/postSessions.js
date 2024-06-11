@@ -6,27 +6,35 @@ module.exports.postSessions = async (req, res) => {
         const { cartItem } = req.body;
 
         const productoPromises = cartItem.map(async (item) => {
-            const codigo = item.producto.slice(0, 10);  // Assuming the product code is the first 10 characters
+            const codigo = item.producto.slice(0, 10);  // Extracting the product code
+            const talla = item.producto.slice(11);  // Extracting the talla
             const producto = await Producto.findOne({ codigo: codigo });
-            return { producto, talla: item.producto.slice(11) };  // Extracting the talla from the item
+            if (!producto) {
+                throw new Error(`Product not found for code: ${codigo}`);
+            }
+            return { producto, talla };
         });
 
         const productosWithTalla = await Promise.all(productoPromises);
 
         const lineItems = productosWithTalla.map(({ producto, talla }, index) => {
-            console.log(talla)
             const item = cartItem[index];
             const unitAmount = parseFloat(producto.precio) * 100;
             if (isNaN(unitAmount)) {
                 throw new Error(`Invalid precio value: ${producto.precio}`);
             }
 
+            const name = talla === 'NON' ? producto.nombre : `${producto.nombre} (Talla: ${talla})`;
+            if (!name) {
+                throw new Error(`Missing product name for item at index ${index}`);
+            }
+
             return {
                 price_data: {
                     currency: "mxn",
                     product_data: {
-                        name: (talla === 'NON') ? producto.name : `${producto.nombre} (Talla: ${talla})`,
-                        images: [producto.imgProducto]
+                        name: name,
+                        images: [producto.imgProducto],
                     },
                     unit_amount: unitAmount
                 },
@@ -45,7 +53,7 @@ module.exports.postSessions = async (req, res) => {
         res.json({ id: session.id });
 
     } catch (error) {
-        console.log(error.message);
+        console.error(error.message);
         res.status(500).send({ message: error.message });
     }
 };
