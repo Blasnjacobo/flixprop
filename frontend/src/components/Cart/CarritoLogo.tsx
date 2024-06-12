@@ -32,8 +32,8 @@ const CarritoLogo = ({windowWidth}: CarritoProps) => {
                                 width: '1.5rem',
                                 height: '1.5rem',
                                 position: 'absolute',
-                                bottom: 25,
-                                right: 9,
+                                bottom: 28,
+                                right: 4,
                                 transform: 'translate(35%, 35%)',
                             }}
                         >
