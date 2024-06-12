@@ -458,8 +458,8 @@ i.active {
 }
 
 .home-universo-card {
-    width: 125px;
-    height: 125px;
+    width: 115px;
+    height: 115px;
     flex: 0 0 auto; /* Prevent flex items from shrinking */
     cursor: pointer;
     margin: auto 0;
