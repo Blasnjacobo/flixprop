@@ -309,7 +309,7 @@ const Producto = () => {
               ))}
           </div>
         }
-         <h3 className="ProductoPage-productoDescripcion">{producto.descripcion}</h3>
+         <h5 className="ProductoPage-productoDescripcion">{producto.descripcion}</h5>
         <HomeProductos productos={productosRelacionados} text={`Más productos de ${producto.universo}`} />
         <HomeUniversos universos={otrosUniversos} text="Explora otros universos" />
         {otrosProductos.length > 0 && <HomeProductos productos={otrosProductos} text={'Podría interesarte'} />}

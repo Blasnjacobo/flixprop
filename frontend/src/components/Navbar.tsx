@@ -27,6 +27,10 @@ const Navbar = ({ toggleMenu, showMenu, navbarRef }: MenuProps) => {
     };
   }, []);
 
+  const handleSmooth = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
   return (
     <div className="Navbar" ref={navbarRef}>
       <div className="Navbar-container">
@@ -36,26 +40,31 @@ const Navbar = ({ toggleMenu, showMenu, navbarRef }: MenuProps) => {
           </div>
         ) : (
           <section className="navbar-redirecciones">
-            <NavLink className="flixprop-routes" to="/flixprop/">
+            <NavLink className="flixprop-routes" to="/flixprop/"
+            onClick={handleSmooth}>
               Inicio
             </NavLink>
-            <NavLink className="flixprop-routes" to="/flixprop/universos">
+            <NavLink className="flixprop-routes" to="/flixprop/universos"
+            onClick={handleSmooth}>
               Universos
             </NavLink>
-            <NavLink className="flixprop-routes" to="/flixprop/colecciones">
+            <NavLink className="flixprop-routes" to="/flixprop/colecciones"
+            onClick={handleSmooth}>
               Colecciones
             </NavLink>
-            <NavLink className="flixprop-routes" to="/flixprop/noticias">
+            <NavLink className="flixprop-routes" to="/flixprop/noticias"
+            onClick={handleSmooth}>
               Noticias
             </NavLink>
-            <NavLink className="flixprop-routes" to="/flixprop/quizzes">
+            <NavLink className="flixprop-routes" to="/flixprop/quizzes"
+            onClick={handleSmooth}>
               Quizzes
             </NavLink>
           </section>
         )}
         <section className="navar-img">
           <NavLink className="navbar-logo" to="/flixprop/">
-            <img src={flixprop} alt="Flixprop logo" />
+            <img src={flixprop} alt="Flixprop logo" onClick={handleSmooth}/>
           </NavLink>
         </section>
         <section className="navbar-icon flex-between">

@@ -163,7 +163,7 @@
 .ProductoPage-productoInfo-details button {
     max-width: 430px;
     height: 70px;
-    background-color: gray;
+    background-color: black;
     color: white;
     font-size: 25px;
     border-radius: 10px;
@@ -245,7 +245,7 @@
     .ProductoPage-productoInfo-mobile button{
         max-width: 430px;
         height: 50px;
-        background-color: gray;
+        background-color: black;
         color: white;
         font-size: 25px;
         border-radius: 10px;

@@ -3,16 +3,23 @@
 .universosPage-section {
   width: 100vw;
   margin: 0;
-  background: radial-gradient(circle, red 0%, black 100%)
 }
 
 .universosPage-text {
   margin: auto;
   text-align: center;
-  font-size: 100px;
+  font-size: 70px;
   font-family: fantasy;
   padding: 1rem 0;
-  color: white;
+}
+
+.universosPage-section p {
+  color: black;
+  width: 85%;
+  margin: 1rem auto;
+  font-size: 24px;
+  font-weight: bold;
+  padding-bottom: 1rem;
 }
 
 .universosPage-Cards-container {
@@ -213,12 +220,22 @@
     color: gray;
   }
 
+  .universosPage-section p {
+    font-size: 14px;
+  }
+
   .universosPage-text {
     font-size: 32px;
+    padding: 1.5rem 0 0 0;
+  }
+
+  .universosPage-Cards-container {
+    grid-template-columns: repeat(3, 1fr);
+
   }
 
   .universosPage-card {
-    height: 75px;
+    height: 120px;
   }
 
   }

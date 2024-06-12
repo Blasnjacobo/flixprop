@@ -83,10 +83,12 @@ const HomeUniversos = ({ text, universos }: universosPromp) => {
   };
 
   const handleCardClick = (universo: universoType) => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
     navigate(`/flixprop/universos/${universo.codigo}`)
   };
 
   const handleVerTodos = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
     navigate(`/flixprop/universos`);
   }
 

@@ -25,14 +25,15 @@ const CarritoLogo = ({windowWidth}: CarritoProps) => {
                 <i className="bi bi-cart" style={{ color: 'white', paddingRight: windowWidth > 990 ? '15px' : '0' }}></i>
                 {
                     quantity > 0 && (
-                        <div className='rounded-circle bg-dark-red d-flex justify-content-center align-items-center'
+                        <div className='rounded-circle d-flex justify-content-center align-items-center'
                             style={{
+                                backgroundColor: 'rgba(255,0,25,1)',
                                 color: 'white',
                                 width: '1.5rem',
                                 height: '1.5rem',
                                 position: 'absolute',
-                                bottom: 28,
-                                right: 4,
+                                bottom: 25,
+                                right: 9,
                                 transform: 'translate(35%, 35%)',
                             }}
                         >
