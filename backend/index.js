@@ -33,7 +33,7 @@ app.use("/payments", payments)
 app.use("/auth", auth);
 app.use("/universos", universos);
 app.use("/noticias", noticias);
-app.use("categorias", categorias)
+app.use("/categorias", categorias)
 app.use("/productos", productos);
 app.use("/cart", cart);
 
