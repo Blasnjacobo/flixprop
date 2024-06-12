@@ -8,6 +8,8 @@ import HomeUniversos from '../components/Home/HomeUniversos'
 import useUniverso from '../context/Universos/useUniversos';
 import useNoticias from '../context/Noticias/useNoticias';
 import useProductos from '../context/Productos/useProductos';
+import useCategorias from '../context/Categorias/useCategorias';
+
 import { useState, useEffect } from 'react'
 import { Producto } from '../types/Productos'
 
@@ -18,6 +20,7 @@ const Home = () => {
   const { universos } = useUniverso();
   const { noticias } = useNoticias()
   const { productos } = useProductos();
+  const { categorias } = useCategorias();
 
   const [masRecienteProductos, setMasRecienteProductos] = useState<Producto[]>([]);
   const [masVendidoProductos, setMasVendidoProductos] = useState<Producto[]>([]);
@@ -43,7 +46,7 @@ const Home = () => {
       <HomeSlider />
       <HomeProductos productos={masRecienteProductos} text={masRecienteText} />
       <HomeUniversos universos={universos} text='Universos'/>
-      <HomeCategorias />
+      <HomeCategorias categorias={categorias} text='Categorias' />
       <HomeNoticias noticias={noticias} />
       {/*<HomeCategorias />*/}
       <HomeProductos productos={masVendidoProductos} text={masVendidoText} />

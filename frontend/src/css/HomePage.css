@@ -201,6 +201,7 @@ i.active {
 
 .home-universo-mainCards {
     height: 320px;
+    width: 100%;
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     justify-content: center;
@@ -221,7 +222,7 @@ i.active {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    border-radius: 50%;
+    border-radius: 10%;
 }
 
 .home-universo-card div {
@@ -254,36 +255,70 @@ i.active {
     color: black;
 }
 
-/* Colecciones */
-.colecciones {
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
+/* Categorias */
+.home-categorias-section {
+    width: 100vw;
 }
 
-.colecciones-container {
-    margin: 0rem 9vw;
+.home-categorias-container {
+    width: 85%;
+    margin: auto;
+}
+
+.home-categorias-main {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.home-categorias-main-titleVerMas {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.home-categorias-main-titleVerMas p {
+    color: black;
+}
+
+.home-categorias-main-cardContainer {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    gap: 10px;
+    gap: 1rem;
 }
 
-.colecciones-card {
+.home-categorias-main-card {
     width: 100%;
-    height: 300px;
 }
 
-.colecciones-card-img {
-    height: 100%;
+.home-categorias-main-card-img {
+    height: 320px;
     width: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
 }
 
-.colecciones-container h1 {
+.home-categorias-main-card h4 {
+    padding: 1rem 0;
+    text-align: center;
+}
+
+.home-categorias-scroll-arrows {
     display: flex;
-    flex-direction: column;
     justify-content: center;
-    align-items: flex-start;
+    align-items: center;
+}
+
+.home-categorias-cardsCount {
+    color: black;
+}
+
+.home-categorias-scroll-left,
+.home-categorias-scroll-right {
+    background: transparent;
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
+    color: black;
+    margin: 0 1.5rem;
 }
 
 /* Noticias */
@@ -398,9 +433,6 @@ i.active {
 .navbar-icon .bi-person {
     display: none;
 }
-.colecciones-container {
-    grid-template-columns: repeat(2, 1fr);
-}
 
 /* Home - Universo */
 
@@ -409,10 +441,7 @@ i.active {
 }
 
 .home-universo-mainCards {
-    display: flex; 
-    overflow-x: auto; 
-    width: 100vw;
-    gap: 1rem;
+    grid-template-columns: repeat(3, 1fr);
 }
 
 .home-universo-banner-image {
@@ -421,14 +450,15 @@ i.active {
 
 .home-universo-main {
     height: 250px;
+    width: 100%;
     display: flex;
     flex-direction: column;
     width: 95%;
 }
 
 .home-universo-card {
-    width: 100px;
-    height: 100px;
+    width: 120px;
+    height: 120px;
     flex: 0 0 auto; /* Prevent flex items from shrinking */
     cursor: pointer;
     margin: auto 0;
@@ -436,14 +466,34 @@ i.active {
 
 .home-universo-card img {
     width: 100%;
+    height: 120px;
 }
 
-.home-univero-scroll-arrows {
+.home-universo-scroll-arrows {
     padding: 0px;
 }
 
-.colecciones-categorias {
-    text-align: center;
+/* Categorias */
+
+.home-categorias-container {
+    width: 95%;
+}
+
+.home-categorias-main-cardContainer {
+    gap: 0.5rem;
+}
+
+.home-categorias-main-card-img {
+    width: 100%;
+    height: 120px;
+}
+
+.home-categorias-main-card h4 {
+    font-size: 16px;
+}
+
+.home-categorias-main-cardContainer {
+    grid-template-columns: repeat(3, 1fr);
 }
 
 /* Productos */
@@ -526,15 +576,6 @@ i.active {
 }
 
 @media screen and (max-width: 450px) {
-
-.colecciones-container h2 {
-    text-align: center;
-}
-
-.colecciones-container h1 {
-    text-align: center;
-    align-items: center;
-}
 
 .Ofrecemos-section {
     width: 90%;
