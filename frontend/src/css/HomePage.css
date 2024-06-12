@@ -440,8 +440,9 @@ i.active {
 }
 
 .home-universo-mainCards {
-    display: flex; 
-    overflow-x: auto; 
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); 
+    overflow-x: hidden; 
     gap: 1rem;
     margin: 0px;
 }
@@ -458,8 +459,8 @@ i.active {
 }
 
 .home-universo-card {
-    width: 115px;
-    height: 115px;
+    width: 100%;
+    height: 125px;
     flex: 0 0 auto; /* Prevent flex items from shrinking */
     cursor: pointer;
     margin: auto 0;
