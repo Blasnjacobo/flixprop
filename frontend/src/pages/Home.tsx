@@ -46,10 +46,9 @@ const Home = () => {
       <HomeSlider />
       <HomeProductos productos={masRecienteProductos} text={masRecienteText} />
       <HomeUniversos universos={universos} text='Universos'/>
+      <HomeProductos productos={masVendidoProductos} text={masVendidoText} />
       <HomeCategorias categorias={categorias} text='Categorias' />
       <HomeNoticias noticias={noticias} />
-      {/*<HomeCategorias />*/}
-      <HomeProductos productos={masVendidoProductos} text={masVendidoText} />
       <Ofrecemos />
     </div>
   )
