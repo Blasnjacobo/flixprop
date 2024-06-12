@@ -10,7 +10,7 @@ dotenv.config();
 // const { updateDatabaseIfNeeded } = require("./config/dataUpdater")
 const universos = require("./routes/universos");
 const noticias = require("./routes/noticias");
-const noticias = require("./routes/categorias");
+const categorias = require("./routes/categorias");
 const productos = require("./routes/productos");
 const auth = require("./routes/auth.js");
 const cart = require("./routes/cart.js");

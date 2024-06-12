@@ -5,12 +5,12 @@ import useCategorias from '../../context/Categorias/useCategorias';
 
 const HomeCategorias = () => {
 
-  const { categoria } = useCategorias()
-  console.log(categoria)
+  const { categorias } = useCategorias()
+  console.log(categorias)
   return (
     <div className="colecciones">
       <div className='colecciones-container'>
-        {categoria.map((item: CategoriaType) => (
+        {categorias.map((item: CategoriaType) => (
           <div className="colecciones-card" key={item.codigo}>
             <img
               className="colecciones-card-img"

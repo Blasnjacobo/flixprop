@@ -2,7 +2,7 @@ import { createContext } from 'react';
 import { Categoria } from '../../types/Categorias';
 
 type CategoriasContextType = {
-    categoria: Categoria[];
+    categorias: Categoria[];
 };
 
 const CategoriasContext = createContext({} as CategoriasContextType);
