@@ -454,6 +454,7 @@ i.active {
     display: flex;
     flex-direction: column;
     width: 95%;
+    gap: 0px;
 }
 
 .home-universo-card {
@@ -462,6 +463,8 @@ i.active {
     flex: 0 0 auto; /* Prevent flex items from shrinking */
     cursor: pointer;
     margin: auto 0;
+    margin-top: 0;
+    padding-top: 0;
 }
 
 .home-universo-card img {
