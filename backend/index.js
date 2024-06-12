@@ -10,6 +10,7 @@ dotenv.config();
 // const { updateDatabaseIfNeeded } = require("./config/dataUpdater")
 const universos = require("./routes/universos");
 const noticias = require("./routes/noticias");
+const noticias = require("./routes/categorias");
 const productos = require("./routes/productos");
 const auth = require("./routes/auth.js");
 const cart = require("./routes/cart.js");
@@ -32,6 +33,7 @@ app.use("/payments", payments)
 app.use("/auth", auth);
 app.use("/universos", universos);
 app.use("/noticias", noticias);
+app.use("categorias", categorias)
 app.use("/productos", productos);
 app.use("/cart", cart);
 

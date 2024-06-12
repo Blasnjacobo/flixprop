@@ -32,6 +32,7 @@ import UserProvider from './context/Users/User';
 import CartProvider from './context/Cart/Cart';
 import Noticia from './pages/Noticia';
 import Producto from './pages/Producto';
+import CategoriasProvider from './context/Categorias/Categorias';
 
 function App() {
   const [showMenu, setShowMenu] = useState(false);
@@ -47,33 +48,35 @@ function App() {
       <UserProvider>
         <CartProvider>
           <NoticiasProvider>
-            <UniversosProvider>
-              <div className='navbar-container'>
-                <Navbar toggleMenu={toggleMenu} showMenu={showMenu} navbarRef={navbarRef} />
-                <Menu showMenu={showMenu} menuRef={menuRef} navbarRef={navbarRef} setShowMenu={setShowMenu} />
-                <Routes>
-                  <Route path='/flixprop/' element={<Home />} />
-                  <Route path='/flixprop/universos/' element={<Universos />} />
-                  <Route path='/flixprop/universos/:codigo' element={<Universo />} />
-                  <Route path='/flixprop/colecciones/' element={<Colecciones />} />
-                  <Route path='/flixprop/noticias/' element={<Noticias />} />
-                  <Route path='/flixprop/noticias/:codigo' element={<Noticia />} />
-                  <Route path='flixprop/productos/:codigo' element={<Producto />} />
-                  <Route path='/flixprop/quizzes/' element={<Quizzes />} />
-                  <Route path='/flixprop/payment/success' element={<PagoExitoso />} />
-                  <Route path='/flixprop/payment/rejected' element={<PagoRechazado />} />
-                  {/* Footer Routes */}
-                  <Route path='/flixprop/nuestra-mision-vision/' element={<MisionyVision />} />
-                  <Route path='/flixprop/cultura-flixprop/' element={<Cultura />} />
-                  <Route path='/flixprop/colabora-con-nosotros/' element={<Colaboracion />} />
-                  <Route path='/flixprop/sobre-nosotros/' element={<SobreNosotros />} />
-                  <Route path='/flixprop/politica-de-privacidad/' element={<Privacidad />} />
-                  <Route path='/flixprop/terminos-y-condiciones/' element={<TerminosyCondiciones />} />
-                  <Route path='/flixprop/compra-segura/' element={<CompraSegura />} />
-                </Routes>
-                <Footer />
-              </div>
-            </UniversosProvider>
+            <CategoriasProvider>
+              <UniversosProvider>
+                <div className='navbar-container'>
+                  <Navbar toggleMenu={toggleMenu} showMenu={showMenu} navbarRef={navbarRef} />
+                  <Menu showMenu={showMenu} menuRef={menuRef} navbarRef={navbarRef} setShowMenu={setShowMenu} />
+                  <Routes>
+                    <Route path='/flixprop/' element={<Home />} />
+                    <Route path='/flixprop/universos/' element={<Universos />} />
+                    <Route path='/flixprop/universos/:codigo' element={<Universo />} />
+                    <Route path='/flixprop/colecciones/' element={<Colecciones />} />
+                    <Route path='/flixprop/noticias/' element={<Noticias />} />
+                    <Route path='/flixprop/noticias/:codigo' element={<Noticia />} />
+                    <Route path='flixprop/productos/:codigo' element={<Producto />} />
+                    <Route path='/flixprop/quizzes/' element={<Quizzes />} />
+                    <Route path='/flixprop/payment/success' element={<PagoExitoso />} />
+                    <Route path='/flixprop/payment/rejected' element={<PagoRechazado />} />
+                    {/* Footer Routes */}
+                    <Route path='/flixprop/nuestra-mision-vision/' element={<MisionyVision />} />
+                    <Route path='/flixprop/cultura-flixprop/' element={<Cultura />} />
+                    <Route path='/flixprop/colabora-con-nosotros/' element={<Colaboracion />} />
+                    <Route path='/flixprop/sobre-nosotros/' element={<SobreNosotros />} />
+                    <Route path='/flixprop/politica-de-privacidad/' element={<Privacidad />} />
+                    <Route path='/flixprop/terminos-y-condiciones/' element={<TerminosyCondiciones />} />
+                    <Route path='/flixprop/compra-segura/' element={<CompraSegura />} />
+                  </Routes>
+                  <Footer />
+                </div>
+              </UniversosProvider>
+            </CategoriasProvider>
           </NoticiasProvider>
         </CartProvider>
       </UserProvider>

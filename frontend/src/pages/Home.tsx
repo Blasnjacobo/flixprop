@@ -12,6 +12,7 @@ import { useState, useEffect } from 'react'
 import { Producto } from '../types/Productos'
 
 import '../css/HomePage.css'
+import HomeCategorias from '../components/Home/HomeCategorias'
 
 const Home = () => {
   const { universos } = useUniverso();
@@ -42,6 +43,7 @@ const Home = () => {
       <HomeSlider />
       <HomeProductos productos={masRecienteProductos} text={masRecienteText} />
       <HomeUniversos universos={universos} text='Universos'/>
+      <HomeCategorias />
       <HomeNoticias noticias={noticias} />
       {/*<HomeCategorias />*/}
       <HomeProductos productos={masVendidoProductos} text={masVendidoText} />

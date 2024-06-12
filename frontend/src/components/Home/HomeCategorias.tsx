@@ -1,35 +1,21 @@
-import { useState, useEffect } from 'react';
-import categoriasHomeData from '../../assets/categoriasHome/categoriasHome.json';
+// import categoriasHomeData from '../../assets/categoriasHome/categoriasHome.json';
+import type { Categoria as CategoriaType } from '../../types/Categorias';
+import useCategorias from '../../context/Categorias/useCategorias';
 
-interface Categoria {
-  id: string;
-  nombre: string;
-  descripcion: string;
-  img1: string;
-  img2: string;
-  img3: string;
-}
 
 const HomeCategorias = () => {
-  const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentImageIndex(prevIndex => (prevIndex + 1) % 3);
-    }, 10000); 
-
-    return () => clearInterval(interval);
-  }, []);
-
+  const { categoria } = useCategorias()
+  console.log(categoria)
   return (
     <div className="colecciones">
       <div className='colecciones-container'>
-        {categoriasHomeData.map((item: Categoria) => (
-          <div className="colecciones-card" key={item.id}>
+        {categoria.map((item: CategoriaType) => (
+          <div className="colecciones-card" key={item.codigo}>
             <img
               className="colecciones-card-img"
-              src={item[`img${currentImageIndex + 1}` as keyof Categoria]} // Type assertion here
-              alt={`${item.nombre} image`}
+              src={item.url}
+              alt={`${item.categorias} image`}
             />
           </div>
         ))}
