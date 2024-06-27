@@ -22,10 +22,11 @@ async function updateUniversosCollection() {
           codigo: sheetItem[3],
           activo: sheetItem[4],
           url: sheetItem[5],
+          bannerUniverso: sheetItem[6]
         });
         console.log(`New item added to MongoDB (universos): ${sheetItem[3]}`);
       } else {
-        const fieldsToCheck = ["categoria", "universo", "descripcion", "codigo", "activo", "url"];
+        const fieldsToCheck = ["categoria", "universo", "descripcion", "codigo", "activo", "url","bannerUniverso"];
         let hasChanges = false;
         for (const field of fieldsToCheck) {
           if (matchInDB[field] !== sheetItem[fieldsToCheck.indexOf(field)]) {
@@ -45,6 +46,7 @@ async function updateUniversosCollection() {
                 codigo: sheetItem[3],
                 activo: sheetItem[4],
                 url: sheetItem[5],
+                bannerUniverso: sheetItem[6]
               },
             }
           );

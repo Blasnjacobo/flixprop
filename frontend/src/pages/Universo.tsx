@@ -11,7 +11,6 @@ import type { Noticia as NoticiaType } from '../types/Noticias';
 import type { Universo as UniversoType } from '../types/Universos';
 import { Producto } from '../types/Productos';
 
-import universoBanner from '../assets/Universos/universoBanner.jpg';
 import '../css/UniversosPage.css';
 import HomeUniversos from "../components/Home/HomeUniversos";
 
@@ -26,6 +25,7 @@ const Universo = () => {
   const [universoNoticias, setUniversoNoticias] = useState<NoticiaType[]>([]);
   const [otrosUniversos, setOtrosUniversos] = useState<UniversoType[]>([]);
 
+  console.log(universo)
 
   const [sortOption, setSortOption] = useState('');
   const [isWideScreen, setIsWideScreen] = useState(window.innerWidth >= 960);
@@ -189,7 +189,7 @@ const Universo = () => {
     <div className="universoProducts-section">
       <div className="universoProducts-container">
         <section className="universoProducts-banner">
-          <img src={universoBanner} alt={`${universo?.universo} banner`} />
+          <img src={universo?.bannerUniverso} alt={`${universo?.universo} banner`} />
         </section>
         {universoProducts.length > 0 && (
           <section className="universoProducts-productos-container">

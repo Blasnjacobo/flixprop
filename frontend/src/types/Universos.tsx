@@ -5,4 +5,5 @@ export interface Universo {
     codigo: string; 
     activo: string; 
     url: string;
+    bannerUniverso: string;
 }

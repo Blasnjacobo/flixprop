@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 
 // Define the allowed values for the 'universo' field
-const allowedUniversos = ["Pelicula", "Serie", "Anime"];
+const allowedUniversos = ["Pelicula", "Serie", "Anime", "Caricaturas"];
 
 const universoSchema = new mongoose.Schema(
   {
@@ -14,6 +14,7 @@ const universoSchema = new mongoose.Schema(
     codigo: String,
     activo: String,
     url: String,
+    bannerUniverso: String
   },
   {
     timestamps: true,
