@@ -27,7 +27,7 @@ const Productos = ({ producto }: StoreItemProps) => {
         console.log(codigo)
         if (vendedor === 'Flixprop') {
             window.scrollTo({ top: 0, behavior: 'smooth' });
-            navigate(`/flixprop/productos/${codigo}`);
+            navigate(`/productos/${codigo}`);
         } else window.location.href = link;
     };
 

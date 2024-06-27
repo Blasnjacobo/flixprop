@@ -52,11 +52,11 @@ const Menu = ({ showMenu, menuRef, navbarRef, setShowMenu }: MenuProps) => {
   return (
     <div ref={menuRef} className={`menu-container ${showMenu ? 'show' : ''}`}>
       <section className="menu-options">
-        <NavLink className="menu-links" onClick={() => handleClick()} to="/flixprop/">Inicio</NavLink>
-        <NavLink className="menu-links" onClick={() => handleClick()} to="/flixprop/universos">Universos</NavLink>
-        <NavLink className="menu-links" onClick={() => handleClick()} to="/flixprop/colecciones">Colecciones</NavLink>
-        <NavLink className="menu-links" onClick={() => handleClick()} to="/flixprop/noticias">Noticias</NavLink>
-        <NavLink className="menu-links" onClick={() => handleClick()} to="/flixprop/quizzes">Quizzes</NavLink>
+        <NavLink className="menu-links" onClick={() => handleClick()} to="/">Inicio</NavLink>
+        <NavLink className="menu-links" onClick={() => handleClick()} to="/universos">Universos</NavLink>
+        <NavLink className="menu-links" onClick={() => handleClick()} to="/colecciones">Colecciones</NavLink>
+        <NavLink className="menu-links" onClick={() => handleClick()} to="/noticias">Noticias</NavLink>
+        <NavLink className="menu-links" onClick={() => handleClick()} to="/quizzes">Quizzes</NavLink>
       </section>
       <section className="menu-icons-login">
         {

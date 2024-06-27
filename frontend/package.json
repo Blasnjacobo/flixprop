@@ -1,5 +1,4 @@
 {
-  "homepage": "https://Blasnjacobo.github.io/flixprop",
   "name": "frontend",
   "private": true,
   "version": "0.0.0",
@@ -7,7 +6,7 @@
   "scripts": {
     "dev": "vite",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d dist",
+    "deploy": "main -d dist",
     "build": "tsc && vite build && npm run copy-404",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "copy-404": "copy 404.html dist",

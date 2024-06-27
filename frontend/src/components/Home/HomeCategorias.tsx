@@ -87,12 +87,12 @@ const HomeCategorias = ({ categorias, text } : categoriasPromps) => {
 
   const handleCardClick = (categoria: CategoriaType) => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
-    navigate(`/flixprop/categorias/${categoria.codigo}`);
+    navigate(`/categorias/${categoria.codigo}`);
   };
 
   const handleVerTodos = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
-    navigate(`/flixprop/categorias`);
+    navigate(`/categorias`);
   };
 
   const currentPage = Math.floor(offset / displayCount) + 1;

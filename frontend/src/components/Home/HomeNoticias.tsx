@@ -81,7 +81,7 @@ const HomeNoticias = ({ noticias }: NoticiasPromps) => {
 
   const handleCardClickSlider = (noticia: NoticiaType) => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
-    navigate(`/flixprop/noticias/${noticia.codigo}`);
+    navigate(`/noticias/${noticia.codigo}`);
   };
 
   return (

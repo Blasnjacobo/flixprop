@@ -25,31 +25,31 @@ const Footer = () => {
             <div className="footer-main">
                 <section className="footer-section">
                     <h2>Nuestra Cultura</h2>
-                    <NavLink className="footer-links" to="/flixprop/nuestra-mision-vision/" onClick={() => scrollToTopAndNavigate("/flixprop/nuestra-mision-vision/")}>
+                    <NavLink className="footer-links" to="/nuestra-mision-vision/" onClick={() => scrollToTopAndNavigate("/#/nuestra-mision-vision/")}>
                     Nuestra Misión y Visión
                     </NavLink>
-                    <NavLink className="footer-links" to="/flixprop/cultura-flixprop/" onClick={() => scrollToTopAndNavigate("/flixprop/cultura-flixprop/")}>
+                    <NavLink className="footer-links" to="/cultura-flixprop/" onClick={() => scrollToTopAndNavigate("/#/cultura-flixprop/")}>
                     Cultura Flixprop
                     </NavLink>
                 </section>
                 <section className="footer-section">
                     <h2>Más información</h2>
-                    <NavLink className="footer-links" to="/flixprop/colabora-con-nosotros/" onClick={() => scrollToTopAndNavigate("/flixprop/colabora-con-nosotros/")}>
+                    <NavLink className="footer-links" to="/colabora-con-nosotros/" onClick={() => scrollToTopAndNavigate("/#/colabora-con-nosotros/")}>
                     Colabora con nosotros
                     </NavLink>
-                    <NavLink className="footer-links" to="/flixprop/sobre-nosotros/" onClick={() => scrollToTopAndNavigate("/flixprop/sobre-nosotros/")}>
+                    <NavLink className="footer-links" to="/sobre-nosotros/" onClick={() => scrollToTopAndNavigate("/#/sobre-nosotros/")}>
                     Sobre nosotros
                     </NavLink>
                 </section>
                 <section className="footer-section">
                     <h2>Legales</h2>
-                    <NavLink className="footer-links" to="/flixprop/politica-de-privacidad/" onClick={() => scrollToTopAndNavigate("/flixprop/politica-de-privacidad/")}>
+                    <NavLink className="footer-links" to="/politica-de-privacidad/" onClick={() => scrollToTopAndNavigate("/#/politica-de-privacidad/")}>
                     Política de privacidad
                     </NavLink>
-                    <NavLink className="footer-links" to="/flixprop/terminos-y-condiciones/" onClick={() => scrollToTopAndNavigate("/flixprop/terminos-y-condiciones/")}>
+                    <NavLink className="footer-links" to="/terminos-y-condiciones/" onClick={() => scrollToTopAndNavigate("/#/terminos-y-condiciones/")}>
                     Términos y condiciones
                     </NavLink>
-                    <NavLink className="footer-links" to="/flixprop/compra-segura/" onClick={() => scrollToTopAndNavigate("/flixprop/compra-segura/")}>
+                    <NavLink className="footer-links" to="/compra-segura/" onClick={() => scrollToTopAndNavigate("/#/compra-segura/")}>
                     Compra Segura
                     </NavLink>
                 </section>

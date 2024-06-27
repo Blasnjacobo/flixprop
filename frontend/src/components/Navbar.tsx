@@ -40,30 +40,30 @@ const Navbar = ({ toggleMenu, showMenu, navbarRef }: MenuProps) => {
           </div>
         ) : (
           <section className="navbar-redirecciones">
-            <NavLink className="flixprop-routes" to="/flixprop/"
+            <NavLink className="flixprop-routes" to="/"
             onClick={handleSmooth}>
               Inicio
             </NavLink>
-            <NavLink className="flixprop-routes" to="/flixprop/universos"
+            <NavLink className="flixprop-routes" to="/universos"
             onClick={handleSmooth}>
               Universos
             </NavLink>
-            <NavLink className="flixprop-routes" to="/flixprop/colecciones"
+            <NavLink className="flixprop-routes" to="/colecciones"
             onClick={handleSmooth}>
               Colecciones
             </NavLink>
-            <NavLink className="flixprop-routes" to="/flixprop/noticias"
+            <NavLink className="flixprop-routes" to="/noticias"
             onClick={handleSmooth}>
               Noticias
             </NavLink>
-            <NavLink className="flixprop-routes" to="/flixprop/quizzes"
+            <NavLink className="flixprop-routes" to="/quizzes"
             onClick={handleSmooth}>
               Quizzes
             </NavLink>
           </section>
         )}
         <section className="navar-img">
-          <NavLink className="navbar-logo" to="/flixprop/">
+          <NavLink className="navbar-logo" to="/">
             <img src={flixprop} alt="Flixprop logo" onClick={handleSmooth}/>
           </NavLink>
         </section>

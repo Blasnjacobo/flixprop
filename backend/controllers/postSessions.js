@@ -46,8 +46,8 @@ module.exports.postSessions = async (req, res) => {
             payment_method_types: ["card"],
             line_items: lineItems,
             mode: "payment",
-            success_url: "http://localhost:5173/flixprop/payment/success",
-            cancel_url: "https://blasnjacobo.github.io/flixprop/"
+            success_url: "https://flixprop.netlify.app/#/payment/success",
+            cancel_url: "https://flixprop.netlify.app/#/payment/cancel"
         });
 
         res.json({ id: session.id });
