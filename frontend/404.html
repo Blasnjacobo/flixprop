@@ -8,13 +8,18 @@
 </head>
 <body>
   <h1>404 - Page Not Found</h1>
-  <p>The requested URL <strong>{{ requestedUrl }}</strong> was not found on this server.</p>
+  <p>The requested URL <strong id="requestedUrl"></strong> was not found on this server.</p>
   
-  <!-- Optional: Add JavaScript to enhance the page -->
+  <!-- Optional: Add JavaScript for redirect -->
   <script>
     // Get the current URL path to display
     const requestedUrl = window.location.pathname;
-    document.querySelector('strong').textContent = requestedUrl;
+    document.getElementById('requestedUrl').textContent = requestedUrl;
+
+    // Attempt to redirect to the requested URL after a delay
+    setTimeout(() => {
+      window.location.href = requestedUrl;
+    }, 3000); // Redirect after 3 seconds (adjust as needed)
   </script>
 </body>
 </html>
