@@ -1,10 +1,20 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <meta http-equiv="refresh" content="0; URL=/" />
-    <script>
-      window.location.href = "/flixprop/noticias";
-    </script>
-  </head>
-  <body></body>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>404 - Page Not Found</title>
+</head>
+<body>
+  <h1>404 - Page Not Found</h1>
+  <p>The requested URL <strong>{{ requestedUrl }}</strong> was not found on this server.</p>
+  
+  <!-- Optional: Add JavaScript to enhance the page -->
+  <script>
+    // Get the current URL path to display
+    const requestedUrl = window.location.pathname;
+    document.querySelector('strong').textContent = requestedUrl;
+  </script>
+</body>
 </html>
