@@ -1,6 +1,7 @@
 import { useRef, useState, useEffect } from 'react';
 import { Universo as universoType } from '../../types/Universos';
-import universosBanner from '../../assets/Noticias/noticias-banner-section.jpg';
+import desktopBanner from '../../assets/desktopBanner.jpg';
+import mobileBanner from '../../assets/mobileBanner.png'
 import { useNavigate } from "react-router-dom";
 
 interface universosPromp {
@@ -103,8 +104,12 @@ const HomeUniversos = ({ text, universos }: universosPromp) => {
 
   return (
     <div className='home-universo-section'>
+      <div className='home-universo-titleVerMas'>
+          <h3>{text}</h3>
+          <p onClick={handleVerTodos}>Ver Todos</p>
+      </div>
       <div className='home-universo-container'>
-        <img src={universosBanner} alt="Universos Banner" className="home-universo-banner-image" />
+        <img src={ innerWidth > 960 ? desktopBanner : mobileBanner} alt="Universos Banner" className="home-universo-banner-image" />
         <section
           className='home-universo-main'
           ref={containerRef}
@@ -112,10 +117,6 @@ const HomeUniversos = ({ text, universos }: universosPromp) => {
           onTouchMove={handleTouchMove}
           onTouchEnd={handleTouchEnd}
         >
-          <div className='home-universo-titleVerMas'>
-            <h3>{text}</h3>
-            <p onClick={handleVerTodos}>Ver Todos</p>
-          </div>
           <div className='home-universo-mainCards'>
             {activeUniversos.slice(offset, offset + getDisplayCount()).map((universo) => (
               <div className='home-universo-card' key={universo.codigo} onClick={() => handleCardClick(universo)}>

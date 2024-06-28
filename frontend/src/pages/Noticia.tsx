@@ -3,7 +3,8 @@ import { useEffect, useRef, useState } from "react";
 import useNoticias from '../../src/context/Noticias/useNoticias';
 import Ofrecemos from "../components/Ofrecemos";
 import type { Noticia as NoticiaType } from '../types/Noticias';
-import noticiasBanner from '../assets/Noticias/noticias-banner-section.jpg';
+import desktopBanner from '../assets/desktopBanner.jpg';
+import mobileBanner from '../assets/mobileBanner.png'
 import flixprop from '../assets/flixpropFondo.jpg';
 import '../css/NoticiasItem.css';
 
@@ -38,7 +39,7 @@ const Noticia = () => {
 
   const handleCardClickSlider = (noticia: NoticiaType) => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
-    navigate(`/flixprop/noticias/${noticia.codigo}`);
+    navigate(`/noticias/${noticia.codigo}`);
   };
 
   const goToSliderSlide = (slideIndex: number) => {
@@ -85,7 +86,7 @@ const Noticia = () => {
             </section>
           </div>
           <section className="noticiasItem-slider-section">
-            <img src={noticiasBanner} alt="Noticias Banner" className="noticiasItem-banner-image" />
+            <img src={window.innerWidth > 960 ? desktopBanner : mobileBanner} alt="Noticias Banner" className="noticiasItem-banner-image" />
             <div className='noticiasItem-slider-container'>
               <h3 className="noticiasItem-masNoticiasText">Más Noticias</h3>
               <ul>

@@ -152,6 +152,27 @@ i.active {
 .home-universo-section {
     width: 100%;
     height: 530px;
+    display: flex;
+    flex-direction: column;
+}
+
+.home-universo-titleVerMas {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 50px;
+}
+
+.home-universo-titleVerMas p,
+.home-universo-titleVerMas h3{
+    color: black;
+    padding: 1rem 1rem;
+    margin: 0;
+    font-weight: BOLD;
+}
+
+.home-universo-titleVerMas p {
+    cursor: pointer;
 }
 
 .home-universo-container {
@@ -160,11 +181,12 @@ i.active {
     display: flex;
     flex-direction: column;
     gap: 1rem;
+    height: 500px;
 }
 
 .home-universo-banner-image {
     width: 100%;
-    height: 530px;
+    height: 100%;
     position: absolute;
     z-index: 0;
 }
@@ -172,35 +194,17 @@ i.active {
 .home-universo-main {
     position: absolute;
     left: 50%;
+    top: 20%;
     transform: translateX(-50%);
     z-index: 1;
     display: flex;
     flex-direction: column;
+    gap: 2rem;
     width: 85%;
-    height: 500px;
     overflow: hidden;
-    margin-top: 50px;
-}
-
-.home-universo-titleVerMas {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.home-universo-titleVerMas h3, 
-.home-universo-titleVerMas p {
-    color: white;
-    padding: 1rem 0 0;
-    margin: 0;
-}
-
-.home-universo-titleVerMas p {
-    cursor: pointer;
 }
 
 .home-universo-mainCards {
-    height: 320px;
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     justify-content: center;
@@ -436,7 +440,11 @@ i.active {
 /* Home - Universo */
 
 .home-universo-section {
-    height: 380px;
+    height: 315px;
+}
+
+.home-universo-container {
+    height: 265px;
 }
 
 .home-universo-mainCards {
@@ -447,14 +455,9 @@ i.active {
     margin: 0px;
 }
 
-.home-universo-banner-image {
-    height: 265px;
-}
-
 .home-universo-main {
     height: 250px;
-    display: flex;
-    flex-direction: column;
+    gap: 1rem;
     width: 95%;
 }
 

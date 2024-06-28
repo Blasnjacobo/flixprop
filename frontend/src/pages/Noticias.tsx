@@ -4,7 +4,8 @@ import { useNavigate } from 'react-router-dom';
 import useNoticias from '../../src/context/Noticias/useNoticias';
 import Ofrecemos from '../components/Ofrecemos';
 import { Noticia } from '../types/Noticias';
-import noticiasBanner from '../assets/Noticias/noticias-banner-section.jpg';
+import desktopBanner from '../assets/desktopBanner.jpg';
+import mobileBanner from '../assets/mobileBanner.png'
 import '../css/NoticiasPage.css';
 
 const Noticias = () => {
@@ -131,7 +132,7 @@ const Noticias = () => {
 
   const handleCardClickSlider = (noticia: Noticia) => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
-    navigate(`/flixprop/noticias/${noticia.codigo}`);
+    navigate(`/noticias/${noticia.codigo}`);
   }
 
   return (
@@ -144,7 +145,7 @@ const Noticias = () => {
         {
           !isMobile ? (
         <section className="noticiasPage-banner-section">
-          <img src={noticiasBanner} alt="Noticias Banner" className="noticiasPage-banner-image" />
+          <img src={desktopBanner} alt="Noticias Banner" className="noticiasPage-banner-image" />
           <div className='noticiasPage-banner-container'>
             <div className='noticiasPage-banner-column1'>
               <section onClick={() => handleCardClickSlider(firstThreeNoticias[0])} style={{ cursor: 'pointer' }}>
@@ -185,7 +186,7 @@ const Noticias = () => {
         </section>
         ) : (
           <section className="noticiasPage-banner-section">
-              <img src={noticiasBanner} alt="Noticias Banner" className="noticiasPage-banner-image" />
+              <img src={mobileBanner} alt="Noticias Banner" className="noticiasPage-banner-image" />
               <div className='noticiasPage-banner-container'>
                 <h3>Últimas noticias</h3>
                 <ul ref={bannerListRef}>
@@ -271,41 +272,41 @@ const Noticias = () => {
         {/* Recomendaciones Section */}
 
         <h2>Recomendaciones de la semana</h2>
-        <section className="noticiasPage-slider-section">
-        <img src={noticiasBanner} alt="Noticias Banner" className="noticiasPage-banner-image" />
-        <div className='noticiasPage-slider-container'>
-        <ul ref={sliderListRef}>
-                  {
-                    noticiasPage.map((item, index) => {
-                      return <li key={item.codigo}>
-                        <div className='noticiasPage-slider-cards'
-                        onClick={() => handleCardClickSlider(item)} style={{ cursor: 'pointer' }}>
-                          <div className='noticiasPage-slider-cards-column1'>
-                            <h1>{index+1}</h1>
-                            <img className="noticiasPage-flixprop-slider-img" 
-                            src={item.img} />
-                          </div>
-                          <div className='noticiasPage-slider-cards-column2'>
-                            <h5>{item.titulo}</h5>
-                            <p>No te pierdas esta precuela épica que expande el universo de Mad Max y nos presenta a una Furiosa joven, valiente y determinada en su lucha por la supervivencia y la libertad</p>
-                          </div>
-                        </div>
-                      </li>
-                    })
-                  }
-                </ul>
-            <div className="noticiasPage-dots-container">
-              <div className='slider-dots'>
-                  {
-                    noticiasPage.map((_, idx) => (
-                      <div key={idx}
-                        className="dot-container-item"
-                        onClick={() => goToSliderSlide(idx)}>
-                        <i className={`bi bi-circle-fill ${idx === sliderCurrentIndex ? "active" : ""}`}></i>
-                      </div>))
-                  }
-              </div>
+        <section className="noticiasPage-recomendaciones-section">
+          <img src={window.innerWidth > 960 ? desktopBanner : mobileBanner } alt="Noticias Banner" className="noticiasPage-banner-image" />
+          <div className='noticiasPage-slider-container'>
+          <ul ref={sliderListRef}>
+            {
+              noticiasPage.map((item, index) => {
+                return <li key={item.codigo}>
+                  <div className='noticiasPage-slider-cards'
+                  onClick={() => handleCardClickSlider(item)} style={{ cursor: 'pointer' }}>
+                    <div className='noticiasPage-slider-cards-column1'>
+                      <h1>{index+1}</h1>
+                      <img className="noticiasPage-flixprop-slider-img" 
+                      src={item.img} />
+                    </div>
+                    <div className='noticiasPage-slider-cards-column2'>
+                      <h5>{item.titulo}</h5>
+                      <p>{item.descripcion.length > 150 ? item.descripcion.slice(0, 150) + '...' : item.descripcion}</p>
+                    </div>
+                  </div>
+                </li>
+              })
+            }
+          </ul>
+          <div className="noticiasPage-dots-container">
+            <div className='slider-dots'>
+                {
+                  noticiasPage.map((_, idx) => (
+                    <div key={idx}
+                      className="dot-container-item"
+                      onClick={() => goToSliderSlide(idx)}>
+                      <i className={`bi bi-circle-fill ${idx === sliderCurrentIndex ? "active" : ""}`}></i>
+                    </div>))
+                }
             </div>
+          </div>
           </div>      
         </section>
           { isMobile ? '' : <Ofrecemos />}

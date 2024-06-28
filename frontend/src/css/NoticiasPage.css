@@ -1,7 +1,7 @@
   /* Noticias Page */
 
   .noticiasPage-container {
-    width: 75%;
+    width: 85%;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -51,7 +51,7 @@
     grid-template-columns: 3fr 1fr 3fr;
     align-items: center;
     justify-content: center;
-    width: 75%;
+    width: 85%;
   }
 
   .noticiasPage-banner-column1 {
@@ -158,27 +158,30 @@
     color: gray;
   }
 
-  /* NoticiasPage Slider */
-  .noticiasPage-slider-section {
+  /* NoticiasPage Recomendaciones */
+  .noticiasPage-recomendaciones-section {
       width: 100vw;
       position: relative;
-      height: 100%;
+      height: 636px;
     }
 
     .noticiasPage-slider-container {
-      width: 75%;
+      width: 100%;
       margin: auto;
       position: absolute;
-      top: 18%;
+      top: 0%;
       left: 50%;
-      transform: translateX(-50%); 
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
       height: 100%;
     }
     
     .noticiasPage-slider-cards {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 2rem;
       height: 100%;
     }
 
@@ -191,8 +194,15 @@
     }
 
     .noticiasPage-slider-cards-column1 h1 {
-      font-size: 20vw;
+      font-size: 22vw;
       color: white;
+    }
+
+    .noticiasPage-flixprop-slider-img {
+      width: 226px;
+      height: 322px;
+      border-radius: 20px;
+      object-fit: cover;
     }
 
     .noticiasPage-slider-cards-column2 {
@@ -203,6 +213,7 @@
       gap: 1rem;
       width: '100%';
       color: white;
+      width: 80%;
     }
 
     .noticiasPage-slider-cards-column2 h5 {
@@ -211,13 +222,6 @@
 
     .noticiasPage-slider-cards-column2 p {
       font-size: 1.5vw;
-    }
-    
-    .noticiasPage-flixprop-slider-img {
-      width: 12rem;
-      height: 17rem;
-      border-radius: 20px;
-      object-fit: cover;
     }
 
     .noticiasPage-dots-container {
@@ -230,18 +234,28 @@
 
     @media screen and (max-width: 960px) {
 
+      .noticiasPage-banner-section {
+        height: 285px;
+      }
       .noticiasPage-container {
           width: 90%;
+          height: 100%;
         }
 
         .noticiasPage-container h2 {
           margin: 20px 0;
         }
 
+        .noticiasPage-flixprop-slider-img {
+          height: 146px;
+          width: 100%;
+          margin: 0 auto;
+        }
+
       .noticiasPage-banner-container {
           display: flex;
           flex-direction: column;
-          gap: 5px;
+
           width: 90%;
           top: -5%;
         }
@@ -250,20 +264,12 @@
           gap: 10px;
         }
 
-        .noticiasPage-banner-image {
-          height: 400px;
-        }
-
-        .noticiasPage-flixprop-slider-img {
-          height: 170px;
-          width: 100%;
-          margin: 0 auto;
-        }
-
         .noticiasPage-banner-container h3 {
           color: white;
           text-align: start;
           width: 100%;
+          font-size: 18px;
+          padding-top: 2rem;
         }
 
         .noticiasPage-slider-cards-column {
@@ -283,10 +289,7 @@
 
         .noticiasPage-banner-container ul {
           padding-left: 0px;
-        }
-
-        .noticiasPage-banner-section {
-          height: 430px;
+          margin: 0;
         }
 
         .noticiasPage-all {
@@ -314,24 +317,28 @@
           font-size: 15px;
         }
 
-        .noticiasPage-slider-section {
+        .noticiasPage-recomendaciones-section {
           margin-bottom: 10px;
+          height: 265px;
+        }
+
+        .noticiasPage-recomendaciones-section ul {
+          margin: 10px;
+          padding-left: 0;
+        }
+
+        .noticiasPage-recomendaciones-section li {
+          width: 100vw;
         }
 
         .noticiasPage-slider-container {
-          width: 90vw;
-          height: 300px;
-        }
-
-        .noticiasPage-slider-container ul {
-          padding: 0px;
-          margin: 0px;
-          height: 70%;
           width: 100%;
+          height: 240px;
         }
 
         .noticiasPage-slider-cards-column1 {
-          gap: 1rem;
+          gap: 0rem;
+          padding-left: 10px;
         }
 
         .noticiasPage-slider-cards-column1 h1 {
@@ -344,15 +351,15 @@
         }
 
         .noticiasPage-slider-cards-column2 {
-          gap: 0.5rem;
+          gap: 5px;
         }
 
         .noticiasPage-slider-cards-column2 h5 {
-          font-size: 12px;
+          font-size: 10px;
         }
 
         .noticiasPage-slider-cards-column2 p {
-          font-size: 10px;
+          font-size: 8px;
         }
 
         
