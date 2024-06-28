@@ -4,17 +4,30 @@ import useNoticias from '../../src/context/Noticias/useNoticias';
 import Ofrecemos from "../components/Ofrecemos";
 import type { Noticia as NoticiaType } from '../types/Noticias';
 import desktopBanner from '../assets/desktopBanner.jpg';
-import mobileBanner from '../assets/mobileBanner.png'
+import mobileBanner from '../assets/mobileBanner.png';
 import flixprop from '../assets/flixpropFondo.jpg';
 import '../css/NoticiasItem.css';
 
 const Noticia = () => {
   const { codigo } = useParams<{ codigo: string }>();
-  const noticias = useNoticias().noticias;
+  const { noticias: initialNoticias } = useNoticias();
+  const [noticias, setNoticias] = useState<NoticiaType[]>([]);
   const noticia = noticias.find((noticia: NoticiaType) => noticia.codigo === codigo);
   const [sliderCurrentIndex, setSliderCurrentIndex] = useState<number>(0);
   const navigate = useNavigate();
   const intervalRef = useRef<NodeJS.Timeout | null>(null);
+
+  useEffect(() => {
+    const shuffleArray = (array: NoticiaType[]) => {
+      for (let i = array.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]];
+      }
+      return array;
+    };
+
+    setNoticias(shuffleArray([...initialNoticias]));
+  }, [initialNoticias]);
 
   useEffect(() => {
     if (!noticias.length) return;
@@ -106,7 +119,7 @@ const Noticia = () => {
               </ul>
               <div className="noticiasItem-dots-container">
                 <div className='sliderItem-dots'>
-                  {Array.from({ length: Math.ceil(noticias.length) }).map((_, idx) => (
+                {Array.from({ length: Math.ceil(noticias.length / 5) }).map((_, idx) => (
                     <div
                       key={idx}
                       className="dotItem-container-item"

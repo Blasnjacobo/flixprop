@@ -8,6 +8,7 @@ interface categoriasPromps {
 }
 
 const HomeCategorias = ({ categorias, text } : categoriasPromps) => {
+  console.log(categorias)
 
   const containerRef = useRef<HTMLDivElement>(null);
   const [touchStartX, setTouchStartX] = useState<number | null>(null);

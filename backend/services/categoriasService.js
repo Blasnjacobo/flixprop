@@ -12,17 +12,16 @@ async function updateCategoriasCollection() {
 
     for (let i = 1; i < categorias.length; i++) {
       const sheetItem = categorias[i];
-      const matchInDB = dataFromDB.find(dbItem => dbItem.codigo === sheetItem[3]);
+      const matchInDB = dataFromDB.find(dbItem => dbItem.codigo === sheetItem[1]);
 
       if (!matchInDB) {
         await categoriasCollection.insertOne({
           categorias: sheetItem[0],
           codigo: sheetItem[1],
-          descripcion: sheetItem[2],
-          url: sheetItem[3],
+          url: sheetItem[2],
         });
       } else {
-        const fieldsToCheck = ["categorias", "codigo", "descripcion", "url"];
+        const fieldsToCheck = ["categorias", "codigo", "url"];
         let hasChanges = false;
         for (const field of fieldsToCheck) {
           if (matchInDB[field] !== sheetItem[fieldsToCheck.indexOf(field)]) {
@@ -32,19 +31,18 @@ async function updateCategoriasCollection() {
         }
 
         if (hasChanges) {
-          await universosCollection.updateOne(
+          await categoriasCollection.updateOne(
             { _id: matchInDB._id },
             {
               $set: {
                 categoria: sheetItem[0],
                 codigo: sheetItem[1],
-                descripcion: sheetItem[2],
-                url: sheetItem[3],
+                url: sheetItem[2],
               },
             }
           );
         } else {
-          console.log(`No changes detected for document (categorias): ${sheetItem[1]}`);
+          console.log(`No changes detected for document (categorias): ${sheetItem[0]}`);
         }
       }
     }

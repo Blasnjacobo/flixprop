@@ -4,8 +4,7 @@ const categoriaSchema = new mongoose.Schema(
   {
     categorias: String,
     codigo: String,
-    descripcion: String,
-    descripcion: String,
+    url: String
   },
   {
     timestamps: true,

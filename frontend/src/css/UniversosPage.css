@@ -186,14 +186,14 @@
       gap: 10px;
     }
 
-      .universoProducts-noticias-all {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 3rem;
-    width: 100%;
-    justify-content: center;
-    align-items: center;
-    margin: 2rem auto;
+    .universoProducts-noticias-all {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+      width: 100%;
+      justify-content: center;
+      align-items: center;
+      margin: 2rem auto;
   }
   
   .universoProducts-noticias-all-noticia {
@@ -237,14 +237,14 @@
 
   .universosPage-Cards-container {
     grid-template-columns: repeat(3, 1fr);
-    gap: 0.8rem;
+    gap: 5px;
     width: 90%;
     margin: 0 auto;
   }
 
   .universosPage-card {
-    height: 120px;
-    width: 120px;
+    height: 100px;
+    width: 100px;
   }
 
   .universosPage-card img {
