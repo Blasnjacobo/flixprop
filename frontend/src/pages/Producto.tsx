@@ -17,6 +17,7 @@ const Producto = () => {
   const universos = useUniversos().universos;
   const producto = productos.find((producto: ProductoType) => producto.codigo === codigo);
 
+  const categoriasTallas = ['ROPAU_FP', 'RMUJE_FP', 'RHOMB_FP']
   const [selectedImage, setSelectedImage] = useState<string | undefined>(producto?.imgProducto);
   const [isImageManuallySelected, setIsImageManuallySelected] = useState<boolean>(false);
   const [otrosUniversos, setOtrosUniversos] = useState<UniversoType[]>([]);
@@ -26,16 +27,14 @@ const Producto = () => {
   const [isMobile, setIsMobile] = useState<boolean>(window.innerWidth < 960);
   const [sliderCurrentIndex, setSliderCurrentIndex] = useState<number>(0);
 
-  // New state for sizes and quantities
+  // Dynamically initialize sizes and quantities
+  const initialTallaQuantities = producto?.tallas.split(',').reduce((acc, size) => {
+    acc[size.trim()] = 0;
+    return acc;
+  }, {} as { [key: string]: number }) || {};
+
   const [selectedSize, setSelectedSize] = useState<string>('NON');
-  const [sizeQuantities, setSizeQuantities] = useState<{ [key: string]: number }>({
-    'S': 0,
-    'M': 0,
-    'L': 0,
-    'XL': 0,
-    '2XL': 0,
-    'NON' : 0,
-  });
+  const [tallaQuantities, setTallaQuantities] = useState<{ [key: string]: number }>(initialTallaQuantities);
 
   const images = [
     producto?.imgProducto,
@@ -52,7 +51,7 @@ const Producto = () => {
     try {
       await increaseQuantity(`${producto.codigo}-${selectedSize}`, user?.username || '');
       const updatedQuantity = await itemQuantity(`${producto.codigo}-${selectedSize}`, user?.username || '');
-      setSizeQuantities((prev) => ({ ...prev, [selectedSize]: updatedQuantity }));
+      setTallaQuantities((prev) => ({ ...prev, [selectedSize]: updatedQuantity }));
       setTriggerEffect(!triggerEffect);
     } catch (error) {
       console.error('Error increasing quantity:', error);
@@ -64,19 +63,18 @@ const Producto = () => {
     try {
       await decreaseQuantity(`${producto.codigo}-${selectedSize}`, user?.username || '');
       const updatedQuantity = await itemQuantity(`${producto.codigo}-${selectedSize}`, user?.username || '');
-      setSizeQuantities((prev) => ({ ...prev, [selectedSize]: updatedQuantity }));
+      setTallaQuantities((prev) => ({ ...prev, [selectedSize]: updatedQuantity }));
       setTriggerEffect(!triggerEffect);
     } catch (error) {
       console.error('Error decreasing quantity:', error);
     }
   };
 
-  // Handle size selection
   const handleSizeChange = async (size: string) => {
     setSelectedSize(size);
     if (producto) {
       const updatedQuantity = await itemQuantity(`${producto.codigo}-${size}`, user?.username || '');
-      setSizeQuantities((prev) => ({ ...prev, [size]: updatedQuantity }));
+      setTallaQuantities((prev) => ({ ...prev, [size]: updatedQuantity }));
     }
   };
 
@@ -93,7 +91,6 @@ const Producto = () => {
   }, []);
 
   useEffect(() => {
-    console.log(producto);
     if (producto) {
       const filteredOtrosUniversos = universos.filter((element) => (element.universo !== producto.universo));
       setOtrosUniversos(filteredOtrosUniversos);
@@ -109,7 +106,7 @@ const Producto = () => {
   useEffect(() => {
     if (producto) {
       const fetchQuantities = async () => {
-        const sizeKeys = ['S', 'M', 'L', 'XL', '2XL', 'NON'];
+        const sizeKeys = Object.keys(initialTallaQuantities);
         const quantities = await Promise.all(
           sizeKeys.map(size => itemQuantity(`${producto.codigo}-${size}`, user?.username || ''))
         );
@@ -117,7 +114,7 @@ const Producto = () => {
           acc[size] = quantities[index];
           return acc;
         }, {} as { [key: string]: number });
-        setSizeQuantities(newSizeQuantities);
+        setTallaQuantities(newSizeQuantities);
       };
       fetchQuantities();
     }
@@ -143,15 +140,14 @@ const Producto = () => {
     setIsImageManuallySelected(false);
   };
 
-  const cartItems = Object.entries(sizeQuantities)
-  .map(([size, quantity]) => {
-    if (quantity > 0) {
-      return (quantity === 1) ? `${quantity} producto talla ${size}`:  `${quantity} productos talla ${size}`
-    }
-    return null;
-  })
-  .filter(item => item !== null )
-  console.log(cartItems)
+  const cartItems = Object.entries(tallaQuantities)
+    .map(([size, quantity]) => {
+      if (quantity > 0) {
+        return (quantity === 1) ? `${quantity} producto talla ${size}` : `${quantity} productos talla ${size}`
+      }
+      return null;
+    })
+    .filter(item => item !== null);
 
   return (
     <div className="ProductoPage-section">
@@ -195,11 +191,11 @@ const Producto = () => {
                   <h5>{producto.universo}</h5>
                   <h4>${producto.precio}.00 MXN</h4>
                 </div>
-                {producto.categoria === 'Ropa' && (
+                {categoriasTallas.includes(producto.categoria) && (
                   <div className="ProductoPage-productoInfo-talla">
                     <h2>Talla</h2>
                     <div className="ProductoPage-productoInfo-talla-list">
-                      {['S', 'M', 'L', 'XL', '2XL'].map((size) => (
+                      {Object.keys(tallaQuantities).map((size) => (
                         <h3
                           key={size}
                           className={selectedSize === size ? 'selected' : ''}
@@ -212,21 +208,19 @@ const Producto = () => {
                   </div>
                 )}
 
-{
-                (selectedSize === ('S') || selectedSize === ('M') 
-                || selectedSize === ('L') || selectedSize === ('XL')
-                || selectedSize === ('2XL') || producto.categoria !== 'Ropa') && 
-                (
-                <div className="ProductoPage-productoInfo-details-cantidad">
-                  <h5>Cantidad</h5>
-                  <div className="ProductoPage-productoInfo-details-cantidad-values">
-                    <h2 onClick={handleDecreaseQuantity}>-</h2>
-                    <h2>{sizeQuantities[selectedSize]}</h2>
-                    <h2 onClick={handleIncreaseQuantity}>+</h2>
-                  </div>
-                </div>
-                )
-              }
+                {
+                  (selectedSize in tallaQuantities || !categoriasTallas.includes(producto.categoria)) &&
+                  (
+                    <div className="ProductoPage-productoInfo-details-cantidad">
+                      <h5>Cantidad</h5>
+                      <div className="ProductoPage-productoInfo-details-cantidad-values">
+                        <h2 onClick={handleDecreaseQuantity}>-</h2>
+                        <h2>{tallaQuantities[selectedSize]}</h2>
+                        <h2 onClick={handleIncreaseQuantity}>+</h2>
+                      </div>
+                    </div>
+                  )
+                }
                 <button onClick={openCart}>
                   Ir al carrito <i className="bi bi-cart" />
                 </button>
@@ -258,11 +252,11 @@ const Producto = () => {
                   </div>
                 </div>
               </div>
-              {producto.categoria === 'Ropa' && (
+              {categoriasTallas.includes(producto.categoria) && (
                 <div className="ProductoPage-productoInfo-talla">
                   <h2>Talla</h2>
                   <div className="ProductoPage-productoInfo-talla-list">
-                    {['S', 'M', 'L', 'XL', '2XL'].map((size) => (
+                    {Object.keys(tallaQuantities).map((size) => (
                       <h3
                         key={size}
                         className={selectedSize === size ? 'selected' : ''}
@@ -274,23 +268,21 @@ const Producto = () => {
                   </div>
                 </div>
               )}
-              
+
               {
-                (selectedSize === ('S') || selectedSize === ('M') 
-                || selectedSize === ('L') || selectedSize === ('XL')
-                || selectedSize === ('2XL') || producto.categoria !== 'Ropa') && 
+                (selectedSize in tallaQuantities || !categoriasTallas.includes(producto.categoria)) &&
                 (
-                <div className="ProductoPage-productoInfo-cantidad-mobile">
-                  <h5>Cantidad</h5>
-                  <div className="ProductoPage-productoInfo-cantidad-info-mobile">
-                    <h2 onClick={handleDecreaseQuantity}>-</h2>
-                    <h2>{sizeQuantities[selectedSize]}</h2>
-                    <h2 onClick={handleIncreaseQuantity}>+</h2>
+                  <div className="ProductoPage-productoInfo-cantidad-mobile">
+                    <h5>Cantidad</h5>
+                    <div className="ProductoPage-productoInfo-cantidad-info-mobile">
+                      <h2 onClick={handleDecreaseQuantity}>-</h2>
+                      <h2>{tallaQuantities[selectedSize]}</h2>
+                      <h2 onClick={handleIncreaseQuantity}>+</h2>
+                    </div>
                   </div>
-                </div>
                 )
               }
-              
+
               <button onClick={openCart}>
                 Ir al carrito <i className="bi bi-cart" />
               </button>
@@ -298,18 +290,18 @@ const Producto = () => {
           )
         }
         {
-          (cartItems.length > 0 && producto.categoria === 'Ropa') &&
+          (cartItems.length > 0 && categoriasTallas.includes(producto.categoria)) &&
           <div className='ProductosPage-productoInfo-tallas-descripcion'>
-          <h5>Productos agregados al carrito:</h5>
-          {cartItems.map((item) => (
-                <div className='ProductosPage-productoInfo-tallas-descripcion-list'>
-                  <h6>{item}</h6>
-                  <br />
-                </div>
-              ))}
+            <h5>Productos agregados al carrito:</h5>
+            {cartItems.map((item, index) => (
+              <div key={index} className='ProductosPage-productoInfo-tallas-descripcion-list'>
+                <h6>{item}</h6>
+                <br />
+              </div>
+            ))}
           </div>
         }
-         <h5 className="ProductoPage-productoDescripcion">{producto.descripcion}</h5>
+        <h5 className="ProductoPage-productoDescripcion">{producto.descripcion}</h5>
         <HomeProductos productos={productosRelacionados} text={`Más productos de ${producto.universo}`} />
         <HomeUniversos universos={otrosUniversos} text="Explora otros universos" />
         {otrosProductos.length > 0 && <HomeProductos productos={otrosProductos} text={'Podría interesarte'} />}

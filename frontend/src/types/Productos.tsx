@@ -17,4 +17,5 @@ export interface Producto {
     estatus: string;
     masVendido: string;
     masReciente: string;
+    tallas: string;
 }

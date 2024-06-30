@@ -34,14 +34,15 @@ async function updateProductosCollection() {
           imgExtra: sheetItem[14],
           estatus: sheetItem[15],
           masVendido: sheetItem[16],
-          masReciente: sheetItem[17]
+          masReciente: sheetItem[17],
+          tallas: sheetItem[18]
         });
         console.log(`New item added to MongoDB (productos): ${sheetItem[0]}`);
       } else {
         const fieldsToCheck = [
           "codigo", "codigoUniverso", "nombre", "universo", "personaje", "link", "descripcion",
           "vendedor", "categoria", "tags", "precio", "imgProducto", "imgEscena", "imgModelo", "imgExtra", "estatus",
-          "masVendido", "masReciente"
+          "masVendido", "masReciente", "tallas"
         ];
         let hasChanges = false;
         for (const field of fieldsToCheck) {
@@ -73,7 +74,8 @@ async function updateProductosCollection() {
                 imgExtra: sheetItem[14],
                 estatus: sheetItem[15],
                 masVendido: sheetItem[16],
-                masReciente: sheetItem[17]
+                masReciente: sheetItem[17],
+                tallas: sheetItem[18]
               },
             }
           );

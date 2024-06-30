@@ -19,7 +19,8 @@ const productoSchema = new mongoose.Schema(
         imgExtra: String,
         estatus: String,
         masVendido: String,
-        masReciente: String
+        masReciente: String,
+        tallas: String,
     },
     {
         timestamps: true
